@@ -8,13 +8,13 @@ import './greenfair/css/responsive.css';
 import './LoginStyle/style.css';
 import React from 'react';
 
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Route, NavLink } from 'react-router-dom';
 
 //import ScriptTag from 'react-script-tag';
 import App from './mapBox/App';
-import Header from './NavBar/Header';
-import Test from './Test';
-import LoginApp from './LoginStyle/App';
+//import Header from './NavBar/Header';
+//import Test from './Test';
+import Login from './LoginStyle/App';
 
 
 class Temp extends React.Component {
@@ -22,25 +22,81 @@ class Temp extends React.Component {
    
 
     renderHelper(){
-        return (
-            <div>
-                <BrowserRouter>
-                <div>
-                    <Header />
-                    <Route path='#map' exact component={App} />
+        
 
-                {/* <!--Start of slider section--> */}
+console.log(111,this.props.emailwa);
+     if(this.props.emailwa){
+         return<div>{this.props.emailwa}</div>
+     }else
+    
+     return (
+        <div>
+            <div>
+                <section id="header">
+                    <div className="header-area">
+                    
+
+                        {/* <!--End of top header--> */}
+                        <div className="header_menu text-center navBinkami" style={{ marginTop: '-50px' }} data-spy="affix" data-offset-top="50" id="nav">
+                            <nav style={{ backgroundColor: 'white' }} className="navbar navbar-default zero_mp navbar-fixed-top navBaresh ">
+                                <div className="container" >
+                                {/* <div style={{ backgroundColor: '#grey' }}>{this.state.time}</div> */}
+                                    {/* <!-- Brand and toggle get grouped for better mobile display --> */}
+                                    <div className="navbar-header">
+                                        <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                            <span className="sr-only">Toggle navigation</span>
+                                            <span className="icon-bar"></span>
+                                            <span className="icon-bar"></span>
+                                            <span className="icon-bar"></span>
+                                        </button>
+                                        <a className="navbar-brand" href="#"><img className="logoSize" src="https://www.iconspng.com/uploads/green-parking/green-parking.png" alt="logo" height="65px" width="70px"></img></a>
+                                        <li><h2 style={{ color: '#0676B7', marginBottom: '10px', fontSize: '25px' }}>𝐒𝖒𝖆𝖗𝖙 𝐏𝖆𝖗𝖐</h2></li>
+                                        {/* 𝕾𝖒𝖆𝖗𝖙 𝕻𝖆𝖗𝖐 */}
+                                    </div>
+
+                                    <div className="collapse navbar-collapse zero_mp" id="bs-example-navbar-collapse-1">
+                                        <ul className="nav navbar-nav navbar-right main_menu">
+                                            <li className="active"><a href="#header">Home <span className="sr-only">(current)</span></a></li>
+                                            <li><a href="#welcome">about</a></li>
+                                            <li><a href="#map">Search for places</a></li>
+
+                                            {/* <li><a href="#counter">achivment</a></li>
+                                            <li><a href="#event">event</a></li>
+                                            <li><a href="#testimonial">testimonialNO</a></li>
+                                            <li><a href="#blog">blog</a></li> */}
+                                            <li><a href="#contact">contact us</a></li>
+                                            {/* <li><Link to="/login">Login</Link></li> */}
+
+                                            <li>
+                                                <div className="dropdown">
+                                                    <button className="dropbtn button dropdown-toggle">Sign In{this.props.emButt}</button>
+                                                    <div className="dropdown-content">
+                                                        <NavLink to='/login'>Login</NavLink>
+                                                        <a href="#" onClick={this.logout}>Logout</a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        );
+    
+                
                 <section id="slider">
 
                     <div id="carousel-example-generic" className="carousel slide carousel-fade" data-ride="carousel" data-interval="3000">
-                        {/* <!-- Indicators --> */}
                         <ol className="carousel-indicators">
                             <li data-target="#carousel-example-generic" data-slide-to="0" className="active"></li>
                             <li data-target="#carousel-example-generic" data-slide-to="1"></li>
                             <li data-target="#carousel-example-generic" data-slide-to="2"></li>
                         </ol>
 
-                        {/* <!-- Wrapper for slides --> */}
                         <div className="carousel-inner" role="listbox">
                             <div className="item active">
                                 <div className="slider_overlay">
@@ -54,11 +110,11 @@ class Temp extends React.Component {
                                             
                                             
                                                 <div>
-                                                <a href="#map"><button className="button">Search for places</button></a><br /><br /><br/>
+                                                <NavLink to ='/search-maps'><button className="button">Search for places</button></NavLink><br /><br /><br/>
                                         
                                                 <div>
-                                                    <Route path="/Search/map" exact component={App} />
-                                                    <Route path="/login" exact component={LoginApp} />
+                                                    {/* <Route path="/search-maps" exact component={App} /> */}
+                                                    {/* Sanju<Route path="/login" exact component={LoginApp} /> */}
                                                 </div>
                                                 </div>
                                         </div>
@@ -120,7 +176,7 @@ class Temp extends React.Component {
                                         <div className="item_list">
                                             <div className="welcome_icon">
                                                 <i className=""></i>
-                                                <img src="https://cdn1.iconfinder.com/data/icons/travel-40/256/Vacation_Rental-512.png"></img>
+                                                <img src="https://cdn1.iconfinder.com/data/icons/travel-40/256/Vacation_Rental-512.png" alt="Pic_slider"></img>
                                             </div>
                                             <h4>Rent out your places</h4>
                                             <p>Lorem ipsum dolor sit amet, eu qui modo expetendis reformidans ex sit set appetere sententiae seo eum in simul homero.</p>
@@ -149,7 +205,7 @@ class Temp extends React.Component {
                                     <div className="single_item">
                                         <div className="item_list">
                                             <div className="welcome_icon">
-                                                <i className=""><img src="https://cdn1.iconfinder.com/data/icons/travel-hand-drawn-icons/64/travel_25-512.png"></img></i>
+                                                <i className=""><img src="https://cdn1.iconfinder.com/data/icons/travel-hand-drawn-icons/64/travel_25-512.png" alt="Pic_slider3"></img></i>
                                             </div>
                                             <h4>Booking</h4>
                                             <p>Lorem ipsum dolor sit amet, eu qui modo expetendis reformidans ex sit set appetere sententiae seo eum in simul homero.</p>
@@ -869,8 +925,7 @@ class Temp extends React.Component {
                     <script src="js/bootstrap.min.js"></script>
                     {/* <!-- Custom JavaScript--> */}
                     <script src="js/main.js"></script>
-                    </div>
-                    </BrowserRouter>
+                    
 
             </div>
         );

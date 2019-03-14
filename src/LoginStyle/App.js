@@ -3,8 +3,6 @@ import fire from './Firebase';
 import Home from './Home';
 import Login from './Login';
 import Header from '../NavBar/Header';
-import ExButton from '../NavBar/Existing';
-import Test from '../Test';
 
 class LoginApp extends Component {
 
@@ -27,7 +25,7 @@ class LoginApp extends Component {
         });
     }
     render() {
-        //console.log(this.state.user);
+       console.log(2,this.state.user);
         return (
             <div>{this.state.user ? (<Home userin={this.state.user}/>) : (<Login />)}</div>
         );

@@ -76,6 +76,8 @@ class Login extends React.Component {
 
           <li id="center-btn">
             <button className="button" type="submit" onClick={this.login}>Login</button>
+            <button className="button" onClick={this.signup} style={{ marginLeft: '25px' }}>Signup</button>
+
           </li>
         </ul>
       </div>

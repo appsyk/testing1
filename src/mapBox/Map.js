@@ -99,6 +99,52 @@ export class CurrentLocation extends React.Component {
       });
     });
   }
+// ----------------------------------------------------------------------------------------
+  // async componentDidMount() {
+  //   const { lat, lng } = await this.getcurrentLocation();
+  //   this.setState(prev => ({
+  //     fields: {
+  //       ...prev.fields,
+  //       location: {
+  //         lat,
+  //         lng
+  //       }
+  //     },
+  //     currentLocation: {
+  //       lat,
+  //       lng
+  //     }
+  //   }));
+  // }
+
+  //  getcurrentLocation() {
+  //   if (navigator && navigator.geolocation) {
+  //     return new Promise((resolve, reject) => {
+  //       navigator.geolocation.getCurrentPosition(pos => {
+  //         const coords = pos.coords;
+  //         resolve({
+  //           lat: coords.latitude,
+  //           lng: coords.longitude
+  //         });
+  //       });
+  //     });
+  //   }
+  //   return {
+  //     lat: 0,
+  //     lng: 0
+  //   };
+  // }
+  // addMarker = (location, map) => {
+  //   this.setState(prev => ({
+  //     fields: {
+  //       ...prev.fields,
+  //       location
+  //     }
+  //   }));
+  //   map.panTo(location);
+  // };
+
+// -------------------------------------------------------------------------
 
   render() {
     const style = Object.assign({}, mapStyles.map);
@@ -116,7 +162,7 @@ export class CurrentLocation extends React.Component {
 export default CurrentLocation;
 
 CurrentLocation.defaultProps = {
-  zoom: 12,
+  zoom: 11,
   initialCenter: {
     lat: 19.1580995,
     lng: 72.9943447

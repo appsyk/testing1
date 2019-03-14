@@ -5,7 +5,7 @@ const Spinner = (props) => {
 
 		<div className="ui active dimmer" >
 			<div className="ui text loader" >
-			<h1>Loading</h1>
+			<h1>Loading...</h1>
 			</div>
 		</div>
 	);
