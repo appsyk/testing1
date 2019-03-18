@@ -1,13 +1,25 @@
+import './LoadStyle.css';
 import React from 'react';
 
-const Spinner = (props) => {
+const Spinner = () => {
 	return (
-
-		<div className="ui active dimmer" >
-			<div className="ui text loader" >
-			<h1>Loading...</h1>
-			</div>
-		</div>
+		<div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="loader10">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+		// <div className="ui active dimmer" >
+		// 	<div className="ui text loader" >
+		// 	<h1>Loading...</h1>
+		// 	</div>
+		// </div>
 	);
 };
 

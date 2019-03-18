@@ -5,7 +5,14 @@ const mapStyles = {
   map: {
     position: 'absolute',
     width: '100%',
-    height: '100%'
+    height: '100%',
+  //  marginTop: '30px'
+  // },
+  // smallmap: {
+  //   position: 'absolute',
+  //   width: '50%',
+  //   height: '40%'
+  // }
   }
 };
 export class CurrentLocation extends React.Component {

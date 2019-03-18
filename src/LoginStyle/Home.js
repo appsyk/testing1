@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import fire from './Firebase';
 import Header from '../NavBar/Header';
 import Temp from '../Temp';
+import App from '../mapBox/App';
 
 class Home extends Component {
     // constructor(props) {
@@ -23,11 +24,13 @@ class Home extends Component {
     render(props) {
         console.log(1212,this.props.userin.email);
         if(this.props.userin !== null){
+            console.log("jkjk52")
             return<div>
             {/* <h1>Welcome to my World</h1> */}
-            <Header embutt={this.props.userin.email} /> </div>
+            <Header embutt={this.props.userin.email} />
+            <App emlmap={this.props.userin.email} />
+            </div>
         }
-        else
         return (
             <div>
                 

@@ -1,4 +1,4 @@
-input[type=email], input[type=password] {
+input[type=email], input[type=password],input[type=text], input[type=datetime-local]{
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -23,7 +23,7 @@ input[type=email], input[type=password] {
     height: 100%;
   }
   /* Set a style for all buttons */
-  .button55{
+  button {
     background-color: #4CAF50;
     color: white;
     padding: 14px 20px;
@@ -92,7 +92,7 @@ input[type=email], input[type=password] {
   
   /* Modal Content/Box */
   .modal-content {
-    background-color: #85cfb9;
+    background-color: #a2b5b9;
     margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
     border: 1px solid #888;
     width: 50%; /* Could be more or less, depending on screen size */

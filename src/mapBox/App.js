@@ -32,7 +32,7 @@ export class MapContainer extends Component {
     }
   };
 
-  onMark = () => {
+  onMark = (e) => {
     console.log("sanjay bhai login page kdhi yenar");
     this.setState({
       showForm: true,
@@ -64,7 +64,8 @@ export class MapContainer extends Component {
   );
 
 
-  render() {
+  render(props) {
+    console.log("mapProps", this.props.emlmap );
     if (this.state.showForm === true) {
       return (
         <div>
@@ -72,7 +73,7 @@ export class MapContainer extends Component {
         </div>
       );
     } else
-      console.log(999, this.state.selectedPlace.mapCenter);
+      console.log("this will giv you Lat and Lng of current Location..", this.state.selectedPlace.mapCenter);
       // console.log(999, this.state.selectedPlace.mapCenter.lng);
 
   //  console.log(999, this.props.google);
@@ -203,11 +204,12 @@ export class MapContainer extends Component {
               marker={this.state.activeMarker}
               visible={this.state.showingInfoWindow}
               onClose={this.onClose}
+              onClick={this.onMark}
             >
               <div>
                 <h4>{this.state.selectedPlace.name}</h4>
                 <img src="http://rma-upload.s3.amazonaws.com/2016_04_20_04_07_45Orion_Mall_11.jpg" alt={this.state.selectedPlace.name} style={{ height:'50%', width:'60%'}} />
-                {/* <button onClick={this.onMark}><NavLink to='/login'>Park Here</NavLink></button> */}
+                {/* <button onClick={}>rtdhg</button> */}
                 <a href="/login"><button className="button">Park Here</button></a>
               </div>
             </InfoWindow>

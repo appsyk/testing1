@@ -1,4 +1,5 @@
 import '../mapBox/MapBox.css';
+import './buttonStyle.css';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import $ from 'jquery';
@@ -7,6 +8,7 @@ import fire from '../LoginStyle/Firebase';
 //import Home from '../LoginStyle/Home';
 import ExButton from './DataArrayMap';
 import Home from '../LoginStyle/Home';
+import Register from '../Reserve/Register';
 
 
 //import Login from '../LoginStyle/Login';
@@ -79,6 +81,11 @@ class Header extends React.Component {
 
     }
 
+    // alertText(){
+    //     if(this.props.embutt){
+    //            alert("Your Already Logged In");
+    //         }
+    // }
 
     render(props) {
         // console.log("sanjubhai",this.props.userin);
@@ -86,7 +93,10 @@ class Header extends React.Component {
     //  if(!this.props.userin){
     //      return<div>Loading...</div>
     //  }else
-        console.log(this.props.embutt);
+        console.log(555,this.props.embutt);
+        // if(this.props.embutt){
+        //    alert("Your Already Logged In");
+        // }
     
         return (
             <div>
@@ -107,14 +117,14 @@ class Header extends React.Component {
                                             <span className="icon-bar"></span>
                                             <span className="icon-bar"></span>
                                         </button>
-                                        <a className="navbar-brand" href="#"><img className="logoSize" src="https://www.iconspng.com/uploads/green-parking/green-parking.png" alt="logo" height="65px" width="70px"></img></a>
-                                        <li><h2 style={{ color: '#0676B7', marginBottom: '10px', fontSize: '25px' }}>𝐒𝖒𝖆𝖗𝖙 𝐏𝖆𝖗𝖐</h2></li>
+                                        <a className="navbar-brand" href="/"><img className="logoSize" src="https://www.iconspng.com/uploads/green-parking/green-parking.png" alt="logo" height="65px" width="70px"></img></a>
+                                        <li><h2 style={{ color: '#0676B7', marginBottom: '10px', fontSize: '25px' }}>𝕾𝖒𝖆𝖗𝖙 𝕻𝖆𝖗𝖐</h2></li>
                                         {/* 𝕾𝖒𝖆𝖗𝖙 𝕻𝖆𝖗𝖐 */}
                                     </div>
 
                                     <div className="collapse navbar-collapse zero_mp" id="bs-example-navbar-collapse-1">
                                         <ul className="nav navbar-nav navbar-right main_menu">
-                                            <li className="active"><NavLink to='/'>Home <span className="sr-only">(current)</span></NavLink></li>
+                                            <li><NavLink to='/'>Home <span className="sr-only">(current)</span></NavLink></li>
                                             {/* <li><a href="#welcome">about</a></li>
                                             <li><a href="#map">Search for places</a></li> */}
 
@@ -124,12 +134,18 @@ class Header extends React.Component {
                                             <li><a href="#blog">blog</a></li> */}
                                             {/* <li><a href="#contact">contact us</a></li> */}
                                             {/* <li><Link to="/login">Login</Link></li> */}
+                                            {/* {this.props.embutt ? (<li><NavLink to="/reserve-ur-places">Register</NavLink></li>) : (<div></div> )} */}
+                                            <li className="active">
+                                                {this.props.embutt ? (<a href="/reserve-ur-place" class="fa faa-bounce animated" >Register</a>) : (<div></div> )}
 
+                                            </li>
+                                            {/* <li><button type="button" class="fa faa-bounce animated butt btn btn-danger btn-circle btn-xl"><i class="">Register</i></button></li> */}
                                             <li>
                                                 <div className="dropdown">
                                                     <button className="dropbtn button dropdown-toggle">{this.props.embutt ? (
                                                         <div>
                                                             {this.props.embutt}
+                                                            {/* {this.alertText()} */}
                                                             <div className="dropdown-content">
                                                                 <a href="#" onClick={this.logout}>Logout</a>
                                                             </div>
@@ -143,9 +159,10 @@ class Header extends React.Component {
                                                         </div>
                                                     )}
                                                     </button>
-                                                    
+
                                                 </div>
                                             </li>
+                                            
                                         </ul>
                                     </div>
                                 </div>

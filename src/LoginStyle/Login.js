@@ -1,5 +1,7 @@
 //import './style.css';
-import './W3temp.css';
+//import './W3temp.css';
+// import './Loginform.css';
+
 import React from 'react';
 //import { Link } from 'react-router-dom';
 import fire from './Firebase';
@@ -9,7 +11,9 @@ class Login extends React.Component {
   state = {
     email: '',
     password: '',
-    errorMessage: ''
+    errorMessage: '',
+    showForm: false,
+    closeForm: true
   };
 
   handleChange = (e) => {
@@ -38,14 +42,61 @@ class Login extends React.Component {
   }
 
 
-  loginForm() {
-    return (
-      <div>
-        <h2 style={{ fontSize: "25px" }}>Login</h2>
-        <ul className="noBullet">
-          <li>
-            {/* <label for="email"></label> */}
-            <input
+  // loginForm() {
+  //   return (
+  //     <div>
+  //       <h2 style={{ fontSize: "25px" }}>Login</h2>
+  //       <ul className="noBullet">
+  //         <li>
+  //           {/* <label for="email"></label> */}
+  //           <input
+  //             value={this.state.email}
+  //             onChange={this.handleChange}
+  //             type="email"
+  //             name="email"
+  //             className="inputFields"
+  //             id="exampleInputEmail1"
+  //             aria-describedby="emailHelp"
+  //             placeholder="Email"
+  //             //id="email"
+  //             required
+  //           />
+  //         </li>
+  //         <li>
+  //           {/* <label for="password"></label> */}
+  //           <input
+  //             value={this.state.password}
+  //             onChange={this.handleChange}
+  //             type="password"
+  //             name="password"
+  //             className="inputFields"
+  //             id="exampleInputPassword1"
+  //             placeholder="Password"
+  //             //id="password"
+  //             //onInput="return passwordValidation(this.value)"
+  //             required
+  //           />
+  //         </li><br />
+
+  //         <li id="center-btn">
+  //           <button className="button" type="submit" onClick={this.login}>Login</button>
+  //           <button className="button" onClick={this.signup} style={{ marginLeft: '25px' }}>Signup</button>
+
+  //         </li>
+  //       </ul>
+  //     </div>
+  //   );
+  // };
+
+  // signupForm() {
+  //   return (
+  //     <div>
+
+  //       <h2 style={{ fontSize: "25px" }}>Sign Up</h2>
+  //       <ul className="noBullet">
+  //         <li>
+            // {/* <label for="email"></label> */}
+            /* <input
               value={this.state.email}
               onChange={this.handleChange}
               type="email"
@@ -54,12 +105,10 @@ class Login extends React.Component {
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
               placeholder="Email"
-              //id="email"
               required
             />
           </li>
           <li>
-            {/* <label for="password"></label> */}
             <input
               value={this.state.password}
               onChange={this.handleChange}
@@ -68,55 +117,7 @@ class Login extends React.Component {
               className="inputFields"
               id="exampleInputPassword1"
               placeholder="Password"
-              //id="password"
-              //onInput="return passwordValidation(this.value)"
-              required
-            />
-          </li><br />
-
-          <li id="center-btn">
-            <button className="button" type="submit" onClick={this.login}>Login</button>
-            <button className="button" onClick={this.signup} style={{ marginLeft: '25px' }}>Signup</button>
-
-          </li>
-        </ul>
-      </div>
-    );
-  };
-
-  signupForm(){
-    return (
-      <div>
-
-        <h2 style={{ fontSize: "25px" }}>Sign Up</h2>
-        <ul className="noBullet">
-          <li>
-            {/* <label for="email"></label> */}
-            <input
-              value={this.state.email}
-              onChange={this.handleChange}
-              type="email"
-              name="email"
-              className="inputFields"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-              placeholder="Email"
-              //id="email"
-              required
-            />
-          </li>
-          <li>
-            {/* <label for="password"></label> */}
-            <input
-              value={this.state.password}
-              onChange={this.handleChange}
-              type="password"
-              name="password"
-              className="inputFields"
-              id="exampleInputPassword1"
-              placeholder="Password"
-              //id="password"
-              //onInput="return passwordValidation(this.value)"
+              
               required
             />
           </li><br />
@@ -129,25 +130,101 @@ class Login extends React.Component {
     );
   };
 
-  sanju(){
-    return(
-      <div style={{color:'black'}}>
+  sanju() {
+    return (
+      <div style={{ color: 'black' }}>
         "hey bhagwaan rasta dikha de!"
       </div>
     );
-  };
+  }; */
 
-  render () {
+
+  // state = { showForm: false, closeForm: true };
+
+  onLoginClick = () => {
+    this.setState({ showForm: true });
+  }
+
+  onCloseClick = () => {
+    this.setState({ closeForm: false });
+  }
+
+  renderLoginForm() {
+
+    // if (this.state.showForm === false ) {
+    //     return <div>sanju</div>
+    // } else
+      // console.log(this.state.showForm);
+      if (this.state.closeForm === true){
+      console.log('check', this.state.showForm);
+      console.log(this.state.closeForm);
+      return (
+        <div>
+          <div className="">
+            {/* id="id01" */}
+            <form className="modal-content animate loginbox" action="/action_page.php">
+              <div className="imgcontainer">
+                <span onClick={this.onCloseClick} className="close" title="Close Modal">&times;</span>
+                <img src="https://www.parking-mobility.org/wp-content/uploads/2018/01/GettyImages-5145168551.jpg" alt="Avatar" className="avatar" />
+              </div>
+              <div className="containerform">
+                <label htmlFor="email"><b>Email</b></label>
+                <input
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                  type="email"
+                  name="email"
+                  // id="exampleInputEmail1"
+                  // aria-describedby="emailHelp"
+                  placeholder="Enter Email"
+                  //id="email"
+                  required
+                />
+                <br />
+
+                <label htmlFor="password"><b>Password</b></label>
+                
+                <input
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                  type="password"
+                  name="password"
+                  // id="exampleInputPassword1"
+                  placeholder="Enter Password"
+                  //id="password"
+                  //onInput="return passwordValidation(this.value)"
+                  required
+                />
+                <button type="submit" onClick={this.login} className="button55">Login</button>
+                <button style={{ backgroundColor: 'red' }} className="button55" onClick={this.signup}>Signup</button>                
+                {/* <label>
+                                <input type="checkbox" checked="checked" name="remember" /> Remember me
+                                </label> */}
+              </div>
+
+              <div className="containerform" style={{ backgroundColor: '#f1f1f1' }}>
+                <a href="/"><button className="button55 cancelbtn" onClick={this.onCloseClick} >Cancel</button></a>
+
+              </div>
+            </form>
+          </div>
+        </div>
+      );
+    }
+  }
+  
+
+
+  render() {
 
     return (
-      <div>
+      <div className="backimage">
 
-       
+
         {/* <Header log={this.sanju()} /> */}
-                <div className="signupSection">
+        {/* <div className="signupSection">
                   <div className="info">
                     <h2 style={{ fontSize: "25px" }}>Mission to Safe Park</h2>
-                    {/* <i className="icon ion-ios-ionic-outline" aria-hidden="true"></i> */}
          <img src="https://www.iconspng.com/uploads/green-parking/green-parking.png" alt="parking_icon" width="200px" height="200px" />
                     <p>The Parking Is Here</p>
                   </div>
@@ -157,9 +234,9 @@ class Login extends React.Component {
                   </form>
                 </div>
 
-                <script src="js/index.js"></script>
+                <script src="js/index.js"></script> */}
 
-
+        {this.renderLoginForm()}
 
       </div>
 

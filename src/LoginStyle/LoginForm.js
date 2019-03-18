@@ -1,4 +1,4 @@
-// import './Loginform.css';
+import './Loginform.css';
 import React from 'react';
 
 class LoginForm extends React.Component {
@@ -13,7 +13,7 @@ class LoginForm extends React.Component {
         this.setState({ closeForm: false });
     }
 
-    renderHelp() {
+    renderLoginForm() {
 
         // if (this.state.showForm === false ) {
         //     return <div>sanju</div>
@@ -24,7 +24,6 @@ class LoginForm extends React.Component {
                 console.log(this.state.closeForm);
         return (
             <div>
-                sanjy
                 <div  className="">
                 {/* id="id01" */}
                     <form className="modal-content animate loginbox" action="/action_page.php">
@@ -32,22 +31,22 @@ class LoginForm extends React.Component {
                             <span onClick={this.onCloseClick} className="close" title="Close Modal">&times;</span>
                             <img src="https://www.parking-mobility.org/wp-content/uploads/2018/01/GettyImages-5145168551.jpg" alt="Avatar" className="avatar" />
                         </div>
-                        <div className="container">
+                        <div className="containerform">
                             <label htmlFor="uname"><b>Email</b></label>
-                            <input type="text" placeholder="Enter Email" name="uname" required />
+                            <input type="text" placeholder="Enter Email" name="uname" required /><br/>
 
                             <label htmlFor="psw"><b>Password</b></label>
                             <input type="password" placeholder="Enter Password" name="psw" required />
 
-                            <button type="submit">Login</button>
+                            <button className="buttStyle" type="submit" >Login</button><button className="buttStyle signbutt" type="submit">SignUp</button>
                             {/* <label>
                                 <input type="checkbox" checked="checked" name="remember" /> Remember me
                                 </label> */}
                         </div>
                         
-                        <div className="container" style={{ backgroundColor: '#f1f1f1' }}>
-                            <button type="button" onClick={this.onCloseClick} className="cancelbtn">Cancel</button>
-                            <span className="psw">Forgot <a href="#">password?</a></span>
+                        <div className="containerform" style={{ backgroundColor: '#f1f1f1' }}>
+                            <button className="buttstyle" type="button" onClick={this.onCloseClick} className="cancelbtn">Cancel</button>
+                            {/* <span className="psw">Forgot <a href="#">password?</a></span> */}
                         </div>
                      </form>
                 </div>
@@ -59,7 +58,7 @@ class LoginForm extends React.Component {
     render() {
         return (
             <div>
-                {this.renderHelp()}
+                {this.renderLoginForm()}
                 <button onClick={this.onLoginClick} style={{ width: '250px' }}>Login</button>
 
             </div>
@@ -67,4 +66,4 @@ class LoginForm extends React.Component {
     }
 }
 
-//export default LoginForm;
+export default LoginForm;

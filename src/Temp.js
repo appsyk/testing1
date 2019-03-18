@@ -24,8 +24,9 @@ class Temp extends React.Component {
     renderHelper(){
         
 
-console.log(111,this.props.emailwa);
+    console.log(111,this.props.emailwa);
      if(this.props.emailwa){
+         alert("You are Already Logged In");
          return<div>{this.props.emailwa}</div>
      }else
     
@@ -49,8 +50,8 @@ console.log(111,this.props.emailwa);
                                             <span className="icon-bar"></span>
                                             <span className="icon-bar"></span>
                                         </button>
-                                        <a className="navbar-brand" href="#"><img className="logoSize" src="https://www.iconspng.com/uploads/green-parking/green-parking.png" alt="logo" height="65px" width="70px"></img></a>
-                                        <li><h2 style={{ color: '#0676B7', marginBottom: '10px', fontSize: '25px' }}>𝐒𝖒𝖆𝖗𝖙 𝐏𝖆𝖗𝖐</h2></li>
+                                        <a className="navbar-brand" href="/"><img className="logoSize" src="https://www.iconspng.com/uploads/green-parking/green-parking.png" alt="logo" height="65px" width="70px"></img></a>
+                                        <li><h2 style={{ color: '#0676B7', marginBottom: '10px', fontSize: '25px' }}>𝕾𝖒𝖆𝖗𝖙 𝕻𝖆𝖗𝖐</h2></li>
                                         {/* 𝕾𝖒𝖆𝖗𝖙 𝕻𝖆𝖗𝖐 */}
                                     </div>
 
@@ -58,7 +59,7 @@ console.log(111,this.props.emailwa);
                                         <ul className="nav navbar-nav navbar-right main_menu">
                                             <li className="active"><a href="#header">Home <span className="sr-only">(current)</span></a></li>
                                             <li><a href="#welcome">about</a></li>
-                                            <li><a href="#map">Search for places</a></li>
+                                            <li><a href="/search-maps">Search for places</a></li>
 
                                             {/* <li><a href="#counter">achivment</a></li>
                                             <li><a href="#event">event</a></li>
@@ -72,6 +73,7 @@ console.log(111,this.props.emailwa);
                                                     <button className="dropbtn button dropdown-toggle">Sign In{this.props.emButt}</button>
                                                     <div className="dropdown-content">
                                                         <NavLink to='/login'>Login</NavLink>
+                                                        {/* <div onClick={this.onLoginClick}>Login</div> */}
                                                         <a href="#" onClick={this.logout}>Logout</a>
                                                     </div>
                                                 </div>
@@ -90,17 +92,18 @@ console.log(111,this.props.emailwa);
                 
                 <section id="slider">
 
-                    <div id="carousel-example-generic" className="carousel slide carousel-fade" data-ride="carousel" data-interval="3000">
+                    <div id="carousel-example-generic" className="carousel slide carousel-fade" data-ride="carousel" data-interval="8000">
                         <ol className="carousel-indicators">
                             <li data-target="#carousel-example-generic" data-slide-to="0" className="active"></li>
                             <li data-target="#carousel-example-generic" data-slide-to="1"></li>
                             <li data-target="#carousel-example-generic" data-slide-to="2"></li>
                         </ol>
 
-                        <div className="carousel-inner" role="listbox">
+                        <div className="carousel-inner" role="listbox" >
                             <div className="item active">
                                 <div className="slider_overlay">
-                                    <img src="https://images.wallpaperscraft.com/image/parking_underground_marking_118795_1920x1080.jpg" alt="..."></img>
+                                    {/* <img src="https://images.wallpaperscraft.com/image/parking_underground_marking_118795_1920x1080.jpg" alt="..."></img> */}
+                                   <img src="http://newschool.co.il/wp-content/uploads/2018/11/pexels-photo-408503-1500x630.jpeg" alt="slider" style={{height:'30%'}} ></img>
                                     <div className="carousel-caption">
                                         <div className="slider_text">
                                             <h3>Smart Park</h3>
@@ -110,7 +113,7 @@ console.log(111,this.props.emailwa);
                                             
                                             
                                                 <div>
-                                                <NavLink to ='/search-maps'><button className="button">Search for places</button></NavLink><br /><br /><br/>
+                                                <NavLink to ='/search-maps'><button className="button12 faa-bounce animated"><img src="http://icons.iconarchive.com/icons/graphicloads/100-flat/256/zoom-search-2-icon.png" alt="srch" height='50px' width='50px' style={{ marginRight: '17px'}} />Search for places</button></NavLink><br /><br /><br/>
                                         
                                                 <div>
                                                     {/* <Route path="/search-maps" exact component={App} /> */}
@@ -201,7 +204,7 @@ console.log(111,this.props.emailwa);
                             {/* <!--End of col-md-3--> */}
                             <div className="col-md-3">
                                 <div className="item">
-                                    <a href="#map">
+                                    <a href="/search-maps">
                                     <div className="single_item">
                                         <div className="item_list">
                                             <div className="welcome_icon">
@@ -254,22 +257,15 @@ console.log(111,this.props.emailwa);
                                     <p>Join to Our Application And be safe with your vehicle.</p>
                                 </div>
                             </div>
-                            {/* <!--End of col-md-8--> */}
                             <div className="col-md-3 col-md-offset-1">
                                 <div className="join_us">
                                     <a href="/login" className="vol_cust_btn">join us</a>
                                 </div>
                             </div>
-                            {/* <!--End of col-md-3--> */}
                         </div>
-                        {/* <!--End of row and vol_area--> */}
                     </div>
-                    {/* <!--End of container--> */}
                 </section>
-                {/* <!--end of volunteer--> */}
 
-
-                {/* <!--Start of counter--> */}
                 <section id="counter">
                     <div className="counter_img_overlay">
                         <div className="container">
@@ -280,9 +276,9 @@ console.log(111,this.props.emailwa);
                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                                     </div>
                                 </div>
-                                {/* <!--End of col-md-12--> */}
+                               
+                               
                             </div>
-                            {/* <!--End of row--> */}
                             <div className="row">
                                 <div className="col-md-3">
                                     <div className="counter_item text-center">
@@ -329,15 +325,11 @@ console.log(111,this.props.emailwa);
                                     </div>
                                 </div>
                             </div>
-                            {/* <!--End of row--> */}
                         </div>
-                        {/* <!--End of container--> */}
                     </div>
                 </section>
-                {/* <!--end of counter--> */}
 
-                {/* <!--start of event--> */}
-                <section id="event">
+                {/* <section id="event">
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -347,7 +339,6 @@ console.log(111,this.props.emailwa);
                                 </div>
                             </div>
                         </div>
-                        {/* <!--End of row--> */}
                         <div className="row">
                             <div className="col-md-8">
                                 <div className="row">
@@ -369,7 +360,6 @@ console.log(111,this.props.emailwa);
                                         </div>
                                     </div>
                                 </div>
-                                {/* <!--End of row--> */}
                                 <div className="row">
                                     <div className="col-md-6 zero_mp">
                                         <div className="event_item">
@@ -389,9 +379,7 @@ console.log(111,this.props.emailwa);
                                         </div>
                                     </div>
                                 </div>
-                                {/* <!--End of row--> */}
                             </div>
-                            {/* <!--End of col-md-8--> */}
                             <div className="col-md-4">
                                 <div className="event_news">
                                     <div className="event_single_item fix">
@@ -449,14 +437,10 @@ console.log(111,this.props.emailwa);
                                     </div>
                                 </div>
                             </div>
-                            {/* <!--End of col-md-4--> */}
                         </div>
-                        {/* <!--End of row--> */}
                     </div>
-                    {/* <!--End of container--> */}
                 </section>
-                {/* <!--end of event--> */}
-
+ */}
 
 
                 {/* <!--Start of testimonial--> */}
@@ -562,8 +546,7 @@ console.log(111,this.props.emailwa);
                 {/* <!--end of testimonial--> */}
 
 
-
-                {/* <!--Start of blog--> */}
+{/* 
                 <section id="blog">
                     <div className="container">
                         <div className="row">
@@ -574,7 +557,6 @@ console.log(111,this.props.emailwa);
                                 </div>
                             </div>
                         </div>
-                        {/* <!--End of row--> */}
                         <div className="row">
                             <div className="col-md-4">
                                 <div className="blog_news">
@@ -604,7 +586,6 @@ console.log(111,this.props.emailwa);
                                     </div>
                                 </div>
                             </div>
-                            {/* <!--End of col-md-4--> */}
                             <div className="col-md-4">
                                 <div className="blog_news">
                                     <div className="single_blog_item">
@@ -633,7 +614,6 @@ console.log(111,this.props.emailwa);
                                     </div>
                                 </div>
                             </div>
-                            {/* <!--End of col-md-4--> */}
                             <div className="col-md-4">
                                 <div className="blog_news">
                                     <div className="single_blog_item">
@@ -662,13 +642,9 @@ console.log(111,this.props.emailwa);
                                     </div>
                                 </div>
                             </div>
-                            {/* <!--End of col-md-4--> */}
                         </div>
-                        {/* <!--End of row--> */}
                     </div>
-                    {/* <!--End of container--> */}
-                </section>
-                {/* <!-- end of blog--> */}
+                </section> */}
 
 
 
@@ -935,6 +911,7 @@ console.log(111,this.props.emailwa);
         return (
             <div>
                 {this.renderHelper()}
+                {/* {this.renderLoginForm()} */}
             </div>
         );
     }
