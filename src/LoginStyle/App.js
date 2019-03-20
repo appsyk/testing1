@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import fire from './Firebase';
+import firebase from '../reserveForm/Firebase';
 import Home from './Home';
 import Login from './Login';
 import Header from '../NavBar/Header';
@@ -13,7 +13,7 @@ class LoginApp extends Component {
     }
 
     authListener = () => {
-        fire.auth().onAuthStateChanged((user) => {
+        firebase.auth().onAuthStateChanged((user) => {
             
             if (user) {
                 this.setState({ user });

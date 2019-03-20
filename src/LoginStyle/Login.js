@@ -4,7 +4,7 @@
 
 import React from 'react';
 //import { Link } from 'react-router-dom';
-import fire from './Firebase';
+import firebase from '../reserveForm/Firebase';
 import Header from '../NavBar/Header';
 
 class Login extends React.Component {
@@ -23,7 +23,7 @@ class Login extends React.Component {
   login = (e) => {
     e.preventDefault();
     console.log(e.name);
-    fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u) => {
+    firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u) => {
     })
       .catch((err) => {
         // this.setState = ({ errorMessage: err.message });
@@ -33,7 +33,7 @@ class Login extends React.Component {
 
   signup = (e) => {
     e.preventDefault();
-    fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u) => {
+    firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u) => {
     }).then((u) => { console.log(u) })
       .catch(error => {
         alert(error.message);
@@ -162,9 +162,9 @@ class Login extends React.Component {
         <div>
           <div className="">
             {/* id="id01" */}
-            <form className="modal-content animate loginbox" action="/action_page.php">
+            <form className="modal-content animate loginbox">
               <div className="imgcontainer">
-                <span onClick={this.onCloseClick} className="close" title="Close Modal">&times;</span>
+                <a href="/"><span className="close" title="Close Modal">&times;</span></a>
                 <img src="https://www.parking-mobility.org/wp-content/uploads/2018/01/GettyImages-5145168551.jpg" alt="Avatar" className="avatar" />
               </div>
               <div className="containerform">
@@ -195,8 +195,8 @@ class Login extends React.Component {
                   //onInput="return passwordValidation(this.value)"
                   required
                 />
-                <button type="submit" onClick={this.login} className="button55">Login</button>
-                <button style={{ backgroundColor: 'red' }} className="button55" onClick={this.signup}>Signup</button>                
+                <button type="submit" onClick={this.login} className="button55" style={{ marginLeft: '20px'  }}>Login</button>
+                <button style={{ backgroundColor: 'red', marginLeft: '15px', marginRight: '20px'  }} className="button55" onClick={this.signup} >Signup</button>                
                 {/* <label>
                                 <input type="checkbox" checked="checked" name="remember" /> Remember me
                                 </label> */}

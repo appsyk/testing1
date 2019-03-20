@@ -30,7 +30,7 @@ input[type=email], input[type=password] {
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 100%;
+    width: 45%;
   }
   
   button:hover {
@@ -72,7 +72,7 @@ input[type=email], input[type=password] {
   }
 
   .loginbox{
-    background-color: rgb(0, 167, 130);
+    background-color: rgb(136, 167, 160);
   }
   
   /* The Modal (background) */
@@ -92,7 +92,7 @@ input[type=email], input[type=password] {
   
   /* Modal Content/Box */
   .modal-content {
-    background-color: #85cfb9;
+    background-color: #90b3a8;
     margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
     border: 1px solid #888;
     width: 50%; /* Could be more or less, depending on screen size */

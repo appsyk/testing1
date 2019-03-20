@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import fire from './Firebase';
+import firebase from './Firebase';
 import Header from '../NavBar/Header';
 import Temp from '../Temp';
 import App from '../mapBox/App';
@@ -18,7 +18,7 @@ class Home extends Component {
     // }
 
     logout = () => {
-        fire.auth().signOut();
+        firebase.auth().signOut();
     }
 
     render(props) {

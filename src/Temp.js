@@ -7,6 +7,7 @@ import './greenfair/css/font-awesome.min.css';
 import './greenfair/css/responsive.css';
 import './LoginStyle/style.css';
 import React from 'react';
+import firebase from './reserveForm/Firebase';
 
 import { BrowserRouter, Route, NavLink } from 'react-router-dom';
 
@@ -14,16 +15,48 @@ import { BrowserRouter, Route, NavLink } from 'react-router-dom';
 import App from './mapBox/App';
 //import Header from './NavBar/Header';
 //import Test from './Test';
-import Login from './LoginStyle/App';
+//import Login from './LoginStyle/App';
 
 
 class Temp extends React.Component {
 
+    state = { user: null };
+
+    componentDidMount() {
+        this.authListener();
+    }
+
+    authListener = () => {
+        firebase.auth().onAuthStateChanged((user) => {
+            
+            if (user) {
+                this.setState({ user });
+                localStorage.setItem('user', user.uid);
+            } else {
+                this.setState({ user: null });
+                localStorage.removeItem('user');
+            }
+        });
+    }
+
+
+    logout = () => {
+        firebase.auth().signOut();
+    }
+
+    onBooking = () => {
+        if(this.state.user){
+            return<div> <a href="/reserve-ur-place"></a></div>;
+        }
+        else{
+            return<div> <a href="/login"></a></div>;
+        }
+    }
    
 
     renderHelper(){
         
-
+        console.log(100,this.state.user);
     console.log(111,this.props.emailwa);
      if(this.props.emailwa){
          alert("You are Already Logged In");
@@ -70,12 +103,21 @@ class Temp extends React.Component {
 
                                             <li>
                                                 <div className="dropdown">
-                                                    <button className="dropbtn button dropdown-toggle">Sign In{this.props.emButt}</button>
-                                                    <div className="dropdown-content">
-                                                        <NavLink to='/login'>Login</NavLink>
+                                                    <button className="dropbtn button dropdown-toggle">
+                                                        {this.state.user ? 
+                                                            (<div>{this.state.user.email}
+                                                                <div className="dropdown-content">
+                                                                    <a href="#" onClick={this.logout}>Logout</a>
+                                                                </div>
+                                                            </div>):(<div>Sign In
+                                                                <div className="dropdown-content">
+                                                                    <NavLink to='/login'>Login</NavLink>
+                                                                </div>
+                                                                </div>)}</button>
+                                                    
                                                         {/* <div onClick={this.onLoginClick}>Login</div> */}
-                                                        <a href="#" onClick={this.logout}>Logout</a>
-                                                    </div>
+                                                        
+                                                   
                                                 </div>
                                             </li>
                                         </ul>
@@ -203,18 +245,28 @@ class Temp extends React.Component {
                             </div>
                             {/* <!--End of col-md-3--> */}
                             <div className="col-md-3">
-                                <div className="item">
-                                    <a href="/search-maps">
+                                <div className="item" >
+                                    {/* <a href="/search-maps"> */}
                                     <div className="single_item">
                                         <div className="item_list">
-                                            <div className="welcome_icon">
-                                                <i className=""><img src="https://cdn1.iconfinder.com/data/icons/travel-hand-drawn-icons/64/travel_25-512.png" alt="Pic_slider3"></img></i>
-                                            </div>
-                                            <h4>Booking</h4>
+                                            {this.state.user ? 
+                                                (<a href="/reserve-ur-place">
+                                                    <div className="welcome_icon">
+                                                        <i className=""><img src="https://cdn1.iconfinder.com/data/icons/travel-hand-drawn-icons/64/travel_25-512.png" alt="Pic_slider3"></img></i>
+                                                    </div>
+                                                    <h4>Booking</h4>
+                                                </a>):
+                                                (<a href="/login">
+                                                    <div className="welcome_icon">
+                                                        <i className=""><img src="https://cdn1.iconfinder.com/data/icons/travel-hand-drawn-icons/64/travel_25-512.png" alt="Pic_slider3"></img></i>
+                                                    </div>
+                                                    <h4>Booking</h4>
+                                                </a>)}
+                                            
                                             <p>Lorem ipsum dolor sit amet, eu qui modo expetendis reformidans ex sit set appetere sententiae seo eum in simul homero.</p>
                                         </div>
                                     </div>
-                                    </a>
+                                    {/* </a> */}
                                 </div>
                             </div>
                             {/* <!--End of col-md-3--> */}

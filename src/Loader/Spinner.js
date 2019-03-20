@@ -3,10 +3,10 @@ import React from 'react';
 
 const Spinner = () => {
 	return (
-		<div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="loader10">
+		<div className="container">
+        <div className="row">
+            <div className="col-md-12">
+                <div className="loader10">
                     <span></span>
                     <span></span>
                     <span></span>

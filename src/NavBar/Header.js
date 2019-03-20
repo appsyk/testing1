@@ -4,7 +4,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import $ from 'jquery';
 import { findDOMNode } from 'react-dom';
-import fire from '../LoginStyle/Firebase';
+import firebase from '../reserveForm/Firebase';
 //import Home from '../LoginStyle/Home';
 import ExButton from './DataArrayMap';
 import Home from '../LoginStyle/Home';
@@ -14,89 +14,66 @@ import Register from '../Reserve/Register';
 //import Login from '../LoginStyle/Login';
 
 class Header extends React.Component {
-    state = { showButton: "sanuju", time: new Date().toLocaleString() };
+    // state = { time: new Date().toLocaleString() };
 
     // state={ time: new Date().toLocaleString()};
 
-    componentDidMount() {
-      this.intervalID = setInterval(
-        () => this.tick(),
-        1000
-      );
-      this.emailRe = setInterval(
-        (props) => this.renderButton(),
-        1000
-      );
-    }
+    // componentDidMount() {
+    //   this.intervalID = setInterval(
+    //     () => this.tick(),
+    //     1000
+    //   );
+    //   this.emailRe = setInterval(
+    //     (props) => this.renderButton(),
+    //     1000
+    //   );
+    // }
 
-    componentWillUnmount() {
-      clearInterval(this.intervalID);
-      clearInterval(this.emailRe);
-    }
-    tick() {
-      this.setState({
-        time: new Date().toLocaleString()
-      });
-    }
+    // componentWillUnmount() {
+    //   clearInterval(this.intervalID);
+    //   clearInterval(this.emailRe);
+    // }
+    // tick() {
+    //   this.setState({
+    //     time: new Date().toLocaleString()
+    //   });
+    // }
 
     
 
    
-    toggleHandle = (test) => {
-        const el = findDOMNode(this.refs.test)
-        $(el).slideToggle();
+    // toggleHandle = (test) => {
+    //     const el = findDOMNode(this.refs.test)
+    //     $(el).slideToggle();
+    // }
+    state = { user: null };
+
+    componentDidMount() {
+        this.authListener();
     }
+
+    authListener = () => {
+        firebase.auth().onAuthStateChanged((user) => {
+            
+            if (user) {
+                this.setState({ user });
+                localStorage.setItem('user', user.uid);
+            } else {
+                this.setState({ user: null });
+                localStorage.removeItem('user');
+            }
+        });
+    }
+
 
     logout = () => {
-        fire.auth().signOut();
+        firebase.auth().signOut();
     }
-
-    // exstingUser(props){
-    //     if(this.props.emailwa === null){
-    //         return<div>{this.state.showMenu}</div>
-    //     }else
-    //         this.setState({ showMenu : (this.props.emailwa)})
-    //         return<div>{this.state.showMenu}</div>
-    // }
-
-    renderButton(props) {
-        // console.log(1212,this.props.userin.email);
-        if(this.props.userin === undefined){
-        //    this.setState({ showButton : (this.props.userin.email)});
-            // console.log(444,this.props.userin.email);
-            return(
-                <div>
-                    {this.state.showButton}
-                </div>
-            )
-           // {this.props.userin.email}
-        }
-        else
-        return (
-            <div>
-                    Sign in Please...
-               
-            </div>
-        );
-
-    }
-
-    // alertText(){
-    //     if(this.props.embutt){
-    //            alert("Your Already Logged In");
-    //         }
-    // }
+   
 
     render(props) {
-        // console.log("sanjubhai",this.props.userin);
-    // console.log(111,this.props.emailwa);
-    //  if(!this.props.userin){
-    //      return<div>Loading...</div>
-    //  }else
-        console.log(555,this.props.embutt);
-        // if(this.props.embutt){
-        //    alert("Your Already Logged In");
-        // }
+
+            // alert("Your Already Logged In...Now press the OKAY button and you'll navigate to Maps");
     
         return (
             <div>
@@ -136,15 +113,15 @@ class Header extends React.Component {
                                             {/* <li><Link to="/login">Login</Link></li> */}
                                             {/* {this.props.embutt ? (<li><NavLink to="/reserve-ur-places">Register</NavLink></li>) : (<div></div> )} */}
                                             <li className="active">
-                                                {this.props.embutt ? (<a href="/reserve-ur-place" class="fa faa-bounce animated" >Register</a>) : (<div></div> )}
+                                                {this.props.embutt ? (<a href="/create" className="fa faa-bounce animated" >Register</a>) : (<div></div> )}
 
                                             </li>
-                                            {/* <li><button type="button" class="fa faa-bounce animated butt btn btn-danger btn-circle btn-xl"><i class="">Register</i></button></li> */}
+                                            {/* <li><button type="button" className="fa faa-bounce animated butt btn btn-danger btn-circle btn-xl"><i className="">Register</i></button></li> */}
                                             <li>
                                                 <div className="dropdown">
-                                                    <button className="dropbtn button dropdown-toggle">{this.props.embutt ? (
+                                                    <button className="dropbtn button dropdown-toggle">{this.state.user ? (
                                                         <div>
-                                                            {this.props.embutt}
+                                                            {this.state.user.email}
                                                             {/* {this.alertText()} */}
                                                             <div className="dropdown-content">
                                                                 <a href="#" onClick={this.logout}>Logout</a>

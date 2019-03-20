@@ -5,6 +5,8 @@ import { NavLink } from 'react-router-dom';
 import Login from '../LoginStyle/Login';
 import CurrentLocation from './Map';
 import LoginApp from '../LoginStyle/App';
+import firebase from '../reserveForm/Firebase';
+import Spinner from '../Loader/Spinner';
 
 
 
@@ -13,7 +15,8 @@ export class MapContainer extends Component {
     showingInfoWindow: false,
     activeMarker: {},
     selectedPlace: {},
-    showForm: false
+    showForm: false,
+    user: null
   };
 
   onMarkerClick = (props, marker, e) =>
@@ -53,6 +56,25 @@ export class MapContainer extends Component {
     }
   };
 
+  // state = { user: null };
+
+    componentDidMount() {
+        this.authListener();
+    }
+
+    authListener = () => {
+        firebase.auth().onAuthStateChanged((user) => {
+            
+            if (user) {
+                this.setState({ user });
+                localStorage.setItem('user', user.uid);
+            } else {
+                this.setState({ user: null });
+                localStorage.removeItem('user');
+            }
+        });
+    }
+
 
 
   iconMarker = new window.google.maps.MarkerImage(
@@ -73,7 +95,7 @@ export class MapContainer extends Component {
         </div>
       );
     } else
-      console.log("this will giv you Lat and Lng of current Location..", this.state.selectedPlace.mapCenter);
+      // console.log("this will giv you Lat and Lng of current Location..", this.state.selectedPlace.mapCenter);
       // console.log(999, this.state.selectedPlace.mapCenter.lng);
 
   //  console.log(999, this.props.google);
@@ -192,14 +214,14 @@ export class MapContainer extends Component {
               name={'CSP Society Parking'}
               position={{ lat: 19.1633806, lng: 72.9450292 }} />
             <Marker
-              className="backgrnd"
-              style={{ backgroundColor: 'cyan' }}
               onClick={this.onMarkerClick}
               icon={this.iconMarker}
               title={'Orion Mall, Panvel'}
               name={'Orion Mall, Panvel'}
-              position={{ lat: 18.9931809
-              ,lng:73.1154138 } } />
+              adrs={'panvel'}
+              img={'http://rma-upload.s3.amazonaws.com/2016_04_20_04_07_45Orion_Mall_11.jpg'}
+              // spin={<Spinner />}
+              position={{ lat: 18.9931809, lng:73.1154138 } } />
             <InfoWindow
               marker={this.state.activeMarker}
               visible={this.state.showingInfoWindow}
@@ -207,10 +229,13 @@ export class MapContainer extends Component {
               onClick={this.onMark}
             >
               <div>
-                <h4>{this.state.selectedPlace.name}</h4>
-                <img src="http://rma-upload.s3.amazonaws.com/2016_04_20_04_07_45Orion_Mall_11.jpg" alt={this.state.selectedPlace.name} style={{ height:'50%', width:'60%'}} />
+                <h2>{this.state.selectedPlace.name}</h2>
+                <h4>{this.state.selectedPlace.adrs}</h4>
+                {this.state.selectedPlace.spin}
+                <img src={this.state.selectedPlace.img} alt={this.state.selectedPlace.name} style={{ height:'50%', width:'60%'}} />
+                {/* <img src="http://rma-upload.s3.amazonaws.com/2016_04_20_04_07_45Orion_Mall_11.jpg" alt={this.state.selectedPlace.name} style={{ height:'50%', width:'60%'}} /> */}
                 {/* <button onClick={}>rtdhg</button> */}
-                <a href="/login"><button className="button">Park Here</button></a>
+                {this.state.user ? (<a href="/reserve-ur-place"><button className="button">Park Here</button></a>):(<a href="/login"><button className="button">Park Here</button></a>)}
               </div>
             </InfoWindow>
 
