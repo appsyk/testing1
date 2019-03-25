@@ -1,9 +1,4 @@
-//import './style.css';
-//import './W3temp.css';
-// import './Loginform.css';
-
 import React from 'react';
-//import { Link } from 'react-router-dom';
 import firebase from '../reserveForm/Firebase';
 import Header from '../NavBar/Header';
 
@@ -40,104 +35,6 @@ class Login extends React.Component {
       }
       )
   }
-
-
-  // loginForm() {
-  //   return (
-  //     <div>
-  //       <h2 style={{ fontSize: "25px" }}>Login</h2>
-  //       <ul className="noBullet">
-  //         <li>
-  //           {/* <label for="email"></label> */}
-  //           <input
-  //             value={this.state.email}
-  //             onChange={this.handleChange}
-  //             type="email"
-  //             name="email"
-  //             className="inputFields"
-  //             id="exampleInputEmail1"
-  //             aria-describedby="emailHelp"
-  //             placeholder="Email"
-  //             //id="email"
-  //             required
-  //           />
-  //         </li>
-  //         <li>
-  //           {/* <label for="password"></label> */}
-  //           <input
-  //             value={this.state.password}
-  //             onChange={this.handleChange}
-  //             type="password"
-  //             name="password"
-  //             className="inputFields"
-  //             id="exampleInputPassword1"
-  //             placeholder="Password"
-  //             //id="password"
-  //             //onInput="return passwordValidation(this.value)"
-  //             required
-  //           />
-  //         </li><br />
-
-  //         <li id="center-btn">
-  //           <button className="button" type="submit" onClick={this.login}>Login</button>
-  //           <button className="button" onClick={this.signup} style={{ marginLeft: '25px' }}>Signup</button>
-
-  //         </li>
-  //       </ul>
-  //     </div>
-  //   );
-  // };
-
-  // signupForm() {
-  //   return (
-  //     <div>
-
-  //       <h2 style={{ fontSize: "25px" }}>Sign Up</h2>
-  //       <ul className="noBullet">
-  //         <li>
-            // {/* <label for="email"></label> */}
-            /* <input
-              value={this.state.email}
-              onChange={this.handleChange}
-              type="email"
-              name="email"
-              className="inputFields"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-              placeholder="Email"
-              required
-            />
-          </li>
-          <li>
-            <input
-              value={this.state.password}
-              onChange={this.handleChange}
-              type="password"
-              name="password"
-              className="inputFields"
-              id="exampleInputPassword1"
-              placeholder="Password"
-              
-              required
-            />
-          </li><br />
-
-          <li id="center-btn">
-            <button className="button" onClick={this.signup} style={{ marginLeft: '25px' }}>Signup</button>
-          </li>
-        </ul>
-      </div>
-    );
-  };
-
-  sanju() {
-    return (
-      <div style={{ color: 'black' }}>
-        "hey bhagwaan rasta dikha de!"
-      </div>
-    );
-  }; */
-
 
   // state = { showForm: false, closeForm: true };
 
@@ -195,8 +92,8 @@ class Login extends React.Component {
                   //onInput="return passwordValidation(this.value)"
                   required
                 />
-                <button type="submit" onClick={this.login} className="button55" style={{ marginLeft: '20px'  }}>Login</button>
-                <button style={{ backgroundColor: 'red', marginLeft: '15px', marginRight: '20px'  }} className="button55" onClick={this.signup} >Signup</button>                
+                <button type="submit" onClick={this.login} className="button55" >Login</button>
+                <button style={{ backgroundColor: 'red', marginLeft: '20px' }} className="button55" onClick={this.signup} >Signup</button>                
                 {/* <label>
                                 <input type="checkbox" checked="checked" name="remember" /> Remember me
                                 </label> */}

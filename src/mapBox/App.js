@@ -95,7 +95,7 @@ export class MapContainer extends Component {
         </div>
       );
     } else
-      // console.log("this will giv you Lat and Lng of current Location..", this.state.selectedPlace.mapCenter);
+       console.log("this will giv you Lat and Lng of current Location..", this.state.selectedPlace.mapCenter);
       // console.log(999, this.state.selectedPlace.mapCenter.lng);
 
   //  console.log(999, this.props.google);
@@ -128,18 +128,24 @@ export class MapContainer extends Component {
               icon={this.iconMarker}
               title={'Airoli Station parking'}
               name={'Airoli Station parking'}
-              position={{ lat: 19.157146, lng: 72.9964705 }} />
+              addrs={'Sector 3, Airoli, Navi Mumbai, Maharashtra 400708'}
+              img=      {'https://lh5.googleusercontent.com/p/AF1QipMhD0murA228gczv9D9QYUw_B06U9XnA1h8_In4=w408-h229-k-no'}
+              position={{ lat: 19.1596806, lng: 72.9986323 }} />
             <Marker
               onClick={this.onMarkerClick}
               icon={this.iconMarker}
               title={'Datta Meghe College Of Engineering,Airoli'}
               name={'Datta Meghe College Of Engineering,Airoli'}
+              addrs={'Sector 3,Airoli Navi  Mumbai,Maharashtra 400708'}
+              img={'https://edumateengg.com/custom/images/Datta.jpg'}
               position={{ lat: 19.1580995, lng: 72.9943447 }} />
             <Marker
               onClick={this.onMarkerClick}
               icon={this.iconMarker}
               title={'Pay & Park'}
               name={'Pay & Park'}
+              addrs={'Plot No.31, Vaishakh Marg, Sector 2, New Panvel East, Panvel, Navi Mumbai, Maharashtra 410206'}
+              img={'https://lh3.googleusercontent.com/p/AF1QipOM-SpCpYiIuQqPaBD-NWNm8fH-f510_W7_d6GS=s0'}
               position={{ lat: 18.9911581, lng: 73.1232492 }} />
             <Marker
               onClick={this.onMarkerClick}
@@ -147,12 +153,16 @@ export class MapContainer extends Component {
               title={'Parking, Panvel'}
               name={'Parking, Panvel'}
               position={{ lat: 18.9918067, lng: 73.122032 }} />
-            <Marker
+           <Marker
               onClick={this.onMarkerClick}
               icon={this.iconMarker}
-              title={'Dasturi Car Parking'}
-              name={'Dasturi Car Parking'}
-              position={{ lat: 19.0335708, lng: 73.1982217 }} />
+              title={'Parking,KoparKhairne'}
+              name={'Parking,KoparKhairane'}
+              addrs={'RS Regency Road, Kopar Khairane, Navi Mumbai, Maharashtra 400709'}
+              img={'https://lh3.googleusercontent.com/p/AF1QipPbDoyNvIYfzyqQOempbrjj9Q2yrNwkLmOGu9bT=s0'}
+              
+              position={{ lat: 19.103879, lng: 73.0117614 }} />
+
             <Marker
               onClick={this.onMarkerClick}
               icon={this.iconMarker}
@@ -170,12 +180,16 @@ export class MapContainer extends Component {
               icon={this.iconMarker}
               title={'Badlapur'}
               name={'Badlapur'}
+              addrs={'Station Rd, Patil Pada, Kulgaon, Badlapur, Maharashtra 421503'}
+              img={'https://lh3.googleusercontent.com/p/AF1QipNfT2c8R-abKhNHxi3rfjTxW9Htwgx6_RZhM8Cn=s0'}
               position={{ lat: 19.1667863, lng: 73.2379882 }} />
             <Marker
               onClick={this.onMarkerClick}
               icon={this.iconMarker}
               title={'Parking'}
               name={'Parking'}
+              img={'https://lh3.googleusercontent.com/p/AF1QipM3SrxRoNseXGFWA6tJZJcbgf3Q5bvOEuqxKxxl=s0'}
+
               position={{ lat: 19.1141415, lng: 72.9884291 }} />
             <Marker
               onClick={this.onMarkerClick}
@@ -200,25 +214,32 @@ export class MapContainer extends Component {
               icon={this.iconMarker}
               title={'Arihant Parking Systems'}
               name={'Arihant Parking Systems'}
+              img={'https://lh3.googleusercontent.com/p/AF1QipM-oqvZ05gDilGO-_DIH3nZFiF6n-eDLU4D6UJg=s0'}
+              addrs={'R-399, T.T.C. Industrial Area, MIDC Industrial Area, Rabale, Navi Mumbai, Maharashtra 400701'}
               position={{ lat: 19.1228043, lng: 73.0132679 }} />
             <Marker
               onClick={this.onMarkerClick}
               icon={this.iconMarker}
               title={'RCP Parking P13'}
               name={'RCP Parking P13'}
+              img={'https://lh3.googleusercontent.com/p/AF1QipPBGnimDYqIyS463e1JIkrW5BwyJfDwCAP5VDfE=s0'}
+              addrs={'Unnamed Rd, Reliance Corporate Park, MIDC Industrial Area, Ghansoli, Navi Mumbai, Maharashtra 400701'}
               position={{ lat: 19.1272599, lng: 73.0099789 }} />
             <Marker
               onClick={this.onMarkerClick}
               icon={this.iconMarker}
               title={'CSP Society Parking'}
               name={'CSP Society Parking'}
+              addrs={'Pandit Jawaharlal Nehru Rd, Hira Nagar, Mulund West, Mumbai, Maharashtra 400080'}
+              img={'https://lh3.googleusercontent.com/p/AF1QipN5yIXZviAXOFRzQw0zlShnjV31nUMfwiGuDqmv=s0'}
+
               position={{ lat: 19.1633806, lng: 72.9450292 }} />
             <Marker
               onClick={this.onMarkerClick}
               icon={this.iconMarker}
               title={'Orion Mall, Panvel'}
               name={'Orion Mall, Panvel'}
-              adrs={'panvel'}
+              addrs={'Bus Depot, Final Plot No 311, Near ST, Forest Colony, Panvel, Navi Mumbai, Maharashtra 410206'}
               img={'http://rma-upload.s3.amazonaws.com/2016_04_20_04_07_45Orion_Mall_11.jpg'}
               // spin={<Spinner />}
               position={{ lat: 18.9931809, lng:73.1154138 } } />
@@ -230,12 +251,10 @@ export class MapContainer extends Component {
             >
               <div>
                 <h2>{this.state.selectedPlace.name}</h2>
-                <h4>{this.state.selectedPlace.adrs}</h4>
+                <h4 style={{ marginRight: '50%' }}>{this.state.selectedPlace.addrs}</h4>
                 {this.state.selectedPlace.spin}
                 <img src={this.state.selectedPlace.img} alt={this.state.selectedPlace.name} style={{ height:'50%', width:'60%'}} />
-                {/* <img src="http://rma-upload.s3.amazonaws.com/2016_04_20_04_07_45Orion_Mall_11.jpg" alt={this.state.selectedPlace.name} style={{ height:'50%', width:'60%'}} /> */}
-                {/* <button onClick={}>rtdhg</button> */}
-                {this.state.user ? (<a href="/reserve-ur-place"><button className="button">Park Here</button></a>):(<a href="/login"><button className="button">Park Here</button></a>)}
+                {this.state.user ? (<a href="/reserve-ur-place"><button className="button"><b>Park Here</b></button></a>):(<a href="/login"><button className="button">Park Here</button></a>)}
               </div>
             </InfoWindow>
 

@@ -94,8 +94,8 @@ class Temp extends React.Component {
                                             <li><a href="#welcome">about</a></li>
                                             <li><a href="/search-maps">Search for places</a></li>
 
-                                            {/* <li><a href="#counter">achivment</a></li>
-                                            <li><a href="#event">event</a></li>
+                                            <li><a href="/rent-out-ur-places">Rent out your space</a></li>
+                                            {/* <li><a href="#event">event</a></li>
                                             <li><a href="#testimonial">testimonialNO</a></li>
                                             <li><a href="#blog">blog</a></li> */}
                                             <li><a href="#contact">contact us</a></li>
@@ -150,12 +150,17 @@ class Temp extends React.Component {
                                         <div className="slider_text">
                                             <h3>Smart Park</h3>
                                             <h2>Search for Parking</h2>
-                                            <p>Now you can serach here and get parking place.</p>
+                                            <p>Now you can search here and get parking place immadiately.</p>
                                             {/* <a href={Test.js} className="custom_btn">Read  More</a> */}
                                             
                                             
                                                 <div>
-                                                <NavLink to ='/search-maps'><button className="button12 faa-bounce animated"><img src="http://icons.iconarchive.com/icons/graphicloads/100-flat/256/zoom-search-2-icon.png" alt="srch" height='50px' width='50px' style={{ marginRight: '17px'}} />Search for places</button></NavLink><br /><br /><br/>
+                                                <NavLink to ='/search-maps'>
+                                                    <button className="button12 faa-bounce animated">
+                                                        <img src="http://icons.iconarchive.com/icons/graphicloads/100-flat/256/zoom-search-2-icon.png" alt="srch" height='50px' width='50px' style={{ marginRight: '17px'}} />
+                                                        <b>Search for places</b>
+                                                    </button>
+                                                </NavLink><br /><br /><br/>
                                         
                                                 <div>
                                                     {/* <Route path="/search-maps" exact component={App} /> */}
@@ -175,7 +180,16 @@ class Temp extends React.Component {
                                             <h3>Smart Park</h3>
                                             <h2>Rent Out Your Parking Places</h2>
                                             <p>You can give your places on rent for parking.</p>
-                                            <a href="" className="button">On Rent</a>
+                                            {/* <a href="" className="button">On Rent</a> */}
+                                            <div>
+                                                <NavLink to ='/rent-out-ur-places'>
+                                                    <button className="button12 faa-bounce animated">
+                                                        <img src="https://cdn1.iconfinder.com/data/icons/travel-40/256/Vacation_Rental-512.png" alt="srch" height='50px' width='50px' style={{ marginRight: '17px'}} />
+                                                        <b>Add your space</b>
+                                                    </button>
+                                                </NavLink><br /><br /><br/>
+                                        
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -187,9 +201,17 @@ class Temp extends React.Component {
                                     <div className="carousel-caption">
                                         <div className="slider_text">
                                             <h3>Smart Park</h3>
-                                            <h2>nature the environment</h2>
+                                            <h2>Follow traffic rules, save your future</h2>
                                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                            <a href="" className="button">Read  More</a>
+                                            <div>
+                                                <NavLink to ='#contact'>
+                                                    <button className="button12 faa-bounce animated">
+                                                        <img src="https://cdn1.iconfinder.com/data/icons/travel-40/256/Vacation_Rental-512.png" alt="srch" height='50px' width='50px' style={{ marginRight: '17px'}} />
+                                                        <b>Add your space</b>
+                                                    </button>
+                                                </NavLink><br /><br /><br/>
+                                        
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -219,11 +241,20 @@ class Temp extends React.Component {
                                 <div className="item">
                                     <div className="single_item">
                                         <div className="item_list">
-                                            <div className="welcome_icon">
-                                                <i className=""></i>
-                                                <img src="https://cdn1.iconfinder.com/data/icons/travel-40/256/Vacation_Rental-512.png" alt="Pic_slider"></img>
-                                            </div>
-                                            <h4>Rent out your places</h4>
+    
+                                            {this.state.user ? 
+                                                (<a href="/rent-out-ur-places">
+                                                    <div className="welcome_icon">
+                                                        <i className=""><img src="https://cdn1.iconfinder.com/data/icons/travel-40/256/Vacation_Rental-512.png" alt="Pic_slider3"></img></i>
+                                                    </div>
+                                                    <h4>Rent out your places</h4>
+                                                </a>):
+                                                (<a href="/login">
+                                                    <div className="welcome_icon">
+                                                        <i className=""><img src="https://cdn1.iconfinder.com/data/icons/travel-40/256/Vacation_Rental-512.png" alt="Pic_slider3"></img></i>
+                                                    </div>
+                                                    <h4>Booking</h4>
+                                                </a>)}
                                             <p>Lorem ipsum dolor sit amet, eu qui modo expetendis reformidans ex sit set appetere sententiae seo eum in simul homero.</p>
                                         </div>
                                     </div>
@@ -503,7 +534,7 @@ class Temp extends React.Component {
                                 <div className="col-md-12">
                                     <div className="testimonial_header text-center">
                                         <h2>Team Members</h2>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                        <p>This is our team who takes a great effort to build such excellent Application.</p>
                                     </div>
                                 </div>
                             </div>
@@ -784,12 +815,14 @@ class Temp extends React.Component {
                                             <i className="fa fa-map-marker"><span>Elephant Road, Dhaka 1205, Bangladesh</span></i>
                                         </div>
                                         <div className="phone">
-                                            <i className="fa fa-phone"><span>+ 8801532-987039</span></i>
+                                            <i className="fa fa-phone"><span>+ 91 9595949871</span></i>
                                         </div>
                                         <div className="email">
-                                            <i className="fa fa-envelope"><span>youremail@mail.com</span></i>
+                                            <i className="fa fa-envelope"><span>imatom19@gmail.com</span></i>
                                         </div>
-                                        <div id="map"></div>
+                                        <div id="map">
+                                        {/* <App /> */}
+                                        </div>
                                     </div>
                                 </div>
                             </div>

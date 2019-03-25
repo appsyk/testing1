@@ -1,19 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Spinner from '../Loader/Spinner';
 
 const mapStyles = {
   map: {
     position: 'absolute',
-    width: '100%',
-    height: '100%',
-  //  marginTop: '30px'
-  // },
-  // smallmap: {
-  //   position: 'absolute',
-  //   width: '50%',
-  //   height: '40%'
-  // }
+    width: '70%',
+    height: '78%'
   }
 };
 export class CurrentLocation extends React.Component {
@@ -107,52 +99,6 @@ export class CurrentLocation extends React.Component {
       });
     });
   }
-// ----------------------------------------------------------------------------------------
-  // async componentDidMount() {
-  //   const { lat, lng } = await this.getcurrentLocation();
-  //   this.setState(prev => ({
-  //     fields: {
-  //       ...prev.fields,
-  //       location: {
-  //         lat,
-  //         lng
-  //       }
-  //     },
-  //     currentLocation: {
-  //       lat,
-  //       lng
-  //     }
-  //   }));
-  // }
-
-  //  getcurrentLocation() {
-  //   if (navigator && navigator.geolocation) {
-  //     return new Promise((resolve, reject) => {
-  //       navigator.geolocation.getCurrentPosition(pos => {
-  //         const coords = pos.coords;
-  //         resolve({
-  //           lat: coords.latitude,
-  //           lng: coords.longitude
-  //         });
-  //       });
-  //     });
-  //   }
-  //   return {
-  //     lat: 0,
-  //     lng: 0
-  //   };
-  // }
-  // addMarker = (location, map) => {
-  //   this.setState(prev => ({
-  //     fields: {
-  //       ...prev.fields,
-  //       location
-  //     }
-  //   }));
-  //   map.panTo(location);
-  // };
-
-// -------------------------------------------------------------------------
 
   render() {
     const style = Object.assign({}, mapStyles.map);
@@ -160,7 +106,7 @@ export class CurrentLocation extends React.Component {
     return (
       <div>
         <div style={style} ref="map">
-          <Spinner />
+          Loading map...
         </div>
         {this.renderChildren()}
       </div>
@@ -170,10 +116,10 @@ export class CurrentLocation extends React.Component {
 export default CurrentLocation;
 
 CurrentLocation.defaultProps = {
-  zoom: 11,
+  zoom: 14,
   initialCenter: {
-    lat: 19.1580995,
-    lng: 72.9943447
+    lat: -1.2884,
+    lng: 36.8233
   },
   centerAroundCurrentLocation: false,
   visible: true

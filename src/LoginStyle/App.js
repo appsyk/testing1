@@ -27,7 +27,9 @@ class LoginApp extends Component {
     render() {
        console.log(2,this.state.user);
         return (
-            <div>{this.state.user ? (<Home userin={this.state.user}/>) : (<Login />)}</div>
+            <div>{this.state.user ? (
+            <Home userin={this.state.user}/>
+            ) : (<Login />)}</div>
         );
     }
 }

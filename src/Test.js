@@ -15,12 +15,13 @@ import Create from './reserveForm/Create';
 import Edit from './reserveForm/Edit';
 import Show from './reserveForm/Show';
 import ResForm from './reserveForm/App';
+import RentForm from './RentOut/RentForm';
+import RentApp from './RentOut/RentApp';
 
 
 
 class Test extends React.Component {
     render() {
-        console.log("jk")
         return (
             <BrowserRouter>
                 <div>
@@ -36,12 +37,13 @@ class Test extends React.Component {
                         <Route path='/edit/:id' component={Edit} />
                         <Route path='/reserve-ur-place' exact component={Create} />
                         <Route path='/show/:id' component={Show} />
+                        <Route path='/rent-out-ur-places' component={RentApp} />
                         {/* <Route component={Spinner} /> */}
                         {/* <Register /> */} 
                     </div>
-                    {/* </Switch> */}
+                    {/* </Switch> <RentForm /> */}
                 </div>
-
+               
             </BrowserRouter>
         );
     }

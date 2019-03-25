@@ -2,7 +2,7 @@ import '../mapBox/MapBox.css';
 import './buttonStyle.css';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import $ from 'jquery';
+// import $ from 'jquery';
 import { findDOMNode } from 'react-dom';
 import firebase from '../reserveForm/Firebase';
 //import Home from '../LoginStyle/Home';
@@ -112,9 +112,8 @@ class Header extends React.Component {
                                             {/* <li><a href="#contact">contact us</a></li> */}
                                             {/* <li><Link to="/login">Login</Link></li> */}
                                             {/* {this.props.embutt ? (<li><NavLink to="/reserve-ur-places">Register</NavLink></li>) : (<div></div> )} */}
-                                            <li className="active">
-                                                {this.props.embutt ? (<a href="/create" className="fa faa-bounce animated" >Register</a>) : (<div></div> )}
-
+                                            <li>
+                                                <NavLink to='/rent-out-ur-places'>Rent out your space</NavLink>                                                
                                             </li>
                                             {/* <li><button type="button" className="fa faa-bounce animated butt btn btn-danger btn-circle btn-xl"><i className="">Register</i></button></li> */}
                                             <li>
