@@ -5,26 +5,34 @@ import { NavLink } from 'react-router-dom';
 import Login from '../LoginStyle/Login';
 import CurrentLocation from './Map';
 import LoginApp from '../LoginStyle/App';
-import firebase from '../reserveForm/Firebase';
+import firebase from '../Reserve/Firebase';
 import Spinner from '../Loader/Spinner';
 
 
 
 export class MapContainer extends Component {
-  state = {
-    showingInfoWindow: false,
+  constructor() {
+    super();
+    this.ref = firebase.firestore().collection('badlapurs');
+    this.ref = firebase.firestore().collection('dmces');
+
+    this.state = {
+      showingInfoWindow: false,
     activeMarker: {},
     selectedPlace: {},
     showForm: false,
-    user: null
-  };
+    user: null,
+    count:0
+    };
+  }
 
-  onMarkerClick = (props, marker, e) =>
+  onMarkerClick = (props, marker, e) =>{
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
       showingInfoWindow: true
-    });
+    })
+  };
 
   onClose = props => {
     if (this.state.showingInfoWindow) {
@@ -35,45 +43,53 @@ export class MapContainer extends Component {
     }
   };
 
-  onMark = (e) => {
-    console.log("sanjay bhai login page kdhi yenar");
-    this.setState({
-      showForm: true,
+  componentDidMount() {
+    this.authListener();
+    this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
+
+  }
+
+  authListener = () => {
+    firebase.auth().onAuthStateChanged((user) => {
+        
+        if (user) {
+            this.setState({ user });
+            localStorage.setItem('user', user.uid);
+        } else {
+            this.setState({ user: null });
+            localStorage.removeItem('user');
+        }
     });
-  };
+  }
 
-  //   componentDidMount() {
-  //     this.markListener();
-  // }
+  remainPlace(){
+    const rem = (4 - (this.state.count));
+    return rem; 
+  }
+  
+  onCollectionUpdate = (querySnapshot) => {
+    // const badlapurs = [];
+    querySnapshot.forEach((doc) => {
+      this.setState({ count:(this.state.count + 1 )})
 
-  markListener = (props) => {
-    if (this.state.showForm === true) {
-      return (
-        <div>
-          <Login />
-        </div>
-      )
-    }
-  };
-
-  // state = { user: null };
-
-    componentDidMount() {
-        this.authListener();
-    }
-
-    authListener = () => {
-        firebase.auth().onAuthStateChanged((user) => {
-            
-            if (user) {
-                this.setState({ user });
-                localStorage.setItem('user', user.uid);
-            } else {
-                this.setState({ user: null });
-                localStorage.removeItem('user');
-            }
-        });
-    }
+      // const { name, vehicle,
+      //   email, phoneNumber, arrivingTime, leavingTime } = doc.data();
+      // badlapurs.push({
+      //   key: doc.id,
+      //   doc, // DocumentSnapshot
+      //   name,
+      //   vehicle,
+      //   email,
+      //   phoneNumber,
+      //   arrivingTime,
+      //   leavingTime,
+        
+      // });
+    });
+    this.setState({
+      // badlapurs,
+   });
+  }
 
 
 
@@ -84,24 +100,17 @@ export class MapContainer extends Component {
     null, /* anchor is bottom center of the scaled image */
     new window.google.maps.Size(50, 50)
   );
+  iconMarker4Rent = new window.google.maps.MarkerImage(
+    'https://cdn4.iconfinder.com/data/icons/business-red/512/home_marker-512.png',
+    null, /* size is determined at runtime */
+    null, /* origin is 0,0 */
+    null, /* anchor is bottom center of the scaled image */
+    new window.google.maps.Size(40, 40)
+  );
 
 
   render(props) {
-    console.log("mapProps", this.props.emlmap );
-    if (this.state.showForm === true) {
-      return (
-        <div>
-          <LoginApp />
-        </div>
-      );
-    } else
-       console.log("this will giv you Lat and Lng of current Location..", this.state.selectedPlace.mapCenter);
-      // console.log(999, this.state.selectedPlace.mapCenter.lng);
-
-  //  console.log(999, this.props.google);
-  //  console.log(999, this.state.showForm);
-    console.log(999, this.state.fields);
-
+    console.log('count In maps',this.state.count);
     return (
       <div>
         {/* <Header />  */}
@@ -129,7 +138,8 @@ export class MapContainer extends Component {
               title={'Airoli Station parking'}
               name={'Airoli Station parking'}
               addrs={'Sector 3, Airoli, Navi Mumbai, Maharashtra 400708'}
-              img=      {'https://lh5.googleusercontent.com/p/AF1QipMhD0murA228gczv9D9QYUw_B06U9XnA1h8_In4=w408-h229-k-no'}
+              img={'https://lh5.googleusercontent.com/p/AF1QipMhD0murA228gczv9D9QYUw_B06U9XnA1h8_In4=w408-h229-k-no'}
+              rform={'/create@AIROLI_STATION'}
               position={{ lat: 19.1596806, lng: 72.9986323 }} />
             <Marker
               onClick={this.onMarkerClick}
@@ -137,78 +147,87 @@ export class MapContainer extends Component {
               title={'Datta Meghe College Of Engineering,Airoli'}
               name={'Datta Meghe College Of Engineering,Airoli'}
               addrs={'Sector 3,Airoli Navi  Mumbai,Maharashtra 400708'}
-              img={'https://edumateengg.com/custom/images/Datta.jpg'}
+              count={this.state.count}
+
+              img={'https://lh3.googleusercontent.com/2UJJmRViC6PQgK7dShfrMoF-WDM7nBykmQStMsRIkC2yPi6QdUR-QCmEv84CsI_BEgCbGV2A6mWP7eop50LMfVVO4ZgpKWJEUn4v_JxBZjbG_Kgc-fD5Zs2DMcpoLNwCD4kglYTm6Nr4U5snPNWLW1rGsLiSwJA4oJ6NMu5C_50I6_CmmxigPPMf-or_HEfN0ofyMNG_y8sMOhz_-SYrkvTOw-iYP6L56ZQnAXDj187bQCXCOJvfyp7c9Moagw4rEFnOJay2sNkqV7V8-SGL7mAaVtXmRoCD0CJ-WTRZGJ1V3xhNAsZ3Gq_t_ry4Nb0bXQK4ihgkhXidYEPyaF1X8BKijiYOPZG9XVzdK1uPOExS9N41l3JL6R_H4E9IiwMLzkELaGMt5YyGFY0BxqoFRWbSA8q0fEBKtd7V2UGxf_lYObE_c7LN_Ujy3mmLerntSkJVL4y2-Upkzof3gBNaGht0I2opieccKSk_Iieve17O6qwuBhiWrZKwVSdAfzw3-0bEftyDz35K1f8vxvVPER_S7I1UzaSKpVkziDhlCsfDN6XGuW_TPsSR7nkZPIyAgC3tdAk3J0_qstt29hebV_-uRydGOqp3PLgoj1GV-wXcxWgctuv8ofPwLmH2rzUncA5O1iZby8lMV88p8e4ApPUFisDgWtGQBdQfsaMxkO6YauXZPAauUq9mejow0lJpykrKcylstEkEOAhvTfMGdG6E=w892-h669-no'}
+              rform={'/create@DMCE'}
               position={{ lat: 19.1580995, lng: 72.9943447 }} />
             <Marker
               onClick={this.onMarkerClick}
               icon={this.iconMarker}
               title={'Pay & Park'}
               name={'Pay & Park'}
+              count={this.state.count}
+
               addrs={'Plot No.31, Vaishakh Marg, Sector 2, New Panvel East, Panvel, Navi Mumbai, Maharashtra 410206'}
               img={'https://lh3.googleusercontent.com/p/AF1QipOM-SpCpYiIuQqPaBD-NWNm8fH-f510_W7_d6GS=s0'}
               position={{ lat: 18.9911581, lng: 73.1232492 }} />
-            <Marker
+            {/* <Marker
               onClick={this.onMarkerClick}
               icon={this.iconMarker}
               title={'Parking, Panvel'}
               name={'Parking, Panvel'}
-              position={{ lat: 18.9918067, lng: 73.122032 }} />
+              position={{ lat: 18.9918067, lng: 73.122032 }} /> */}
            <Marker
               onClick={this.onMarkerClick}
               icon={this.iconMarker}
-              title={'Parking,KoparKhairne'}
-              name={'Parking,KoparKhairane'}
+              title={'Koparkhairne Station Parking'}
+              name={'Koparkhairne Station Parking'}
               addrs={'RS Regency Road, Kopar Khairane, Navi Mumbai, Maharashtra 400709'}
               img={'https://lh3.googleusercontent.com/p/AF1QipPbDoyNvIYfzyqQOempbrjj9Q2yrNwkLmOGu9bT=s0'}
               
               position={{ lat: 19.103879, lng: 73.0117614 }} />
 
-            <Marker
+            {/* <Marker
               onClick={this.onMarkerClick}
               icon={this.iconMarker}
               title={'voltas Praking'}
               name={'Voltas Prking'}
-              position={{ lat: 18.9646497, lng: 72.7990557 }} />
-            <Marker
+              position={{ lat: 18.9646497, lng: 72.7990557 }} /> */}
+            {/* <Marker
               onClick={this.onMarkerClick}
               icon={this.iconMarker}
               title={'Bike Parking'}
               name={'Bike Parking'}
-              position={{ lat: 19.0381493, lng: 72.8590869 }} />
+              position={{ lat: 19.0381493, lng: 72.8590869 }} /> */}
             <Marker
               onClick={this.onMarkerClick}
               icon={this.iconMarker}
               title={'Badlapur'}
               name={'Badlapur'}
+              count={this.state.count}
               addrs={'Station Rd, Patil Pada, Kulgaon, Badlapur, Maharashtra 421503'}
+              freeSpace={this.props.free}
               img={'https://lh3.googleusercontent.com/p/AF1QipNfT2c8R-abKhNHxi3rfjTxW9Htwgx6_RZhM8Cn=s0'}
+              rform={'/create@BADLAPUR'}
+              dsk={this.props.sdk}
               position={{ lat: 19.1667863, lng: 73.2379882 }} />
-            <Marker
+            {/* <Marker
               onClick={this.onMarkerClick}
               icon={this.iconMarker}
               title={'Parking'}
               name={'Parking'}
               img={'https://lh3.googleusercontent.com/p/AF1QipM3SrxRoNseXGFWA6tJZJcbgf3Q5bvOEuqxKxxl=s0'}
 
-              position={{ lat: 19.1141415, lng: 72.9884291 }} />
-            <Marker
+              position={{ lat: 19.1141415, lng: 72.9884291 }} /> */}
+            {/* <Marker
               onClick={this.onMarkerClick}
               icon={this.iconMarker}
               title={'Parking place for 2 and 4 wheelers underground'}
               name={'Parking place for 2 and 4 wheelers underground'}
-              position={{ lat: 19.1979305, lng: 72.9185063 }} />
-            <Marker
+              position={{ lat: 19.1979305, lng: 72.9185063 }} /> */}
+            {/* <Marker
               onClick={this.onMarkerClick}
               icon={this.iconMarker}
               title={'Parking Lot'}
               name={'Parking Lot'}
-              position={{ lat: 19.2196375, lng: 72.9572959 }} />
-            <Marker
+              position={{ lat: 19.2196375, lng: 72.9572959 }} /> */}
+            {/* <Marker
               onClick={this.onMarkerClick}
               icon={this.iconMarker}
               title={'Parking,Ghansoli'}
               name={'Parking,Ghansoli'}
-              position={{ lat: 19.103879, lng: 73.0117614 }} />
+              position={{ lat: 19.103879, lng: 73.0117614 }} /> */}
             <Marker
               onClick={this.onMarkerClick}
               icon={this.iconMarker}
@@ -216,6 +235,8 @@ export class MapContainer extends Component {
               name={'Arihant Parking Systems'}
               img={'https://lh3.googleusercontent.com/p/AF1QipM-oqvZ05gDilGO-_DIH3nZFiF6n-eDLU4D6UJg=s0'}
               addrs={'R-399, T.T.C. Industrial Area, MIDC Industrial Area, Rabale, Navi Mumbai, Maharashtra 400701'}
+              rform={'/create@ARIHANT_RABALE'}
+              test={this.props.test}
               position={{ lat: 19.1228043, lng: 73.0132679 }} />
             <Marker
               onClick={this.onMarkerClick}
@@ -242,6 +263,7 @@ export class MapContainer extends Component {
               addrs={'Bus Depot, Final Plot No 311, Near ST, Forest Colony, Panvel, Navi Mumbai, Maharashtra 410206'}
               img={'http://rma-upload.s3.amazonaws.com/2016_04_20_04_07_45Orion_Mall_11.jpg'}
               // spin={<Spinner />}
+              rform={'/create@ORION'}
               position={{ lat: 18.9931809, lng:73.1154138 } } />
             <InfoWindow
               marker={this.state.activeMarker}
@@ -249,41 +271,26 @@ export class MapContainer extends Component {
               onClose={this.onClose}
               onClick={this.onMark}
             >
-              <div>
-                <h2>{this.state.selectedPlace.name}</h2>
-                <h4 style={{ marginRight: '50%' }}>{this.state.selectedPlace.addrs}</h4>
-                {this.state.selectedPlace.spin}
-                <img src={this.state.selectedPlace.img} alt={this.state.selectedPlace.name} style={{ height:'50%', width:'60%'}} />
-                {this.state.user ? (<a href="/reserve-ur-place"><button className="button"><b>Park Here</b></button></a>):(<a href="/login"><button className="button">Park Here</button></a>)}
+              <div style={{ backgroundColor: '#E5E5E5', marginLeft: '2.5%' }}>
+                <h2 style={{ textAlign: 'center' }}>{this.state.selectedPlace.name}</h2>
+                <h4 style={{ marginLeft: '10%', marginRight: '10%', textAlign: 'center' }}>{this.state.selectedPlace.addrs}</h4>
+                {/* {this.state.selectedPlace.spin}<h1>count:{this.state.selectedPlace.count}</h1> */}
+                {/* freespace:{this.state.selectedPlace.dsk} */}
+                <img src={this.state.selectedPlace.img} alt={this.state.selectedPlace.name} style={{ height:'270px', width:'380px'}} />
+                <h1>{this.state.user ? (<a href={this.state.selectedPlace.rform}><button className="btn custom-btn col-md-12" style={{ backgroundColor: '#068FC2', height: '20%' }}>Park Here</button></a>):(<h1 style={{ textAlign: 'center' }} > You have to <a href="/login"><b>Login</b></a> first !</h1>)}</h1>
+
               </div>
             </InfoWindow>
-
-            {/* <Marker
-              onClick={this.onMark}
-              icon={this.iconMarker}
-              title={'Orion Mall, Panvel'}
-              name={'Orion Mall, Panvel'}
-              position={{ lat: 18.9932136, lng: 73.1155214 }} /> */}
-
+            <Marker
+              onClick={this.onMarkerClick}
+              icon={this.iconMarker4Rent}
+              title={'Sanjay Khatal'}
+              name={'Sanjay Khatal'}
+              // img={'https://lh3.googleusercontent.com/p/AF1QipM-oqvZ05gDilGO-_DIH3nZFiF6n-eDLU4D6UJg=s0'}
+              addrs={'E119, Nere, Navi Mumbai, Maharashtra 410206'}
+              rform={'/create@ARIHANT_RABALE'}
+              position={{ lat: 19.0021632, lng: 73.1537408 }} />
           </CurrentLocation>
-
-          {/* <Map
-                  google={this.props.google}
-                  style={{
-                    width: "100%",
-                    height: "100%"
-                  }}
-                  initialCenter={this.state.fields.location}
-                  center={this.state.fields.location}
-                  zoom={14}
-                  onClick={(t, map, c) => this.addMarker(
-                    lat=c.latLng.lat(),
-                    lng=c.latlng.lng()
-                  , map)}
-                >
-                  <Marker position={this.state.fields.location} />
-                </Map> */}
-
         </div>
       </div>
     );

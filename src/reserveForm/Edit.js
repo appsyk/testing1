@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import firebase from './Firebase';
+import firebase from '../Reserve/Firebase';
 import { Link } from 'react-router-dom';
 
 class Edit extends Component {
@@ -37,6 +37,7 @@ class Edit extends Component {
         });
       } else {
         console.log("No such document!");
+        alert("No such document!");
       }
     });
   }

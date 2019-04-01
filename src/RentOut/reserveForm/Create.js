@@ -7,16 +7,16 @@ class Create extends Component {
 
   constructor() {
     super();
-    this.ref = firebase.firestore().collection('boards');
+    this.ref = firebase.firestore().collection('rents');
     this.state = {
-      userName: '',
-      parkingPlace: '',
-      vehicleName: '',
-      vehicleNumber: '',
+      firstName: '',
+      lastName: '',
       email: '',
-      phoneNumber: '',
-      arrivingTime: '',
-      leavingTime: ''
+      lat: '',
+      noOfSpaces: '',
+      lng: '',
+      address: '',
+      describe: ''
     };
   }
   onChange = (e) => {
@@ -28,29 +28,23 @@ class Create extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    const { userName, parkingPlace, vehicleName, vehicleNumber,
-      email, phoneNumber, arrivingTime, leavingTime } = this.state;
+    const { firstName, lastName, email, lat,
+      noOfSpaces, lng, address, describe } = this.state;
 
     this.ref.add({
-      userName,
-        parkingPlace,
-        vehicleName,
-        vehicleNumber,
-        email,
-        phoneNumber,
-        arrivingTime,
-        leavingTime
+      firstName, lastName, email, lat,
+      noOfSpaces, lng, address, describe
 
     }).then((docRef) => {
       this.setState({
-        userName: '',
-      parkingPlace: '',
-      vehicleName: '',
-      vehicleNumber: '',
-      email: '',
-      phoneNumber: '',
-      arrivingTime: '',
-      leavingTime: ''
+        firstName: '',
+        lastName: '',
+        email: '',
+        lat: '',
+        noOfSpaces: '',
+        lng: '',
+        address: '',
+        describe: ''
       });
       this.props.history.push("/")
     })

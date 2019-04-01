@@ -6,19 +6,19 @@ import firebase from './Firebase';
 class ResForm extends Component {
   constructor(props) {
     super(props);
-    this.ref = firebase.firestore().collection('boards');
+    this.ref = firebase.firestore().collection('rents');
     this.unsubscribe = null;
     this.state = {
-      boards: []
+      rents: []
     };
   }
 
   onCollectionUpdate = (querySnapshot) => {
-    const boards = [];
+    const rents = [];
     querySnapshot.forEach((doc) => {
       const { userName, parkingPlace, vehicleName, vehicleNumber,
         email, phoneNumber, arrivingTime, leavingTime } = doc.data();
-      boards.push({
+      rents.push({
         key: doc.id,
         doc, // DocumentSnapshot
         userName,
@@ -32,7 +32,7 @@ class ResForm extends Component {
       });
     });
     this.setState({
-      boards
+      rents
    });
   }
 
@@ -65,16 +65,16 @@ class ResForm extends Component {
                 </tr>
               </thead>
               <tbody>
-                {this.state.boards.map(board =>
+                {this.state.rents.map(rent =>
                   <tr>
-                    <td><Link to={`/show/${board.key}`}>{board.userName}</Link></td>
-                    <td>{board.parkingPlace}</td>
-                    <td>{board.vehicleName}</td>
-                    <td>{board.vehicleNumber}</td>
-                    <td>{board.email}</td>
-                    <td>{board.phoneNumber}</td>
-                    <td>{board.arrivingTime}</td>
-                    <td>{board.leavingTime}</td>
+                    <td><Link to={`/show/${rent.key}`}>{rent.userName}</Link></td>
+                    <td>{rent.parkingPlace}</td>
+                    <td>{rent.vehicleName}</td>
+                    <td>{rent.vehicleNumber}</td>
+                    <td>{rent.email}</td>
+                    <td>{rent.phoneNumber}</td>
+                    <td>{rent.arrivingTime}</td>
+                    <td>{rent.leavingTime}</td>
                   </tr>
                 )}
               </tbody>

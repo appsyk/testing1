@@ -32,6 +32,7 @@ input[type=email], input[type=password] {
     border: none;
     cursor: pointer;
     width: 47%;
+    /* height:10%; */
   }
   
   button:hover {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './AppStyle.css';
-import firebase from './Firebase';
+import firebase from '../Reserve/Firebase';
 
 class ResForm extends Component {
   constructor(props) {

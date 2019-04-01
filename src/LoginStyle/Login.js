@@ -1,5 +1,5 @@
 import React from 'react';
-import firebase from '../reserveForm/Firebase';
+import firebase from '../Reserve/Firebase';
 import Header from '../NavBar/Header';
 
 class Login extends React.Component {

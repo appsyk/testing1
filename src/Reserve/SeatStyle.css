@@ -1,0 +1,36 @@
+.seat-container
+{
+  background-color: rgb(209, 209, 209);
+    float: left;
+    width: 45%;
+    margin-top: 2%;
+    margin-bottom: 20%; 
+    padding-top:5px;
+    margin-left: 10%;
+    padding-bottom: 20px;
+    padding-left:10px;
+    padding-right: 20px; 
+    border: 0.1px solid black;
+    border-radius: 2px; 
+    margin-left: 2.5%;  
+    margin-right: 2.5%;       
+}
+
+.seatBlock
+{
+margin-top: 15px; 
+font-size: 20px;   
+
+}
+input[type="checkbox"]{
+    width: 25px; /*Desired width*/
+    height: 25px; /*Desired height*/
+    margin-right: 6.4px;
+    margin-left: 6.4px;
+    font-size: 20px;
+    
+  }
+  input[type="checkbox"]:hover {
+    cursor: pointer;
+    box-shadow: 0 0 0px 2px rgb(8, 194, 49);
+  }

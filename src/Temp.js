@@ -7,7 +7,7 @@ import './greenfair/css/font-awesome.min.css';
 import './greenfair/css/responsive.css';
 import './LoginStyle/style.css';
 import React from 'react';
-import firebase from './reserveForm/Firebase';
+import firebase from './Reserve/Firebase';
 
 import { BrowserRouter, Route, NavLink } from 'react-router-dom';
 
@@ -28,7 +28,7 @@ class Temp extends React.Component {
 
     authListener = () => {
         firebase.auth().onAuthStateChanged((user) => {
-            
+
             if (user) {
                 this.setState({ user });
                 localStorage.setItem('user', user.uid);
@@ -45,93 +45,25 @@ class Temp extends React.Component {
     }
 
     onBooking = () => {
-        if(this.state.user){
-            return<div> <a href="/reserve-ur-place"></a></div>;
+        if (this.state.user) {
+            return <div> <a href="/reserve-ur-place"></a></div>;
         }
-        else{
-            return<div> <a href="/login"></a></div>;
+        else {
+            return <div> <a href="/login"></a></div>;
         }
     }
-   
 
-    renderHelper(){
-        
-        console.log(100,this.state.user);
-    console.log(111,this.props.emailwa);
-     if(this.props.emailwa){
-         alert("You are Already Logged In");
-         return<div>{this.props.emailwa}</div>
-     }else
-    
-     return (
-        <div>
+
+    renderHelper() {
+
+        console.log(100, this.state.user);
+
+        return (
             <div>
-                <section id="header">
-                    <div className="header-area">
-                    
 
-                        {/* <!--End of top header--> */}
-                        <div className="header_menu text-center navBinkami" style={{ marginTop: '-50px' }} data-spy="affix" data-offset-top="50" id="nav">
-                            <nav style={{ backgroundColor: 'white' }} className="navbar navbar-default zero_mp navbar-fixed-top navBaresh ">
-                                <div className="container" >
-                                {/* <div style={{ backgroundColor: '#grey' }}>{this.state.time}</div> */}
-                                    {/* <!-- Brand and toggle get grouped for better mobile display --> */}
-                                    <div className="navbar-header">
-                                        <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                                            <span className="sr-only">Toggle navigation</span>
-                                            <span className="icon-bar"></span>
-                                            <span className="icon-bar"></span>
-                                            <span className="icon-bar"></span>
-                                        </button>
-                                        <a className="navbar-brand" href="/"><img className="logoSize" src="https://www.iconspng.com/uploads/green-parking/green-parking.png" alt="logo" height="65px" width="70px"></img></a>
-                                        <li><h2 style={{ color: '#0676B7', marginBottom: '10px', fontSize: '25px' }}>𝕾𝖒𝖆𝖗𝖙 𝕻𝖆𝖗𝖐</h2></li>
-                                        {/* 𝕾𝖒𝖆𝖗𝖙 𝕻𝖆𝖗𝖐 */}
-                                    </div>
+                {/* ); */}
 
-                                    <div className="collapse navbar-collapse zero_mp" id="bs-example-navbar-collapse-1">
-                                        <ul className="nav navbar-nav navbar-right main_menu">
-                                            <li className="active"><a href="#header">Home <span className="sr-only">(current)</span></a></li>
-                                            <li><a href="#welcome">about</a></li>
-                                            <li><a href="/search-maps">Search for places</a></li>
 
-                                            <li><a href="/rent-out-ur-places">Rent out your space</a></li>
-                                            {/* <li><a href="#event">event</a></li>
-                                            <li><a href="#testimonial">testimonialNO</a></li>
-                                            <li><a href="#blog">blog</a></li> */}
-                                            <li><a href="#contact">contact us</a></li>
-                                            {/* <li><Link to="/login">Login</Link></li> */}
-
-                                            <li>
-                                                <div className="dropdown">
-                                                    <button className="dropbtn button dropdown-toggle">
-                                                        {this.state.user ? 
-                                                            (<div>{this.state.user.email}
-                                                                <div className="dropdown-content">
-                                                                    <a href="#" onClick={this.logout}>Logout</a>
-                                                                </div>
-                                                            </div>):(<div>Sign In
-                                                                <div className="dropdown-content">
-                                                                    <NavLink to='/login'>Login</NavLink>
-                                                                </div>
-                                                                </div>)}</button>
-                                                    
-                                                        {/* <div onClick={this.onLoginClick}>Login</div> */}
-                                                        
-                                                   
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </nav>
-                        </div>
-                    </div>
-                </section>
-
-            </div>
-        );
-    
-                
                 <section id="slider">
 
                     <div id="carousel-example-generic" className="carousel slide carousel-fade" data-ride="carousel" data-interval="8000">
@@ -145,28 +77,28 @@ class Temp extends React.Component {
                             <div className="item active">
                                 <div className="slider_overlay">
                                     {/* <img src="https://images.wallpaperscraft.com/image/parking_underground_marking_118795_1920x1080.jpg" alt="..."></img> */}
-                                   <img src="http://newschool.co.il/wp-content/uploads/2018/11/pexels-photo-408503-1500x630.jpeg" alt="slider" style={{height:'30%'}} ></img>
+                                    <img src="http://newschool.co.il/wp-content/uploads/2018/11/pexels-photo-408503-1500x630.jpeg" alt="slider" style={{ height: '30%' }} ></img>
                                     <div className="carousel-caption">
                                         <div className="slider_text">
                                             <h3>Smart Park</h3>
                                             <h2>Search for Parking</h2>
                                             <p>Now you can search here and get parking place immadiately.</p>
                                             {/* <a href={Test.js} className="custom_btn">Read  More</a> */}
-                                            
-                                            
-                                                <div>
-                                                <NavLink to ='/search-maps'>
+
+
+                                            <div>
+                                                <NavLink to='/search-maps'>
                                                     <button className="button12 faa-bounce animated">
-                                                        <img src="http://icons.iconarchive.com/icons/graphicloads/100-flat/256/zoom-search-2-icon.png" alt="srch" height='50px' width='50px' style={{ marginRight: '17px'}} />
+                                                        <img src="http://icons.iconarchive.com/icons/graphicloads/100-flat/256/zoom-search-2-icon.png" alt="srch" height='50px' width='50px' style={{ marginRight: '17px' }} />
                                                         <b>Search for places</b>
                                                     </button>
-                                                </NavLink><br /><br /><br/>
-                                        
+                                                </NavLink><br /><br /><br />
+
                                                 <div>
                                                     {/* <Route path="/search-maps" exact component={App} /> */}
                                                     {/* Sanju<Route path="/login" exact component={LoginApp} /> */}
                                                 </div>
-                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -182,13 +114,13 @@ class Temp extends React.Component {
                                             <p>You can give your places on rent for parking.</p>
                                             {/* <a href="" className="button">On Rent</a> */}
                                             <div>
-                                                <NavLink to ='/rent-out-ur-places'>
+                                                <NavLink to='/rent-out-ur-places'>
                                                     <button className="button12 faa-bounce animated">
-                                                        <img src="https://cdn1.iconfinder.com/data/icons/travel-40/256/Vacation_Rental-512.png" alt="srch" height='50px' width='50px' style={{ marginRight: '17px'}} />
+                                                        <img src="https://cdn1.iconfinder.com/data/icons/travel-40/256/Vacation_Rental-512.png" alt="srch" height='50px' width='50px' style={{ marginRight: '17px' }} />
                                                         <b>Add your space</b>
                                                     </button>
-                                                </NavLink><br /><br /><br/>
-                                        
+                                                </NavLink><br /><br /><br />
+
                                             </div>
                                         </div>
                                     </div>
@@ -204,13 +136,13 @@ class Temp extends React.Component {
                                             <h2>Follow traffic rules, save your future</h2>
                                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                                             <div>
-                                                <NavLink to ='#contact'>
+                                                <NavLink to='#contact'>
                                                     <button className="button12 faa-bounce animated">
-                                                        <img src="https://cdn1.iconfinder.com/data/icons/travel-40/256/Vacation_Rental-512.png" alt="srch" height='50px' width='50px' style={{ marginRight: '17px'}} />
+                                                        <img src="https://cdn1.iconfinder.com/data/icons/travel-40/256/Vacation_Rental-512.png" alt="srch" height='50px' width='50px' style={{ marginRight: '17px' }} />
                                                         <b>Add your space</b>
                                                     </button>
-                                                </NavLink><br /><br /><br/>
-                                        
+                                                </NavLink><br /><br /><br />
+
                                             </div>
                                         </div>
                                     </div>
@@ -224,8 +156,8 @@ class Temp extends React.Component {
                 {/* <!--end of slider section--> */}
 
                 {/* <!--Start of welcome section--> */}
-                <section id="welcome" style={{ marginTop: '100px'}}>
-                <br /><br /><br /><br /><br />
+                <section id="welcome" >
+                    <br /><br /><br /><br /><br />
                     <div className="container">
                         <div className="row">
                             <div className="col-md-12">
@@ -241,14 +173,14 @@ class Temp extends React.Component {
                                 <div className="item">
                                     <div className="single_item">
                                         <div className="item_list">
-    
-                                            {this.state.user ? 
+
+                                            {this.state.user ?
                                                 (<a href="/rent-out-ur-places">
                                                     <div className="welcome_icon">
                                                         <i className=""><img src="https://cdn1.iconfinder.com/data/icons/travel-40/256/Vacation_Rental-512.png" alt="Pic_slider3"></img></i>
                                                     </div>
                                                     <h4>Rent out your places</h4>
-                                                </a>):
+                                                </a>) :
                                                 (<a href="/login">
                                                     <div className="welcome_icon">
                                                         <i className=""><img src="https://cdn1.iconfinder.com/data/icons/travel-40/256/Vacation_Rental-512.png" alt="Pic_slider3"></img></i>
@@ -280,20 +212,20 @@ class Temp extends React.Component {
                                     {/* <a href="/search-maps"> */}
                                     <div className="single_item">
                                         <div className="item_list">
-                                            {this.state.user ? 
+                                            {this.state.user ?
                                                 (<a href="/reserve-ur-place">
                                                     <div className="welcome_icon">
                                                         <i className=""><img src="https://cdn1.iconfinder.com/data/icons/travel-hand-drawn-icons/64/travel_25-512.png" alt="Pic_slider3"></img></i>
                                                     </div>
                                                     <h4>Booking</h4>
-                                                </a>):
+                                                </a>) :
                                                 (<a href="/login">
                                                     <div className="welcome_icon">
                                                         <i className=""><img src="https://cdn1.iconfinder.com/data/icons/travel-hand-drawn-icons/64/travel_25-512.png" alt="Pic_slider3"></img></i>
                                                     </div>
                                                     <h4>Booking</h4>
                                                 </a>)}
-                                            
+
                                             <p>Lorem ipsum dolor sit amet, eu qui modo expetendis reformidans ex sit set appetere sententiae seo eum in simul homero.</p>
                                         </div>
                                     </div>
@@ -322,17 +254,20 @@ class Temp extends React.Component {
                 </section>
                 {/* <!--end of welcome section--> */}
 
-                <section id="map" style={{ height:'500px'}}>
+                {/* <section id="map" style={{ height: '500px' }}>
                     <div >
+                        <div>
                             <div>
+                                <iframe width="100%" height="520" src="https://www.youtube.com/embed/I4g2UkG6Qs8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                 <App />
                             </div>
-                     </div>
-                </section>
+                        </div>
+                    </div>
+                </section> */}
 
                 {/* <!--Start of volunteer--> */}
-                <section id="volunteer" className="mapchyakhalchmargin" style={{ marginTop: '300px'}}> 
-                    <div className="container mapchyakhalchmargin">
+                <section id="volunteer" >
+                    <div className="container ">
                         <div className="row vol_area">
                             <div className="col-md-8">
                                 <div className="volunteer_content">
@@ -359,8 +294,8 @@ class Temp extends React.Component {
                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                                     </div>
                                 </div>
-                               
-                               
+
+
                             </div>
                             <div className="row">
                                 <div className="col-md-3">
@@ -629,7 +564,7 @@ class Temp extends React.Component {
                 {/* <!--end of testimonial--> */}
 
 
-{/* 
+                {/* 
                 <section id="blog">
                     <div className="container">
                         <div className="row">
@@ -732,7 +667,7 @@ class Temp extends React.Component {
 
 
                 {/* <!--Start of Purches--> */}
-                <section id="purches">
+                {/* <section id="purches">
                     <div className="container">
                         <div className="row">
                             <div className="col-md-6">
@@ -742,10 +677,8 @@ class Temp extends React.Component {
                                 <a href="" className="purches_btn">purches</a>
                             </div>
                         </div>
-                        {/* <!--End of row--> */}
                     </div>
-                    {/* <!--End of container--> */}
-                </section>
+                </section> */}
                 {/* <!--End of purches--> */}
 
 
@@ -821,7 +754,7 @@ class Temp extends React.Component {
                                             <i className="fa fa-envelope"><span>imatom19@gmail.com</span></i>
                                         </div>
                                         <div id="map">
-                                        {/* <App /> */}
+                                            {/* <App /> */}
                                         </div>
                                     </div>
                                 </div>
@@ -858,54 +791,55 @@ class Temp extends React.Component {
                                     </div>
                                 </div>
                             </div>
-                                {/* <!--End of col-md-6--> */}
+                            {/* <!--End of col-md-6--> */}
                         </div>
-                            {/* <!--End of row--> */}
-                        </div>
-                        {/* <!--End of container--> */}
-                    </section>
-                    {/* <!--End of contact--> */}
+                        {/* <!--End of row--> */}
+                    </div>
+                    {/* <!--End of container--> */}
+                </section>
+                {/* <!--End of contact--> */}
 
 
 
-                    {/* <!--Start of footer--> */}
-                    <section id="footer">
-                        <div className="container">
-                            <div className="row text-center">
-                                <div className="col-md-6">
-                                    <div className="copyright">
-                                        <p>@ 2019 - Design By <span><a href="">&#9798;</a></span></p>
-                                    </div>
-                                </div>
-                                <div className="col-md-6">
-                                    <div className="designer">
-                                        <p>A Design By <a href="#">The A Team</a></p>
-                                    </div>
+
+                {/* <!--Start of footer--> */}
+                <section id="footer">
+                    <div className="container">
+                        <div className="row text-center">
+                            <div className="col-md-6">
+                                <div className="copyright">
+                                    <p>@ 2019 - Design By <span><a href="">&#9798;</a></span></p>
                                 </div>
                             </div>
-                            {/* <!--End of row--> */}
+                            <div className="col-md-6">
+                                <div className="designer">
+                                    <p>A Design By <a href="#">The A Team</a></p>
+                                </div>
+                            </div>
                         </div>
-                        {/* <!--End of container--> */}
-                    </section>
-                    {/* <!--End of footer--> */}
+                        {/* <!--End of row--> */}
+                    </div>
+                    {/* <!--End of container--> */}
+                </section>
+                {/* <!--End of footer--> */}
 
 
 
-                    {/* <!--Scroll to top--> */}
-                    <a href="#" id="back-to-top" title="Back to top">&uarr;</a>
-                    {/* <!--End of Scroll to top--> */}
+                {/* <!--Scroll to top--> */}
+                <a href="#" id="back-to-top" title="Back to top">&uarr;</a>
+                {/* <!--End of Scroll to top--> */}
 
 
-                    {/* <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> */}
-                    {/* <!-- <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>--> */}
-                    <script src="js/jquery-1.12.3.min.js"></script>
+                {/* <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> */}
+                {/* <!-- <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>--> */}
+                <script src="js/jquery-1.12.3.min.js"></script>
 
-                    {/* <!--Counter UP Waypoint--> */}
-                    <script src="js/waypoints.min.js"></script>
-                    {/* <!--Counter UP--> */}
-                    <script src="js/jquery.counterup.min.js"></script>
+                {/* <!--Counter UP Waypoint--> */}
+                <script src="js/waypoints.min.js"></script>
+                {/* <!--Counter UP--> */}
+                <script src="js/jquery.counterup.min.js"></script>
 
-                    {/* <script>
+                {/* <script>
                          //for counter up
                         $('.counter').counterUp({
                             delay: 10,
@@ -913,8 +847,8 @@ class Temp extends React.Component {
                     });
         </script> */}
 
-                    {/* <!--Gmaps--> */}
-                    {/* <script src="js/gmaps.min.js"></script>
+                {/* <!--Gmaps--> */}
+                {/* <script src="js/gmaps.min.js"></script>
                     <script type="text/javascript">
                         var map;
             $(document).ready(function () {
@@ -955,43 +889,43 @@ class Temp extends React.Component {
                 });
             });
         </script> */}
-                    {/* <!--Google Maps API--> */}
-                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjxvF9oTfcziZWw--3phPVx1ztAsyhXL4"></script>
+                {/* <!--Google Maps API--> */}
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjxvF9oTfcziZWw--3phPVx1ztAsyhXL4"></script>
 
 
-                    {/* <!--Isotope--> */}
-                    <script src="js/isotope/min/scripts-min.js"></script>
-                    <script src="js/isotope/cells-by-row.js"></script>
-                    <script src="js/isotope/isotope.pkgd.min.js"></script>
-                    <script src="js/isotope/packery-mode.pkgd.min.js"></script>
-                    <script src="js/isotope/scripts.js"></script>
+                {/* <!--Isotope--> */}
+                <script src="js/isotope/min/scripts-min.js"></script>
+                <script src="js/isotope/cells-by-row.js"></script>
+                <script src="js/isotope/isotope.pkgd.min.js"></script>
+                <script src="js/isotope/packery-mode.pkgd.min.js"></script>
+                <script src="js/isotope/scripts.js"></script>
 
 
-                    {/* <!--Back To Top--> */}
-                    <script src="js/backtotop.js"></script>
+                {/* <!--Back To Top--> */}
+                <script src="js/backtotop.js"></script>
 
 
-                    {/* <!--JQuery Click to Scroll down with Menu--> */}
-                    <script src="js/jquery.localScroll.min.js"></script>
-                    <script src="js/jquery.scrollTo.min.js"></script>
-                    {/* <!--WOW With Animation--> */}
-                    <script src="js/wow.min.js"></script>
-                    {/* <!--WOW Activated--> */}
-                    <script>
-                        new WOW().init();
+                {/* <!--JQuery Click to Scroll down with Menu--> */}
+                <script src="js/jquery.localScroll.min.js"></script>
+                <script src="js/jquery.scrollTo.min.js"></script>
+                {/* <!--WOW With Animation--> */}
+                <script src="js/wow.min.js"></script>
+                {/* <!--WOW Activated--> */}
+                <script>
+                    new WOW().init();
                     </script>
 
 
-                    {/* <!-- Include all compiled plugins (below), or include individual files as needed --> */}
-                    <script src="js/bootstrap.min.js"></script>
-                    {/* <!-- Custom JavaScript--> */}
-                    <script src="js/main.js"></script>
-                    
+                {/* <!-- Include all compiled plugins (below), or include individual files as needed --> */}
+                <script src="js/bootstrap.min.js"></script>
+                {/* <!-- Custom JavaScript--> */}
+                <script src="js/main.js"></script>
+
 
             </div>
         );
     }
-        
+
     render() {
         return (
             <div>
@@ -1001,5 +935,5 @@ class Temp extends React.Component {
         );
     }
 }
-                                                
+
 export default Temp;

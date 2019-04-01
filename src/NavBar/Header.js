@@ -4,7 +4,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 // import $ from 'jquery';
 import { findDOMNode } from 'react-dom';
-import firebase from '../reserveForm/Firebase';
+import firebase from '../Reserve/Firebase';
 //import Home from '../LoginStyle/Home';
 import ExButton from './DataArrayMap';
 import Home from '../LoginStyle/Home';
@@ -83,7 +83,7 @@ class Header extends React.Component {
 
                         {/* <!--End of top header--> */}
                         <div className="header_menu text-center navBinkami" style={{ marginTop: '-50px' }} data-spy="affix" data-offset-top="50" id="nav">
-                            <nav style={{ backgroundColor: 'white' }} className="navbar navbar-default zero_mp navbar-fixed-top navBaresh ">
+                            <nav style={{ backgroundColor: 'white', marginTop: '-0.5%' }} className="navbar navbar-default zero_mp navbar-fixed-top navBaresh ">
                                 <div className="container" >
                                 {/* <div style={{ backgroundColor: '#grey' }}>{this.state.time}</div> */}
                                     {/* <!-- Brand and toggle get grouped for better mobile display --> */}
@@ -100,45 +100,37 @@ class Header extends React.Component {
                                     </div>
 
                                     <div className="collapse navbar-collapse zero_mp" id="bs-example-navbar-collapse-1">
-                                        <ul className="nav navbar-nav navbar-right main_menu">
-                                            <li><NavLink to='/'>Home <span className="sr-only">(current)</span></NavLink></li>
-                                            {/* <li><a href="#welcome">about</a></li>
-                                            <li><a href="#map">Search for places</a></li> */}
+                                        <ul className="nav navbar-nav navbar-right main_menu" style={{ fontSize:'5px' }}>
+                                            <li className="active"><NavLink to='/'>Home <span className="sr-only">(current)</span></NavLink></li>
+                                            <li><a href="#welcome">about</a></li>
+                                            <li><a href="/search-maps">Search for places</a></li>
 
-                                            {/* <li><a href="#counter">achivment</a></li>
-                                            <li><a href="#event">event</a></li>
+                                            <li><a href="/rent-out-ur-places">Rent out your space</a></li>
+                                            {/* <li><a href="#event">event</a></li>
                                             <li><a href="#testimonial">testimonialNO</a></li>
                                             <li><a href="#blog">blog</a></li> */}
                                             {/* <li><a href="#contact">contact us</a></li> */}
                                             {/* <li><Link to="/login">Login</Link></li> */}
-                                            {/* {this.props.embutt ? (<li><NavLink to="/reserve-ur-places">Register</NavLink></li>) : (<div></div> )} */}
-                                            <li>
-                                                <NavLink to='/rent-out-ur-places'>Rent out your space</NavLink>                                                
-                                            </li>
-                                            {/* <li><button type="button" className="fa faa-bounce animated butt btn btn-danger btn-circle btn-xl"><i className="">Register</i></button></li> */}
+
                                             <li>
                                                 <div className="dropdown">
-                                                    <button className="dropbtn button dropdown-toggle">{this.state.user ? (
-                                                        <div>
-                                                            {this.state.user.email}
-                                                            {/* {this.alertText()} */}
-                                                            <div className="dropdown-content">
-                                                                <a href="#" onClick={this.logout}>Logout</a>
-                                                            </div>
-                                                        </div>
-                                                    ) : (
-                                                        <div>
-                                                            Sign In
-                                                            <div className="dropdown-content">
-                                                                <NavLink to='/login'>Login</NavLink>
-                                                            </div>
-                                                        </div>
-                                                    )}
-                                                    </button>
-
+                                                    <button className="dropbtn button dropdown-toggle">
+                                                        {this.state.user ? 
+                                                            (<div>{this.state.user.email}
+                                                                <div className="dropdown-content">
+                                                                    <a href="#" onClick={this.logout}>Logout</a>
+                                                                </div>
+                                                            </div>):(<div>Sign In
+                                                                <div className="dropdown-content">
+                                                                    <NavLink to='/login'>Login</NavLink>
+                                                                </div>
+                                                                </div>)}</button>
+                                                    
+                                                        {/* <div onClick={this.onLoginClick}>Login</div> */}
+                                                        
+                                                   
                                                 </div>
                                             </li>
-                                            
                                         </ul>
                                     </div>
                                 </div>

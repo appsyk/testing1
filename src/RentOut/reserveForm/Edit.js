@@ -8,32 +8,32 @@ class Edit extends Component {
     super(props);
     this.state = {
       key: '',
-      userName: '',
-      parkingPlace: '',
-      vehicleName: '',
-      vehicleNumber: '',
+      firstName: '',
+      lastName: '',
       email: '',
-      phoneNumber: '',
-      arrivingTime: '',
-      leavingTime: ''
+      lat: '',
+      noOfSpaces: '',
+      lng: '',
+      address: '',
+      describe: ''
     };
   }
 
   componentDidMount() {
-    const ref = firebase.firestore().collection('boards').doc(this.props.match.params.id);
+    const ref = firebase.firestore().collection('rents').doc(this.props.match.params.id);
     ref.get().then((doc) => {
       if (doc.exists) {
-        const board = doc.data();
+        const rent = doc.data();
         this.setState({
           key: doc.id,
-          userName: board.userName,
-          parkingPlace: board.parkingPlace,
-          vehicleName: board.vehicleName,
-          vehicleNumber: board.vehicleNumber,
-          email: board.email,
-          phoneNumber: board.phoneNumber,
-          arrivingTime: board.arrivingTime,
-          leavingTime: board.leavingTime
+          firstName: rent.firstName,
+          lastName: rent.lastName,
+          email: rent.email,
+          lat: rent.lat,
+          noOfSpaces: rent.noOfSpaces,
+          lng: rent.lng,
+          address: rent.address,
+          describe: rent.describe
         });
       } else {
         console.log("No such document!");
@@ -44,37 +44,37 @@ class Edit extends Component {
   onChange = (e) => {
     const state = this.state
     state[e.target.name] = e.target.value;
-    this.setState({board:state});
+    this.setState({rent:state});
   }
 
   onSubmit = (e) => {
     e.preventDefault();
 
-    const {  userName, parkingPlace, vehicleName, vehicleNumber,
-      email, phoneNumber, arrivingTime, leavingTime  } = this.state;
+    const {  firstName, lastName, email, lat,
+      noOfSpaces, lng, address, describe  } = this.state;
 
-    const updateRef = firebase.firestore().collection('boards').doc(this.state.key);
+    const updateRef = firebase.firestore().collection('rents').doc(this.state.key);
     updateRef.set({
-      userName,
-      parkingPlace,
-      vehicleName,
-      vehicleNumber,
+      firstName,
+      lastName,
       email,
-      phoneNumber,
-      arrivingTime,
-      leavingTime
+      lat,
+      noOfSpaces,
+      lng,
+      address,
+      describe
 
     }).then((docRef) => {
       this.setState({
         key: '',
-        userName: '',
-      parkingPlace: '',
-      vehicleName: '',
-      vehicleNumber: '',
-      email: '',
-      phoneNumber: '',
-      arrivingTime: '',
-      leavingTime: ''
+        firstName: '',
+        lastName: '',
+        email: '',
+        lat: '',
+        noOfSpaces: '',
+        lng: '',
+        address: '',
+        describe: ''
       });
       this.props.history.push("/show/"+this.props.match.params.id)
     })

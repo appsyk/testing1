@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import firebase from './Firebase';
+import firebase from '../Reserve/Firebase';
 import { Link } from 'react-router-dom';
 
 class Show extends Component {
@@ -44,7 +44,7 @@ class Show extends Component {
       <div className="container" style={{ width:'20%', marginTop: '100px' }}>
         <div className="panel panel-default">
           <div className="panel-heading">
-            <h4><Link to="/">Board List</Link></h4>
+            <h4><Link to="/app">Board List</Link></h4>
             <h3 className="panel-title">
               {this.state.board.userName}
             </h3>

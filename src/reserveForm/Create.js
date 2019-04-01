@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import firebase from './Firebase';
+import firebase from '../Reserve/Firebase';
 import { Link } from 'react-router-dom';
 import Spinner from '../Loader/Spinner';
 
@@ -18,7 +17,9 @@ class Create extends Component {
       phoneNumber: '',
       arrivingTime: '',
       leavingTime: '',
-      user: null
+      user: null,
+      count : 0
+      
     };
   }
 
@@ -37,6 +38,8 @@ class Create extends Component {
             } else {
                 this.setState({ user: null });
                 localStorage.removeItem('user');
+                console.log("email12345",this.state.user.email);
+
             }
         });
     }
@@ -45,44 +48,58 @@ class Create extends Component {
     const state = this.state
     state[e.target.name] = e.target.value;
     this.setState(state);
+     
+    // this.setState({ email1:  });
+    // this.setState({ email: (this.state.user.email)});
+    
+
+    console.log("email1____2",this.state.email1);
   }
 
   onSubmit = (e) => {
     e.preventDefault();
 
     const { userName, parkingPlace, vehicleName, vehicleNumber,
-      email, phoneNumber, arrivingTime, leavingTime } = this.state;
+      email, phoneNumber, arrivingTime, leavingTime, count } = this.state;
 
     this.ref.add({
       userName,
         parkingPlace,
         vehicleName,
         vehicleNumber,
-        email,
+        email ,
         phoneNumber,
         arrivingTime,
-        leavingTime
-
-    }).then((docRef) => {
+        leavingTime,
+        count
+    })
+    .then((docRef) => {
       this.setState({
-        userName: '',
+      userName: '',
       parkingPlace: '',
       vehicleName: '',
       vehicleNumber: '',
       email: '',
       phoneNumber: '',
       arrivingTime: '',
-      leavingTime: ''
+      leavingTime: '',
+      count : this.state.count + 1
       });
-      this.props.history.push("/")
+      this.props.history.push("/app")
+      console.log(123,email);
     })
     .catch((error) => {
       console.error("Error adding document: ", error);
       alert("Error adding document: ", error);
     });
+    // this.ref.getChildrenCount();
   }
 
   render() {
+    console.log(120,this.state.count);
+    
+
+    const email1=(this.state.email);
     if(!this.state.user){
      //alert("you are not logged in");
       return(
@@ -111,42 +128,43 @@ class Create extends Component {
             <form onSubmit={this.onSubmit}>
               <div className="form-group">
                 <label htmlFor="userName">Username:</label>
-                <input type="text" className="form-control" name="userName" value={userName} onChange={this.onChange} placeholder="userName" required/>
+                <input type="text" className="form-control" name="userName" value={userName} onChange={this.onChange} placeholder="userName" />
               </div>
 
               <div className="form-group">
                 <label htmlFor="parkingPlace">Parking Place:</label>
-                <input type="text" className="form-control" name="parkingPlace" value={parkingPlace} onChange={this.onChange} placeholder="parkingPlace" required/>
+                <input type="text" className="form-control" name="parkingPlace" value={parkingPlace} onChange={this.onChange} placeholder="parkingPlace" />
               </div>
 
               <div className="form-group">
                 <label htmlFor="vehicleName">Vehicle Name:</label>
-                <input type="text" className="form-control" name="vehicleName" value={vehicleName} onChange={this.onChange} placeholder="vehicleName" required/>
+                <input type="text" className="form-control" name="vehicleName" value={vehicleName} onChange={this.onChange} placeholder="vehicleName" />
               </div>
 
               <div className="form-group">
                 <label htmlFor="vehicleNumber">Vehicle Number:</label>
-                <input type="text" className="form-control" name="vehicleNumber" value={vehicleNumber} onChange={this.onChange} placeholder="vehicleNumber" required/>
+                <input type="text" className="form-control" name="vehicleNumber" value={vehicleNumber} onChange={this.onChange} placeholder="vehicleNumber" />
               </div>
 
               <div className="form-group">
                 <label htmlFor="email">Email:</label>
-                <input type="text" className="form-control" name="email" value= {this.state.user.email} onChange={this.onChange} placeholder="email" required/>
+                <input type="text" className="form-control" name="email" value={this.state.user.email} onChange={this.onChange} placeholder="email" />
+
               </div>
 
               <div className="form-group">
                 <label htmlFor="phoneNumber">Phone Number:</label>
-                <input type="text" className="form-control" name="phoneNumber" value={phoneNumber} onChange={this.onChange} placeholder="phoneNumber" required/>
+                <input type="text" className="form-control" name="phoneNumber" value={phoneNumber} onChange={this.onChange} placeholder="phoneNumber" />
               </div>
 
               <div className="form-group">
                 <label htmlFor="arrivingTime">Arriving Time:</label>
-                <input type="text" className="form-control" name="arrivingTime" value={arrivingTime} onChange={this.onChange} placeholder="arrivingTime" required/>
+                <input type="text" className="form-control" name="arrivingTime" value={arrivingTime} onChange={this.onChange} placeholder="arrivingTime" />
               </div>
 
               <div className="form-group">
                 <label htmlFor="leavingTime">Leaving Time:</label>
-                <input type="text" className="form-control" name="leavingTime" value={leavingTime} onChange={this.onChange} placeholder="leavingTime" required/>
+                <input type="text" className="form-control" name="leavingTime" value={leavingTime} onChange={this.onChange} placeholder="leavingTime" />
               </div>
               {/* <div className="form-group">
                 <label htmlFor="vehicleNumber">Description:</label>
