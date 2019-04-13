@@ -148,6 +148,7 @@ export class MapContainer extends Component {
               name={'Datta Meghe College Of Engineering,Airoli'}
               addrs={'Sector 3,Airoli Navi  Mumbai,Maharashtra 400708'}
               count={this.state.count}
+              abcd={this.props.free}
 
               img={'https://lh3.googleusercontent.com/2UJJmRViC6PQgK7dShfrMoF-WDM7nBykmQStMsRIkC2yPi6QdUR-QCmEv84CsI_BEgCbGV2A6mWP7eop50LMfVVO4ZgpKWJEUn4v_JxBZjbG_Kgc-fD5Zs2DMcpoLNwCD4kglYTm6Nr4U5snPNWLW1rGsLiSwJA4oJ6NMu5C_50I6_CmmxigPPMf-or_HEfN0ofyMNG_y8sMOhz_-SYrkvTOw-iYP6L56ZQnAXDj187bQCXCOJvfyp7c9Moagw4rEFnOJay2sNkqV7V8-SGL7mAaVtXmRoCD0CJ-WTRZGJ1V3xhNAsZ3Gq_t_ry4Nb0bXQK4ihgkhXidYEPyaF1X8BKijiYOPZG9XVzdK1uPOExS9N41l3JL6R_H4E9IiwMLzkELaGMt5YyGFY0BxqoFRWbSA8q0fEBKtd7V2UGxf_lYObE_c7LN_Ujy3mmLerntSkJVL4y2-Upkzof3gBNaGht0I2opieccKSk_Iieve17O6qwuBhiWrZKwVSdAfzw3-0bEftyDz35K1f8vxvVPER_S7I1UzaSKpVkziDhlCsfDN6XGuW_TPsSR7nkZPIyAgC3tdAk3J0_qstt29hebV_-uRydGOqp3PLgoj1GV-wXcxWgctuv8ofPwLmH2rzUncA5O1iZby8lMV88p8e4ApPUFisDgWtGQBdQfsaMxkO6YauXZPAauUq9mejow0lJpykrKcylstEkEOAhvTfMGdG6E=w892-h669-no'}
               rform={'/create@DMCE'}
@@ -271,7 +272,7 @@ export class MapContainer extends Component {
               onClose={this.onClose}
               onClick={this.onMark}
             >
-              <div style={{ backgroundColor: '#E5E5E5', marginLeft: '2.5%' }}>
+              <div style={{ backgroundColor: '#E5E5E5', marginLeft: '2.5%' }}>{this.state.selectedPlace.abcd}
                 <h2 style={{ textAlign: 'center' }}>{this.state.selectedPlace.name}</h2>
                 <h4 style={{ marginLeft: '10%', marginRight: '10%', textAlign: 'center' }}>{this.state.selectedPlace.addrs}</h4>
                 {/* {this.state.selectedPlace.spin}<h1>count:{this.state.selectedPlace.count}</h1> */}

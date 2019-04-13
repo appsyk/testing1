@@ -20,7 +20,7 @@ class ArihantRabaleShow extends Component {
       this.setState({ count: (this.state.count + 1) })
 
       const { name, vehicle,
-        email, phoneNumber, arrivingTime, leavingTime } = doc.data();
+        email, phoneNumber, arrivingTime, leavingTime, plotId } = doc.data();
       arihants.push({
         key: doc.id,
         doc, // DocumentSnapshot
@@ -30,6 +30,7 @@ class ArihantRabaleShow extends Component {
         phoneNumber,
         arrivingTime,
         leavingTime,
+        plotId
       });
     });
     this.setState({
@@ -37,10 +38,27 @@ class ArihantRabaleShow extends Component {
     });
   }
 
+
   componentDidMount() {
+    this.authListener();
     this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
+
   }
 
+  authListener = () => {
+    firebase.auth().onAuthStateChanged((user) => {
+
+      if (user) {
+        this.setState({ user });
+        localStorage.setItem('user', user.uid);
+      } else {
+        this.setState({ user: null });
+        localStorage.removeItem('user');
+        console.log("email12345", this.state.user.email);
+
+      }
+    });
+  }
 
   remainPlace() {
     const rem = (10 - (this.state.count));
@@ -48,6 +66,17 @@ class ArihantRabaleShow extends Component {
   }
 
   render() {
+    if(!this.state.user){
+      return(
+        <div style={{ textAlign: "center", backgroundColor: '#EECBCB' }}>
+        <br /><br /><br /><br /><br />
+        <h1>Sorry Your are not logged In</h1>
+        <h3>you have to <a href="/login"><b>login</b></a> first</h3>
+        <h4>To see the list of entries.!</h4>
+        <Spinner />
+      </div>
+      );
+    }else
     if (this.state.count > 10) {
       return (
         <div style={{ textAlign: "center" }}>
@@ -67,8 +96,8 @@ class ArihantRabaleShow extends Component {
                 <div className="contact_area text-center">
                   <h3 style={{ fontSize: '190%' }}>Arihant Parking Systems, rabale</h3>
                 </div>
-                <h3 style={{ marginTop: '-1%', marginLeft: '1.5%' }} >Total Entries : {this.state.count} /10</h3>
-                <h3 style={{ textAlign: 'right', marginTop: '-3%', marginRight: '1.5%' }}>' {this.remainPlace()} ' Parkings Available</h3>
+                <h3 style={{ marginTop: '-1%', marginLeft: '1.5%' }} >TOTAL ENTRIES : {this.state.count} /10</h3>
+                <h3 style={{ textAlign: 'right', marginTop: '-3%', marginRight: '1.5%' }}>' {this.remainPlace()} ' PARKINGS AVAILABLE</h3>
                 <div className="panel-heading" style={{ marginTop: '-1%' }}></div>
                 <div className="panel-heading" style={{ marginTop: '-1%' }}>
                   <h4><Link to="/create@ARIHANT_RABALE" className="btn custom-btn btn-success" title="Press the button to book this place for another vehicle."><i class="fa fa-car fa-2x" aria-hidden="true"></i>Book for Another Vehicle</Link></h4>
@@ -83,22 +112,25 @@ class ArihantRabaleShow extends Component {
                     <thead>
                       <tr>
                         <th>Full Name</th>
-                        <th>vehicle</th>
-                        <th>email</th>
-                        <th>phoneNumber</th>
-                        <th>arrivingTime</th>
-                        <th>leavingTime</th>
+                        <th>Vehicle</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Arriving Time</th>
+                        <th>Leaving Time</th>
+                        <th>Plot Id</th>
                       </tr>
                     </thead>
                     <tbody>
                       {this.state.arihants.map(arihant =>
+                      
                         <tr>
                           <td><Link to={`/show/${arihant.key}`}>{arihant.name}</Link></td>
-                          <td>{arihant.vehicle}</td>
-                          <td>{arihant.email}</td>
-                          <td>{arihant.phoneNumber}</td>
+                          <td>{arihant.email === this.state.user.email ? (<td>{arihant.vehicle}</td> ):(<td>***************</td>)}</td>
+                          <td>{arihant.email === this.state.user.email ? (<td>{arihant.email}</td> ):(<td>***************</td> )}</td>
+                          <td>{arihant.email === this.state.user.email ? (<td>{arihant.phoneNumber}</td> ):(<td>***************</td>)}</td>
                           <td>{arihant.arrivingTime}</td>
                           <td>{arihant.leavingTime}</td>
+                          <td>{arihant.plotId}</td>
                         </tr>
                       )}
                     </tbody>

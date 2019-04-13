@@ -3,6 +3,7 @@ import firebase from '../Firebase';
 import { Link } from 'react-router-dom';
 import Spinner from '../../Loader/Spinner';
 import SeatBox from '../SeatHtml';
+import App from '/home/sanju/react/spark/src/mapBox/App';
 
 class CreateDmce extends Component {
 
@@ -86,13 +87,24 @@ class CreateDmce extends Component {
   onCollectionUpdate = (querySnapshot) => {
     querySnapshot.forEach((doc) => {
       this.setState({ count:(this.state.count + 1 )})
+      this.forceUpdate();
     });
     this.setState({
    });
   }
 
+  mapProps(){
+    if(this.state.count !== 0){
+      return(
+        <div>
+          <App free={this.state.count}/>
+        </div>
+      )
+    }
+  }
 
   render() {
+
     console.log(321,this.state.count);
     if (!this.state.user) {
       //alert("you are not logged in");
@@ -106,6 +118,7 @@ class CreateDmce extends Component {
         </div>
       );
     }
+
     const { name, vehicle,
        email, phoneNumber, arrivingTime, leavingTime } = this.state;
 
@@ -124,7 +137,7 @@ class CreateDmce extends Component {
                 </div>
               </div>
             </div>
-            <SeatBox />
+            <SeatBox free={this.state.count}/>
 
             <div className="row">
               <div className="col-md-6">

@@ -193,15 +193,17 @@ class Temp extends React.Component {
                                 </div>
                             </div>
                             {/* <!--End of col-md-3--> */}
-                            <div className="col-md-3">
+                            <div className="col-md-6">
                                 <div className="item">
                                     <div className="single_item">
                                         <div className="item_list">
+                                        <NavLink to='/search-maps'>
                                             <div className="welcome_icon">
-                                                <i className="fa fa-refresh"></i>
+                                                <i className="fa fa-globe fa-10x"></i>
                                             </div>
-                                            <h4>recycling</h4>
+                                            <h4>Google maps</h4>
                                             <p>Lorem ipsum dolor sit amet, eu qui modo expetendis reformidans ex sit set appetere sententiae seo eum in simul homero.</p>
+                                            </NavLink>
                                         </div>
                                     </div>
                                 </div>
@@ -233,7 +235,7 @@ class Temp extends React.Component {
                                 </div>
                             </div>
                             {/* <!--End of col-md-3--> */}
-                            <div className="col-md-3">
+                            {/* <div className="col-md-3">
                                 <div className="item">
                                     <div className="single_item">
                                         <div className="item_list">
@@ -245,7 +247,7 @@ class Temp extends React.Component {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                             {/* <!--End of col-md-3--> */}
                         </div>
                         {/* <!--End of row--> */}

@@ -1,19 +1,29 @@
 import React from 'react';
 import './SeatStyle.css';
+// import Register from './Register';
 
 class SeatBox extends React.Component{
-    state={ box: null };
+    state={ box: null, ckeckB: '' };
 
     onBoxClick=(e)=>{
         this.setState({
-            box: e.target.defaultValue
+            box: e.target.defaultValue,
+            checkB: 'checked'
         })
     }
- render(e){
 
+
+    sanju(e){
+        return(
+        <input defaultValue={this.state.box} checked/>
+        );
+    }
+ render(e){
+console.log(111,this.state.ckeckB)
  return(
  <div>
- 
+     {/* <Register free={this.props.free}/> */}
+     {this.state.checkB}
  <div className="seat-container">
  {/* <h1 style={{textAlign:"center",fontFamily:'italic bold'}}>Available Parking</h1> */}
  <div className="Seats"style={{overflowX: 'auto',textAlign:'center'}}>
@@ -39,7 +49,7 @@ class SeatBox extends React.Component{
  <tr>
  <td style={{fontSize:'23px'}}><b>A</b></td>
  <td>
- <input type="checkbox" className="seats" onClick={this.onBoxClick} defaultValue="A1" />
+ <input type="checkbox" className="seats" onClick={this.onBoxClick} defaultValue="A1" null={this.state.ckeckB} />
  </td>
  <td>
  <input type="checkbox" className="seats" onClick={this.onBoxClick} defaultValue="A2" />

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import firebase from '../Firebase';
 import Spinner from '../../Loader/Spinner';
 
+
 class DmceShow extends Component {
   constructor(props) {
     super(props);
@@ -48,6 +49,7 @@ class DmceShow extends Component {
   }
 
   render() {
+   
     if(this.state.count > 7){
       return(
         <div style={{ textAlign: "center" }}>
