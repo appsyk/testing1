@@ -1,6 +1,5 @@
 import React from 'react';
 import firebase from '../Reserve/Firebase';
-import Header from '../NavBar/Header';
 
 class Login extends React.Component {
   state = {
@@ -8,7 +7,8 @@ class Login extends React.Component {
     password: '',
     errorMessage: '',
     showForm: false,
-    closeForm: true
+    closeForm: true,
+    loadBut: false
   };
 
   handleChange = (e) => {
@@ -17,6 +17,7 @@ class Login extends React.Component {
 
   login = (e) => {
     e.preventDefault();
+    this.setState({ loadBut: true });
     console.log(e.name);
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u) => {
     })
@@ -47,18 +48,12 @@ class Login extends React.Component {
   }
 
   renderLoginForm() {
-
-    // if (this.state.showForm === false ) {
-    //     return <div>sanju</div>
-    // } else
-      // console.log(this.state.showForm);
       if (this.state.closeForm === true){
       console.log('check', this.state.showForm);
       console.log(this.state.closeForm);
       return (
         <div>
           <div className="">
-            {/* id="id01" */}
             <form className="modal-content animate loginbox">
               <div className="imgcontainer">
                 <a href="/"><span className="close" title="Close Modal">&times;</span></a>
@@ -71,10 +66,7 @@ class Login extends React.Component {
                   onChange={this.handleChange}
                   type="email"
                   name="email"
-                  // id="exampleInputEmail1"
-                  // aria-describedby="emailHelp"
                   placeholder="Enter Email"
-                  //id="email"
                   required
                 />
                 <br />
@@ -86,21 +78,17 @@ class Login extends React.Component {
                   onChange={this.handleChange}
                   type="password"
                   name="password"
-                  // id="exampleInputPassword1"
                   placeholder="Enter Password"
-                  //id="password"
-                  //onInput="return passwordValidation(this.value)"
                   required
-                />
-                <button type="submit" onClick={this.login} className="button55" >Login</button>
-                <button style={{ backgroundColor: 'red', marginLeft: '20px' }} className="button55" onClick={this.signup} >Signup</button>                
-                {/* <label>
-                                <input type="checkbox" checked="checked" name="remember" /> Remember me
-                                </label> */}
+                /><br /><br />
+                {this.state.loadBut === true ?
+                (<button class="btn btn-info custom-btn btn-lg" type="submit" onClick={this.login} ><i class="fa fa-refresh fa-spin"></i> Login</button>):
+                (<button class="btn btn-primary custom-btn btn-lg" type="submit" onClick={this.login} > Login</button>)}
+                <button style={{ marginLeft: '20%' }} className="btn btn-secondary custom-btn btn-lg" onClick={this.signup} >Signup</button>                
               </div>
 
               <div className="containerform" style={{ backgroundColor: '#f1f1f1' }}>
-                <a href="/"><button className="button55 cancelbtn" onClick={this.onCloseClick} >Cancel</button></a>
+                <a href="/"><button className="btn btn-danger custom-btn btn-lg" onClick={this.onCloseClick} >Cancel</button></a>
 
               </div>
             </form>
@@ -116,27 +104,8 @@ class Login extends React.Component {
 
     return (
       <div className="backimage">
-
-
-        {/* <Header log={this.sanju()} /> */}
-        {/* <div className="signupSection">
-                  <div className="info">
-                    <h2 style={{ fontSize: "25px" }}>Mission to Safe Park</h2>
-         <img src="https://www.iconspng.com/uploads/green-parking/green-parking.png" alt="parking_icon" width="200px" height="200px" />
-                    <p>The Parking Is Here</p>
-                  </div>
-                  <form className="signupForm" name="signupform">
-                    {this.loginForm()}
-                    {this.sanju()}
-                  </form>
-                </div>
-
-                <script src="js/index.js"></script> */}
-
         {this.renderLoginForm()}
-
       </div>
-
     );
   }
 }

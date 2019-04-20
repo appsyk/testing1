@@ -70,7 +70,7 @@ class Temp extends React.Component {
                         <ol className="carousel-indicators">
                             <li data-target="#carousel-example-generic" data-slide-to="0" className="active"></li>
                             <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                            {/* <li data-target="#carousel-example-generic" data-slide-to="2"></li> */}
                         </ol>
 
                         <div className="carousel-inner" role="listbox" >
@@ -88,9 +88,9 @@ class Temp extends React.Component {
 
                                             <div>
                                                 <NavLink to='/search-maps'>
-                                                    <button className="button12 faa-bounce animated">
+                                                    <button className="btn btn-success custom-btn btn-lg faa-bounce animated" style={{ borderRadius: '19px' }}>
                                                         <img src="http://icons.iconarchive.com/icons/graphicloads/100-flat/256/zoom-search-2-icon.png" alt="srch" height='50px' width='50px' style={{ marginRight: '17px' }} />
-                                                        <b>Search for places</b>
+                                                        Search for places
                                                     </button>
                                                 </NavLink><br /><br /><br />
 
@@ -115,9 +115,9 @@ class Temp extends React.Component {
                                             {/* <a href="" className="button">On Rent</a> */}
                                             <div>
                                                 <NavLink to='/rent-out-ur-places'>
-                                                    <button className="button12 faa-bounce animated">
+                                                    <button className="btn btn-light custom-btn btn-lg faa-bounce animated" style={{ borderRadius: '19px' }}>
                                                         <img src="https://cdn1.iconfinder.com/data/icons/travel-40/256/Vacation_Rental-512.png" alt="srch" height='50px' width='50px' style={{ marginRight: '17px' }} />
-                                                        <b>Add your space</b>
+                                                        Add your space
                                                     </button>
                                                 </NavLink><br /><br /><br />
 
@@ -127,7 +127,7 @@ class Temp extends React.Component {
                                 </div>
                             </div>
                             {/* <!--End of Item--> */}
-                            <div className="item">
+                            {/* <div className="item">
                                 <div className="slider_overlay">
                                     <img src="https://hdwallsource.com/img/2014/5/street-parking-wallpaper-45023-46185-hd-wallpapers.jpg" alt="..."></img>
                                     <div className="carousel-caption">
@@ -147,7 +147,7 @@ class Temp extends React.Component {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                             {/* <!--End of item--> */}
                         </div>
                         {/* <!--End of Carousel Inner--> */}

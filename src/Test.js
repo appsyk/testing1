@@ -21,6 +21,7 @@ import CreateAiroliStation from './Reserve/AiroliStation/Create';
 import AiroliStationShow from './Reserve/AiroliStation/App';
 import ArihantRabaleShow from './Reserve/ArihantRabale/App';
 import CreateArihantRabale from './Reserve/ArihantRabale/Create';
+import RentReq from './RentOut/RentForm';
 
 
 
@@ -61,7 +62,6 @@ class Test extends React.Component {
                 <div>
                     {/* <LoginApp /> */}
                     <Header />
-                    
                     <Switch />
                     <div>
                         <Route path='/' exact component={Temp} />
@@ -73,6 +73,7 @@ class Test extends React.Component {
                         <Route path='/reserve-ur-place' exact component={Create} />
                         <Route path='/show/:id' component={Show} />
                         <Route path='/rent-out-ur-places' component={RentApp} />
+                        <Route path='/show-rent-out-places' component={RentReq} />
                         <Route path='/reserve-place@DMCE' component={DmceShow} />
                         <Route path='/create@DMCE' component={CreateDmce} />
                         <Route path='/reserve-place@ORION' component={OrionShow} />

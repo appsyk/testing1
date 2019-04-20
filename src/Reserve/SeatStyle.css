@@ -77,7 +77,7 @@ font-size: 20px;
   background-color:rgb(62, 190, 62);
 }
 
-.checkmark-booked{
+.checkBookmark{
   position: absolute;
   top: 0;
   left: 0;
@@ -119,4 +119,8 @@ font-size: 20px;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+.placeholding{
+  color: black;
 }

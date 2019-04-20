@@ -1,8 +1,11 @@
+// import '../Reserve/SeatStyle.css';
 import React, { Component } from 'react';
 import { GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import firebase from '../Reserve/Firebase';
 import CurrentLocation from './RentMap';
 import Spinner from '../Loader/Spinner';
+import Loadman from '../Loader/Loadman';
+import { NavLink } from 'react-router-dom';
 
 
 export class MapContainer extends Component {
@@ -35,7 +38,7 @@ export class MapContainer extends Component {
     this.ref = firebase.firestore().collection('rents');
     this.state = {
       firstName: '',
-      lastName: '',
+      // lastName: '',
       email: '',
       lat: '',
       noOfSpaces: '',
@@ -45,12 +48,18 @@ export class MapContainer extends Component {
       showingInfoWindow: false,
       activeMarker: {},
       selectedPlace: {},
-      user: null
+      user: null,
+      count:0
     };
   }
   onChange = (e) => {
     const state = this.state
-    state[e.target.name] = e.target.value;
+    state[e.target.name] = e.target.value.toUpperCase();
+    this.setState(state);
+  }
+  onEmailChange = (e) => {
+    const state = this.state
+    state[e.target.name] = e.target.value.toLowerCase();
     this.setState(state);
   }
 
@@ -62,7 +71,7 @@ export class MapContainer extends Component {
 
     this.ref.add({
       firstName,
-      lastName,
+      // lastName,
       email,
       lat,
       noOfSpaces,
@@ -73,7 +82,7 @@ export class MapContainer extends Component {
     }).then((docRef) => {
       this.setState({
         firstName: '',
-        lastName: '',
+        // lastName: '',
         email: '',
         lat: '',
         noOfSpaces: '',
@@ -81,7 +90,7 @@ export class MapContainer extends Component {
         address: '',
         describe: ''
       });
-      this.props.history.push("/")
+      this.props.history.push("/show-rent-out-places")
     })
       .catch((error) => {
         console.error("Error adding document: ", error);
@@ -92,6 +101,8 @@ export class MapContainer extends Component {
 
   componentDidMount() {
     this.authListener();
+    this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
+
   }
 
   authListener = () => {
@@ -107,6 +118,13 @@ export class MapContainer extends Component {
     });
   }
 
+  onCollectionUpdate = (querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      this.setState({ count:(this.state.count + 1 )})
+    });
+    this.setState({
+   });
+  }
 
   render() {
     if (!this.state.user) {
@@ -117,7 +135,7 @@ export class MapContainer extends Component {
           <h1>You are currently not logged in !</h1>
           <h3>You have to <a href="/login"><b>log in</b></a></h3>
           <h4>for further process</h4>
-          <Spinner />
+          <Loadman />
         </div>
       );
     }
@@ -131,21 +149,23 @@ export class MapContainer extends Component {
             <div className="row">
               <div className="colmd-12">
                 <div className="contact_area text-center">
-                  <h3>Rent out your parking places</h3>
+                  <h3 style={{ marginLeft:'25%' }} >Rent out your parking places</h3>
                   {/* <p>You can Rentout your own places for parking.</p> */}
                 </div>
               </div>
             </div>
             {/* <!--End of row--> */}
-            <div className="row"  style={{ marginTop: '-5%' }}>
-              <div className="col-md-6">
+            <div className="row"  style={{ marginTop: '-7%' }}>
+            <h4 ><NavLink to="/show-rent-out-places"  className="btn custom-btn btn-primary"><span className="glyphicon glyphicon-list fa-2x" style={{ marginRight: '4%' }} ></span><h5><b style={{ fontSize:'24px' }}>' {this.state.count} ' </b>  places for Rent</h5></NavLink></h4>
+
+              <div className="col-md-6" style={{ marginTop: '-1%' }}>
                 <div className="office">
                   <div className="title">
                     <h5>click on <b style={{ color: 'red' }}>red</b> marker</h5><h4>To grab Lattitude and Longitude of your location</h4>
 
                   </div>
                   <div className="office_location">
-                    <div className="address">
+                    {/* <div className="address">
                       <i className="fa fa-map-marker">
                         {this.state.selectedPlace.map ? (
                           <a href={this.state.selectedPlace.map.rmiUrl} style={{ marginLeft: '20px' }}>Your current location</a>)
@@ -157,7 +177,7 @@ export class MapContainer extends Component {
                     </div>
                     <div className="email">
                       <i className="fa fa-envelope"><span>imatom19@gmail.com</span></i>
-                    </div>
+                    </div> */}
                     <div id="map">
                       <div>
                         <CurrentLocation centerAroundCurrentLocation google={this.props.google}>
@@ -181,7 +201,7 @@ export class MapContainer extends Component {
               <div className="col-md-6">
                 <div className="msg">
                   <div className="msg_title">
-                    <h5>Drop A Message</h5>
+                  
                   </div>
                   <div className="form_area">
                     {/* <!-- CONTACT FORM --> */}
@@ -189,17 +209,21 @@ export class MapContainer extends Component {
                       <div id="message"></div>
                       <form onSubmit={this.onSubmit} className="form-horizontal contact-1" role="form" name="contactform" id="contactform">
                         <div className="form-group">
-                          <div className="col-sm-6">
-                            <input type="text" className="form-control" onChange={this.onChange} value={firstName} name="firstName" id="name" placeholder="FIRST NAME" />
+                          <div className="col-sm-12">
+                            <input type="text" className="placeholding form-control" onChange={this.onChange} value={firstName} name="firstName" id="name" placeholder="FULL NAME" />
                           </div>
-                          <div className="col-sm-6">
+                          {/* <div className="col-sm-6">
                             <input type="text" className="form-control" onChange={this.onChange} value={lastName} name="lastName" id="name" placeholder="LAST NAME" />
-                          </div>
+                          </div> */}
                           <div className="col-sm-6">
-                            <input type="text" className="form-control" onChange={this.onChange} value={email} name="email" id="email" placeholder="EMAIL" list="Emails" autocomplete="off" />
+                            <input type="text" className="placeholding form-control" onChange={this.onEmailChange} value={email} name="email" id="email" placeholder="EMAIL" title="select email from given option" list="Emails" autocomplete="off" />
                             <datalist id="Emails">
                               <option value={this.state.user.email}></option>
                             </datalist>
+
+                          </div>
+                          <div className="col-sm-6">
+                            <input type="number" className="form-control" value={noOfSpaces} onChange={this.onChange} name="noOfSpaces" id="name" placeholder="NO OF SPACES" />
                           </div>
                         </div>
                         {/* <div class="row">
@@ -217,33 +241,27 @@ export class MapContainer extends Component {
                           </div> */}
                         <div className="form-group">
                           <div className="col-sm-6">
-                            {this.state.selectedPlace.mapCenter ? (<form><input type="text" className="form-control" value={lat} onChange={this.onChange} name="lat" id="lat" placeholder="LATTITUDE" list="Lat" autocomplete="off" />
+                            {this.state.selectedPlace.mapCenter ? (<form><input type="text" className="form-control" value={lat} onChange={this.onChange} name="lat" id="lat" title="select Lattitude from option" placeholder="LATTITUDE" list="Lat" autocomplete="off" />
                               <datalist id="Lat">
                                 <option value={this.state.selectedPlace.mapCenter.lat}></option>
                               </datalist></form>)
-                              : (<input type="text" className="form-control" value={lat} name="lat" id="name" placeholder="LATTITUDE" />)}
+                              : (<input type="text" className="form-control" value={lat} name="lat" title="Click on RED marker" id="name" placeholder="LATTITUDE" autocomplete="off" />)}
 
                           </div>
-
                           <div className="col-sm-6">
-                            <input type="number" className="form-control" value={noOfSpaces} onChange={this.onChange} name="noOfSpaces" id="name" placeholder="NO OF SPACES" />
-                          </div>
-
-
-                          <div className="col-sm-6">
-                            {this.state.selectedPlace.mapCenter ? (<div><input type="text" className="form-control" value={lng} onChange={this.onChange} name="lng" id="lng" placeholder="LONGITUDE" list="Lng" autocomplete="off" />
+                            {this.state.selectedPlace.mapCenter ? (<div><input type="text" className="form-control" value={lng} onChange={this.onChange} title="select Longitude from option" name="lng" id="lng" placeholder="LONGITUDE" list="Lng" autocomplete="off" />
                               <datalist id="Lng">
                                 <option value={this.state.selectedPlace.mapCenter.lng}></option>
                               </datalist></div>)
-                              : (<input type="text" className="form-control" value={lng} name="lng" id="name" placeholder="LONGITUDE" />)}
+                              : (<input type="text" className="form-control" value={lng} name="lng" id="name" title="Click on RED marker" placeholder="LONGITUDE" autocomplete="off" />)}
                           </div>
                         </div>
                         <div className="form-group">
                           <div className="col-sm-12">
                             <input type="subject" className="form-control" id="subject" onChange={this.onChange} value={address} name="address" placeholder="ADDRESS *" />
                             <div className="text_area">
-                              <textArea name="contact-message" id="msg" className="form-control" cols="30" rows="8" onChange={this.onChange} name="descibe"
-                                placeholder="DESCRIBE YOUR SPACE  (types of spce: Driveway/ Garage/ Car park), width of Space, (Features: Electric charging/ CCTV ?)" >{describe}</textArea>
+                              <textArea id="msg" className="form-control" cols="30" rows="8" onChange={this.onChange} name="describe" value={describe}
+                                placeholder="DESCRIBE YOUR SPACE  (types of spce: Driveway/ Garage/ Car park), width of Space, (Features: Electric charging/ CCTV ?)" ></textArea>
                               {/* <textarea className="form-control" name="vehicleNumber" onChange={this.onChange} placeholder="Description" cols="80" rows="3">{description}</textArea> */}
                             </div>
                             <button type="submit" className="btn custom-btn" data-loading-text="Loading...">Submit your form</button>

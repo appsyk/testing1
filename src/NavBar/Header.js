@@ -114,17 +114,17 @@ class Header extends React.Component {
 
                                             <li>
                                                 <div className="dropdown">
-                                                    <button className="dropbtn button dropdown-toggle">
+                                                    
                                                         {this.state.user ? 
-                                                            (<div>{this.state.user.email}
+                                                            (<button className="dropbtn btn btn-info btn-lg dropdown-toggle"><div>{this.state.user.email}
                                                                 <div className="dropdown-content">
                                                                     <a href="#" onClick={this.logout}>Logout</a>
                                                                 </div>
-                                                            </div>):(<div>Sign In
-                                                                <div className="dropdown-content">
-                                                                    <NavLink to='/login'>Login</NavLink>
-                                                                </div>
-                                                                </div>)}</button>
+                                                            </div></button>):(<button className="btn btn-outline-primary custom-btn btn-lg"><div ><NavLink to='/login' style={{ color:'white' }}>Sign In
+                                                                {/* <div className="dropdown-content"> 
+                                                                </div> */}
+                                                                </NavLink>
+                                                                </div></button> )}
                                                     
                                                         {/* <div onClick={this.onLoginClick}>Login</div> */}
                                                         

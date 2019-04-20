@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 // import './App.css';
 import firebase from '../Firebase';
 import Spinner from '../../Loader/Spinner';
+import Loadman from '../../Loader/Loadman';
 
 class ArihantRabaleShow extends Component {
   constructor(props) {
@@ -73,7 +74,7 @@ class ArihantRabaleShow extends Component {
         <h1>Sorry Your are not logged In</h1>
         <h3>you have to <a href="/login"><b>login</b></a> first</h3>
         <h4>To see the list of entries.!</h4>
-        <Spinner />
+        <Loadman />
       </div>
       );
     }else

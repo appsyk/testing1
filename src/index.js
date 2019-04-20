@@ -6,7 +6,7 @@ import LoginForm from './LoginStyle/LoginForm';
 // import App from './App';
 import RentForm from './RentOut/RentForm';
 // import App from './mapBox/App'
-import Vrushabh from './vrushlot';
+import Loadman from './Loader/Loadman';
 
 
 ReactDOM.render(
