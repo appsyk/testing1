@@ -3,9 +3,9 @@ import firebase from '../Firebase';
 import { Link } from 'react-router-dom';
 import Spinner from '../../Loader/Spinner';
 import SeatBox from '../SeatHtml';
+import Loadman from '../../Loader/Loadman';
 
 class CreateOrion extends Component {
-
   constructor() {
     super();
     this.ref = firebase.firestore().collection('orions');
@@ -16,21 +16,37 @@ class CreateOrion extends Component {
       phoneNumber: '',
       arrivingTime: '',
       leavingTime: '',
+      plotId: '',
+      user: null,
       count: 0,
-      user: null
+      box: null,
+      orions: [],
+      isChecked: false
+
     };
   }
   onChange = (e) => {
     const state = this.state
-    state[e.target.name] = e.target.value;
+    state[e.target.name] = e.target.value.toUpperCase();
     this.setState(state);
+  }
+  onEmailChange = (e) => {
+    const state = this.state
+    state[e.target.name] = e.target.value.toLowerCase();
+    this.setState(state);
+  }
+
+  onBoxClick = (e) => {
+    this.setState({
+      box: e.target.defaultValue
+    })
   }
 
   onSubmit = (e) => {
     e.preventDefault();
 
     const { name, vehicle,
-      email, phoneNumber, arrivingTime, leavingTime } = this.state;
+      email, phoneNumber, arrivingTime, leavingTime, plotId } = this.state;
 
     this.ref.add({
       name,
@@ -38,7 +54,8 @@ class CreateOrion extends Component {
       email,
       phoneNumber,
       arrivingTime,
-      leavingTime
+      leavingTime,
+      plotId
 
     }).then((docRef) => {
       this.setState({
@@ -48,6 +65,7 @@ class CreateOrion extends Component {
         phoneNumber: '',
         arrivingTime: '',
         leavingTime: '',
+        plotId: ''
       });
       this.props.history.push("/reserve-place@ORION")
     })
@@ -78,35 +96,63 @@ class CreateOrion extends Component {
   }
 
   remainPlace() {
-    const rem = (9 - (this.state.count));
+    const rem = (30 - (this.state.count));
     return rem;
   }
-  
+
   onCollectionUpdate = (querySnapshot) => {
+    const orions = [];
     querySnapshot.forEach((doc) => {
-      this.setState({ count:(this.state.count + 1 )})
+      this.setState({ count: (this.state.count + 1) })
+      const { name, vehicle,
+        email, phoneNumber, arrivingTime, leavingTime, plotId } = doc.data();
+      orions.push({
+        key: doc.id,
+        doc, // DocumentSnapshot
+        name,
+        vehicle,
+        email,
+        phoneNumber,
+        arrivingTime,
+        leavingTime,
+        plotId
+      });
     });
     this.setState({
-   });
+      orions
+    });
   }
 
+  test(pI){
+    let ari= this.state.orions;
+    console.log("test",ari)
+    for (const arihant of ari) {
+      // let i = document.getElementById(arihant.plotId);
+      console.log(555,pI, arihant.plotId)
+      if (arihant.plotId === pI ) {
+        console.log(444,pI, arihant.plotId)
+        return true;
+      }
+    }
+      }
+
   render() {
-    console.log(321, this.state.count);
+
     if (!this.state.user) {
-      //alert("you are not logged in");
       return (
         <div style={{ textAlign: "center" }}>
-        <br /><br /><br /><br /><br />
-        <h1>You are currently not logged in !</h1>
-        <h3>You have to <a href="/login"><b>log in</b></a></h3>
-        <h4>to reserve a parking..!</h4>
-        <Spinner />
-      </div>
+          <br /><br /><br /><br /><br />
+          <h1>You are currently not logged in !</h1>
+          <h3>You have to <a href="/login"><b>log in</b></a></h3>
+          <h4>to reserve a parking..!</h4>
+          <Loadman />
+        </div>
       );
     }
 
+
     const { name, vehicle,
-      email, phoneNumber, arrivingTime, leavingTime } = this.state;
+      email, phoneNumber, arrivingTime, leavingTime, plotId } = this.state;
     return (
       <div className="container">
         <div>
@@ -116,24 +162,254 @@ class CreateOrion extends Component {
                 <h4 ><Link to="/reserve-place@ORION" className="btn custom-btn btn-info"><span className="glyphicon glyphicon-list fa-2x" style={{ marginRight: '4%' }} ></span>WATCH THE LIST</Link></h4>
 
                 <div className="colmd-12">
-                  <div className="contact_area text-center">
-                    <h3 style={{ marginTop: '-4%' }} >Orion mall, panvel</h3>
-                    <h2 style={{ marginTop: '-1%', marginLeft: '10%', marginRight:'10%' }}>Orion Mall, Panvel Bus Depot, Final Plot No 311, Near ST, Forest Colony, Panvel, Navi Mumbai, Maharashtra 410206</h2>
+                  <div className="contact_area text-center" >
+                    <h3 style={{ marginTop: '-4%', marginLeft: '22%', marginRight: '20%' }} >Orion Mall, Panvel</h3>
+                    <h2 style={{ marginTop: '-1%', marginLeft: '13%', marginRight: '13%' }}>Bus Depot, Final Plot No 311, Near ST, Forest Colony, Panvel, Navi Mumbai, Maharashtra 410206</h2>
+                    {/* <h2>sanju: {this.test()} </h2> */}
                   </div>
                 </div>
               </div>
-              <SeatBox />
+              {this.state.orions.map((arihant, e) =>
+
+                <div>
+                  <h5>{arihant.plotId === this.state.box ? (alert('this place is booked..!')) : (<div></div>)}</h5>
+                  {/* <h5>{arihant.plotId ? (console.log(this.state.box)) : (console.log("testing complete"))}</h5> */}
+
+                </div>
+              )}
+              <div style={{ marginTop: '-6%' }} >
+                <div className="seat-container" style={{ marginTop: '15%' }} >
+                  {/* <h1 style={{textAlign:"center",fontFamily:'italic bold'}}>Available Parking</h1> */}
+                  <div className="funkyradio-primary" style={{ overflowX: 'auto', textAlign: 'center', marginLeft: '25%' }}>
+                    <p id="notification" />
+                    {this.state.box ? (<div><h3 style={{ marginLeft: '-40%' }}><u>{this.state.box}</u></h3><br /><h5 style={{ color: 'red', marginTop: '-5%', textAlign: 'left' }} >* Enter the above <b style={{ color: 'green' }}>Plot Id</b> into form</h5></div>)
+                      : (<div><div><h3 style={{ marginLeft: '-40%' }}><u>NULL</u></h3><br /><h5 style={{ color: 'red', marginTop: '-5%', textAlign: 'left' }} >* select a  <b style={{ color: 'green' }}>Parking Lot</b> from given lots</h5></div></div>)}
+                    <table className="squaredOne">
+                      <tbody><tr>
+                        <td />
+                        <td style={{ fontSize: '23px' }}><b>1</b></td>
+                        <td style={{ fontSize: '23px' }}><b>2</b></td>
+                        <td style={{ fontSize: '23px' }}><b>3</b></td>
+                        <td style={{ fontSize: '23px' }}><b>4</b></td>
+                        <td style={{ fontSize: '23px' }}><b>5</b></td>
+                        <td style={{ fontSize: '23px' }}><b>6</b></td>
+
+                        <td />
+                      </tr>
+                        <tr>
+                          <td style={{ fontSize: '23px' }}><b>A</b></td>
+
+                          <td>
+                            <label className="check-container">
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="A1" id='A1' checked={this.test('A1')} />
+
+                              <span className="checkmark" ></span>
+                            </label>
+                          </td>
+                          <td>
+                            <label className="check-container">
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="A2" checked={this.test('A2')} />
+                              <span className="checkmark"></span>
+                            </label>
+                          </td>
+                          <td>
+                            <label className="check-container">
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="A3" id='A3' checked={this.test('A3')} />
+                              <span className="checkmark"></span>
+                            </label>
+                          </td>
+                          <td className="form-check">
+                            <label className="check-container">
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="A4" checked={this.test('A4')} />
+                              <span className="checkmark"></span>
+                            </label>
+                          </td>
+                          <td>
+                            <label className="check-container">
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="A5" checked={this.test('A5')}/>
+                              <span className="checkmark"></span>
+                            </label>
+                          </td>
+                          <td>
+                            <label className="check-container">
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="A6" checked={this.test('A6')}/>
+                              <span className="checkmark"></span>
+                            </label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style={{ fontSize: '23px' }}>B</td>
+                          <td>
+                            <label className="check-container">
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="B1" checked={this.test('B1')} />
+                              <span className="checkmark"></span>
+                            </label>
+                          </td>
+                          <td>
+                            <label className="check-container">
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="B2" checked={this.test('B2')} />
+                              <span className="checkmark"></span>
+                            </label>
+                          </td>
+                          <td>
+                            <label className="check-container">
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="B3" checked={this.test('B3')} />
+                              <span className="checkmark"></span>
+                            </label>
+                          </td>
+                          <td className="form-check">
+                            <label className="check-container">
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="B4" checked={this.test("B4")} />
+                              <span className="checkmark"></span>
+                            </label>
+                          </td>
+                          <td>
+                            <label className="check-container">
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="B5" checked={this.test('B5')} />
+                              <span className="checkmark"></span>
+                            </label>
+                          </td>
+                          <td>
+                            <label className="check-container">
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="B6" checked={this.test('B6')}/>
+                              <span className="checkmark"></span>
+                            </label>
+                          </td>
+                          {/* <td /> */}
+                        </tr>
+
+                        <tr>
+                          <td style={{ fontSize: '23px' }}>C</td>
+                          <td>
+                            <label className="check-container">
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="C1" checked={this.test('C1')} />
+                              <span className="checkmark"></span>
+                            </label>
+                          </td>
+                          <td>
+                            <label className="check-container">
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="C2" id='C2' checked={this.test('C2')} />
+                              <span className="checkmark"></span>
+                            </label>
+                          </td>
+                          <td>
+                            <label className="check-container">
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="C3" id='C3' checked={this.test('C3')} />
+                              <span className="checkmark"></span>
+                            </label>
+                          </td>
+                          <td className="form-check">
+                            <label className="check-container">
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="C4" checked={this.test('C4')} />
+                              <span className="checkmark"></span>
+                            </label>                          </td>
+                          <td>
+                            <label className="check-container">
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="C5" checked={this.test('C5')} />
+                              <span className="checkmark"></span>
+                            </label>
+                          </td>
+                          <td>
+                            <label className="check-container">
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="C6" checked={this.test('C6')}/>
+                              <span className="checkmark"></span>
+                            </label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style={{ fontSize: '23px' }}>D</td>
+                          <td>
+                            <label className="check-container">
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="D1" checked={this.test('D1')} />
+                              <span className="checkmark"></span>
+                            </label>
+                          </td>
+                          <td>
+                            <label className="check-container">
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="D2" checked={this.test('D2')} />
+                              <span className="checkmark"></span>
+                            </label>
+                          </td>
+                          <td>
+                            <label className="check-container">
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="D3" checked={this.test('D3')} />
+                              <span className="checkmark"></span>
+                            </label>
+                          </td>
+                          <td className="form-check">
+                            <label className="check-container">
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="D4" id="D4" checked={this.test('D4')} />
+                              <span className="checkmark"></span>
+                            </label>                          </td>
+                          <td>
+                            <label className="check-container">
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="D5" id='D5' checked={this.test('D5')} />
+                              <span className="checkmark"></span>
+                            </label>
+                          </td>
+                          <td>
+                            <label className="check-container">
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="D6" checked={this.test('D6')}/>
+                              <span className="checkmark"></span>
+                            </label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style={{ fontSize: '23px' }}>E</td>
+                          <td>
+                            <label className="check-container">
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="E1" checked={this.test('E1')} />
+                              <span className="checkmark"></span>
+                            </label>
+                          </td>
+                          <td>
+                            <label className="check-container">
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="E2" checked={this.test('E2')} />
+                              <span className="checkmark"></span>
+                            </label>
+                          </td>
+                          <td>
+                            <label className="check-container">
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="E3" checked={this.test('E3')} />
+                              <span className="checkmark"></span>
+                            </label>
+                          </td>
+                          <td className="form-check">
+                            <label className="check-container">
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="E4" checked={this.test('E4')} />
+                              <span className="checkmark"></span>
+                            </label>                          </td>
+                          <td>
+                            <label className="check-container">
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="E5" checked={this.test('E5')} />
+                              <span className="checkmark"></span>
+                            </label>
+                          </td>
+                          <td>
+                            <label className="check-container">
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="E6" checked={this.test('E6')} />
+                              <span className="checkmark"></span>
+                            </label>
+                          </td>
+                        </tr>
+                        
+                      </tbody></table>
+
+                  </div>
+                  {/* //details after booking displayed here */}
+                </div>
+              </div>
+
               <div className="row">
                 <div className="col-md-6">
                   <div className="office">
-                </div>
+                  </div>
                 </div>
                 <div className="col-md-6">
-                <div className="msg_title">
-                    <h5><b>' {this.remainPlace()} ' </b>  Parkings Available</h5>
-                  </div>
                   <div className="msg">
-                   
+                    <div className="msg_title">
+                      <h5><b>' {this.remainPlace()} ' </b> Parkings Available</h5>
+                    </div>
                     <div className="form_area">
                       {/* <!-- CONTACT FORM --> */}
                       <div className="contact-form wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
@@ -141,7 +417,10 @@ class CreateOrion extends Component {
                         <form onSubmit={this.onSubmit} className="form-horizontal contact-1" role="form" name="contactform" id="contactform">
                           <div className="form-group">
                             <div className="col-sm-10">
-                              <input type="text" className="form-control" onChange={this.onChange} value={name} name="name" id="name" placeholder="FULL NAME" />
+                              <input type="text" className="form-control" onChange={this.onChange} value={plotId} name="plotId" id="name" placeholder="PLOT ID" />
+                            </div>
+                            <div className="col-sm-10">
+                              <input type="text" className="form-control" onChange={this.onChange} value={name} name="name" id="name" placeholder="FULL NAME" required />
                             </div>
                             {/* <div className="col-sm-6">
                           <input type="text" className="form-control" onChange={this.onChange} value={lastName} name="lastName" id="name" placeholder="LAST NAME" />
@@ -150,7 +429,7 @@ class CreateOrion extends Component {
                           </div>
                           <div className="form-group">
                             <div className="col-sm-5">
-                              <input type="text" className="form-control" onChange={this.onChange} value={email} name="email" id="email" placeholder="EMAIL" list="Emails" autocomplete="off" />
+                              <input type="text" className="form-control" onChange={this.onEmailChange} value={email} name="email" id="email" placeholder="EMAIL" list="Emails" autocomplete="off" />
                               <datalist id="Emails">
                                 <option value={this.state.user.email}></option>
                               </datalist>
@@ -164,11 +443,9 @@ class CreateOrion extends Component {
                               <input type="subject" className="form-control" id="subject" onChange={this.onChange} value={vehicle} name="vehicle" placeholder="Enter vehicle info just like COMPANY-MODEL-NUMBER *" />
                               <div className="form-group">
                                 <div className="col-sm-6">
-                                ARRIVING TIME :
                                   <input type="datetime-local" className="form-control" onChange={this.onChange} value={arrivingTime} name="arrivingTime" id="email" placeholder="ARRIVING TIME" />
                                 </div>
                                 <div className="col-sm-6">
-                                LEAVING TIME :
                                   <input type="datetime-local" className="form-control" value={leavingTime} onChange={this.onChange} name="leavingTime" id="name" placeholder="LEAVING TIME" />
                                 </div>
                               </div>
@@ -198,5 +475,4 @@ class CreateOrion extends Component {
     );
   }
 }
-
 export default CreateOrion;

@@ -103,7 +103,7 @@ class CreateArihantRabale extends Component {
   }
 
   remainPlace() {
-    const rem = (10 - (this.state.count));
+    const rem = (25 - (this.state.count));
     return rem;
   }
 
@@ -130,52 +130,22 @@ class CreateArihantRabale extends Component {
     });
   }
 
-  isch(){
-    if(this.state.isChecked === false){
-      // console.log(!this.state.isChecked)
-      return !this.state.isChecked;
-    }
-  }
-
-  isTrue(){
-    return true;
-  }
-
-  isFalse(){
-    return false;
-  }
-
-  // test(){
-  //   let ari= this.state.arihants;
-  //   for (const arihant of ari) {
-  //     let i = document.getElementById(arihant.plotId);
-
-  //     if (i) {
-  //       this.setState ({ isChecked: true });
-  //       // return arihant
-  //     }
-  //   }
-  //       // this.setState({ isChecked: !this.state.isChecked });
-  //     }
-
-  test() {
-    var a;
-    this.state.arihants.map((arihant, id, props) => {
-      let i = document.getElementById(arihant.plotId);
-      if (i && i.value === arihant.plotId) {
-        console.log(323,i.value)
+  test(pI){
+    let ari= this.state.arihants;
+    console.log("test",ari)
+    for (const arihant of ari) {
+      // let i = document.getElementById(arihant.plotId);
+      console.log(555,pI, arihant.plotId)
+      if (arihant.plotId === pI ) {
+        console.log(444,pI, arihant.plotId)
         return true;
       }
-        return false;
-  })
-}
-
+    }
+      }
 
   render() {
-    let stylish = { fontSize: '800px' };
-    // console.log(321, this.state.count);
+
     if (!this.state.user) {
-      //alert("you are not logged in");
       return (
         <div style={{ textAlign: "center" }}>
           <br /><br /><br /><br /><br />
@@ -202,7 +172,7 @@ class CreateArihantRabale extends Component {
                   <div className="contact_area text-center" >
                     <h3 style={{ marginTop: '-4%', marginLeft: '22%', marginRight: '20%' }} >Arihant Parking Systems, rabale</h3>
                     <h2 style={{ marginTop: '-1%', marginLeft: '13%', marginRight: '13%' }}>R-399, T.T.C. Industrial Area, MIDC Industrial Area, Rabale, Navi Mumbai, Maharashtra 400701</h2>
-                    <h2>sanju: {this.test()} </h2>
+                    {/* <h2>sanju: {this.test()} </h2> */}
                   </div>
                 </div>
               </div>
@@ -236,32 +206,32 @@ class CreateArihantRabale extends Component {
 
                           <td>
                             <label className="check-container">
-                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="A1" id='A1' checked={this.test()} />
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="A1" id='A1' checked={this.test('A1')} />
 
                               <span className="checkmark" ></span>
                             </label>
                           </td>
                           <td>
                             <label className="check-container">
-                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="A2" />
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="A2" checked={this.test('A2')} />
                               <span className="checkmark"></span>
                             </label>
                           </td>
                           <td>
                             <label className="check-container">
-                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="A3" id='A3' checked={this.test()} />
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="A3" id='A3' checked={this.test('A3')} />
                               <span className="checkmark"></span>
                             </label>
                           </td>
                           <td className="form-check">
                             <label className="check-container">
-                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="A4" />
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="A4" checked={this.test('A4')} />
                               <span className="checkmark"></span>
                             </label>
                           </td>
                           <td>
                             <label className="check-container">
-                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="A5" />
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="A5" checked={this.test('A5')}/>
                               <span className="checkmark"></span>
                             </label>
                           </td>
@@ -270,31 +240,31 @@ class CreateArihantRabale extends Component {
                           <td style={{ fontSize: '23px' }}>B</td>
                           <td>
                             <label className="check-container">
-                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="B1" />
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="B1" checked={this.test('B1')} />
                               <span className="checkmark"></span>
                             </label>
                           </td>
                           <td>
                             <label className="check-container">
-                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="B2" />
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="B2" checked={this.test('B2')} />
                               <span className="checkmark"></span>
                             </label>
                           </td>
                           <td>
                             <label className="check-container">
-                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="B3" />
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="B3" checked={this.test('B3')} />
                               <span className="checkmark"></span>
                             </label>
                           </td>
                           <td className="form-check">
                             <label className="check-container">
-                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="B4" />
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="B4" checked={this.test("B4")} />
                               <span className="checkmark"></span>
                             </label>
                           </td>
                           <td>
                             <label className="check-container">
-                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="B5" />
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="B5" checked={this.test('B5')} />
                               <span className="checkmark"></span>
                             </label>
                           </td>
@@ -305,30 +275,30 @@ class CreateArihantRabale extends Component {
                           <td style={{ fontSize: '23px' }}>C</td>
                           <td>
                             <label className="check-container">
-                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="C1" />
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="C1" checked={this.test('C1')} />
                               <span className="checkmark"></span>
                             </label>
                           </td>
                           <td>
                             <label className="check-container">
-                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="C2" id='C2' checked={this.state.isChecked} />
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="C2" id='C2' checked={this.test('C2')} />
                               <span className="checkmark"></span>
                             </label>
                           </td>
                           <td>
                             <label className="check-container">
-                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="C3" id='C3' checked={this.state.isChecked} />
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="C3" id='C3' checked={this.test('C3')} />
                               <span className="checkmark"></span>
                             </label>
                           </td>
                           <td className="form-check">
                             <label className="check-container">
-                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="C4" />
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="C4" checked={this.test('C4')} />
                               <span className="checkmark"></span>
                             </label>                          </td>
                           <td>
                             <label className="check-container">
-                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="C5" />
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="C5" checked={this.test('C5')} />
                               <span className="checkmark"></span>
                             </label>
                           </td>
@@ -339,30 +309,30 @@ class CreateArihantRabale extends Component {
                           <td style={{ fontSize: '23px' }}>D</td>
                           <td>
                             <label className="check-container">
-                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="D1" />
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="D1" checked={this.test('D1')} />
                               <span className="checkmark"></span>
                             </label>
                           </td>
                           <td>
                             <label className="check-container">
-                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="D2" />
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="D2" checked={this.test('D2')} />
                               <span className="checkmark"></span>
                             </label>
                           </td>
                           <td>
                             <label className="check-container">
-                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="D3" />
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="D3" checked={this.test('D3')} />
                               <span className="checkmark"></span>
                             </label>
                           </td>
                           <td className="form-check">
                             <label className="check-container">
-                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="D4" id="D4" checked={this.test()} />
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="D4" id="D4" checked={this.test('D4')} />
                               <span className="checkmark"></span>
                             </label>                          </td>
                           <td>
                             <label className="check-container">
-                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="D5" id='D5' checked={this.test()} />
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="D5" id='D5' checked={this.test('D5')} />
                               <span className="checkmark"></span>
                             </label>
                           </td>
@@ -373,30 +343,30 @@ class CreateArihantRabale extends Component {
                           <td style={{ fontSize: '23px' }}>E</td>
                           <td>
                             <label className="check-container">
-                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="E1" />
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="E1" checked={this.test('E1')} />
                               <span className="checkmark"></span>
                             </label>
                           </td>
                           <td>
                             <label className="check-container">
-                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="E2" />
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="E2" checked={this.test('E2')} />
                               <span className="checkmark"></span>
                             </label>
                           </td>
                           <td>
                             <label className="check-container">
-                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="E3" />
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="E3" checked={this.test('E3')} />
                               <span className="checkmark"></span>
                             </label>
                           </td>
                           <td className="form-check">
                             <label className="check-container">
-                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="E4" />
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="E4" checked={this.test('E4')} />
                               <span className="checkmark"></span>
                             </label>                          </td>
                           <td>
                             <label className="check-container">
-                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="E5" />
+                              <input type="checkbox" onClick={this.onBoxClick} defaultValue="E5" checked={this.test('E5')} />
                               <span className="checkmark"></span>
                             </label>
                           </td>

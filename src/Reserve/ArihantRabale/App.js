@@ -62,14 +62,14 @@ class ArihantRabaleShow extends Component {
   }
 
   remainPlace() {
-    const rem = (10 - (this.state.count));
+    const rem = (25 - (this.state.count));
     return rem;
   }
 
   render() {
     if(!this.state.user){
       return(
-        <div style={{ textAlign: "center", backgroundColor: '#EECBCB' }}>
+        <div style={{ textAlign: "center" }}>
         <br /><br /><br /><br /><br />
         <h1>Sorry Your are not logged In</h1>
         <h3>you have to <a href="/login"><b>login</b></a> first</h3>
@@ -78,7 +78,7 @@ class ArihantRabaleShow extends Component {
       </div>
       );
     }else
-    if (this.state.count > 10) {
+    if (this.state.count > 15) {
       return (
         <div style={{ textAlign: "center" }}>
           <br /><br /><br /><br /><br />
@@ -97,7 +97,7 @@ class ArihantRabaleShow extends Component {
                 <div className="contact_area text-center">
                   <h3 style={{ fontSize: '190%' }}>Arihant Parking Systems, rabale</h3>
                 </div>
-                <h3 style={{ marginTop: '-1%', marginLeft: '1.5%' }} >TOTAL ENTRIES : {this.state.count} /10</h3>
+                <h3 style={{ marginTop: '-1%', marginLeft: '1.5%' }} >TOTAL ENTRIES : {this.state.count} /25</h3>
                 <h3 style={{ textAlign: 'right', marginTop: '-3%', marginRight: '1.5%' }}>' {this.remainPlace()} ' PARKINGS AVAILABLE</h3>
                 <div className="panel-heading" style={{ marginTop: '-1%' }}></div>
                 <div className="panel-heading" style={{ marginTop: '-1%' }}>
@@ -126,9 +126,9 @@ class ArihantRabaleShow extends Component {
                       
                         <tr>
                           <td><Link to={`/show/${arihant.key}`}>{arihant.name}</Link></td>
-                          <td>{arihant.email === this.state.user.email ? (<td>{arihant.vehicle}</td> ):(<td>***************</td>)}</td>
-                          <td>{arihant.email === this.state.user.email ? (<td>{arihant.email}</td> ):(<td>***************</td> )}</td>
-                          <td>{arihant.email === this.state.user.email ? (<td>{arihant.phoneNumber}</td> ):(<td>***************</td>)}</td>
+                          <td title="You are not authorized user to see this Information.">{arihant.email === this.state.user.email ? (<td>{arihant.vehicle}</td> ):(<td>***************</td>)}</td>
+                          <td title="You are not authorized user to see this Information.">{arihant.email === this.state.user.email ? (<td>{arihant.email}</td> ):(<td>***************</td> )}</td>
+                          <td title="You are not authorized user to see this Information.">{arihant.email === this.state.user.email ? (<td>{arihant.phoneNumber}</td> ):(<td>***************</td>)}</td>
                           <td>{arihant.arrivingTime}</td>
                           <td>{arihant.leavingTime}</td>
                           <td>{arihant.plotId}</td>

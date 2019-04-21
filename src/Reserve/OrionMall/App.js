@@ -20,7 +20,7 @@ class OrionShow extends Component {
       this.setState({ count:(this.state.count + 1 )})
 
       const { name, vehicle,
-        email, phoneNumber, arrivingTime, leavingTime } = doc.data();
+        email, phoneNumber, arrivingTime, leavingTime, plotId } = doc.data();
       orions.push({
         key: doc.id,
         doc, // DocumentSnapshot
@@ -30,6 +30,7 @@ class OrionShow extends Component {
         phoneNumber,
         arrivingTime,
         leavingTime,
+        plotId
       });
     });
     this.setState({
@@ -38,11 +39,28 @@ class OrionShow extends Component {
   }
 
   componentDidMount() {
+    this.authListener();
     this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
+
+  }
+
+  authListener = () => {
+    firebase.auth().onAuthStateChanged((user) => {
+
+      if (user) {
+        this.setState({ user });
+        localStorage.setItem('user', user.uid);
+      } else {
+        this.setState({ user: null });
+        localStorage.removeItem('user');
+        console.log("email12345", this.state.user.email);
+
+      }
+    });
   }
 
   remainPlace() {
-    const rem = (9 - (this.state.count));
+    const rem = (30 - (this.state.count));
     return rem;
   }
 
@@ -68,7 +86,7 @@ class OrionShow extends Component {
                 <div className="contact_area text-center">
                   <h3 style={{ fontSize: '190%' }}>orion mall, panvel</h3>
                 </div>
-                <h3 style={{ marginTop: '-1%', marginLeft: '1.5%' }} >Total Entries : {this.state.count} /9</h3>
+                <h3 style={{ marginTop: '-1%', marginLeft: '1.5%' }} >Total Entries : {this.state.count} /30</h3>
                 <h3 style={{ textAlign: 'right', marginTop: '-3%', marginRight: '1.5%' }}>' {this.remainPlace()} ' Parkings Available</h3>
                 <div className="panel-heading" style={{ marginTop: '-1%' }}>
                   <h4><Link to="/create@ORION" className="btn custom-btn btn-success" title="Press the button to book this place for another vehicle."><i class="fa fa-car fa-2x" aria-hidden="true"></i>Book for Another Vehicle</Link></h4>
@@ -89,17 +107,19 @@ class OrionShow extends Component {
                         <th>Phone Number</th>
                         <th>Arriving Time</th>
                         <th>Leaving Time</th>
+                        <th>Plot Id</th>
                       </tr>
                     </thead>
                     <tbody>
                       {this.state.orions.map(orion =>
                         <tr>
                           <td><Link to={`/show/${orion.key}`}>{orion.name}</Link></td>
-                          <td>{orion.vehicle}</td>
-                          <td>{orion.email}</td>
-                          <td>{orion.phoneNumber}</td>
+                          <td title="You are not authorized user to see this Information.">{orion.email === this.state.user.email ? (<td>{orion.vehicle}</td>) : (<td>***************</td>)}</td>
+                          <td title="You are not authorized user to see this Information.">{orion.email === this.state.user.email ? (<td>{orion.email}</td>) : (<td>***************</td>)}</td>
+                          <td title="You are not authorized user to see this Information.">{orion.email === this.state.user.email ? (<td>{orion.phoneNumber}</td>) : (<td>***************</td>)}</td>
                           <td>{orion.arrivingTime}</td>
                           <td>{orion.leavingTime}</td>
+                          <td>{orion.plotId}</td>
                         </tr>
                       )}
                     </tbody>

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 // import './App.css';
 import firebase from '../Firebase';
 import Spinner from '../../Loader/Spinner';
+import Loadman from '../../Loader/Loadman';
 
 class AiroliStationShow extends Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class AiroliStationShow extends Component {
       this.setState({ count:(this.state.count + 1 )})
 
       const { name, vehicle,
-        email, phoneNumber, arrivingTime, leavingTime } = doc.data();
+        email, phoneNumber, arrivingTime, leavingTime, plotId } = doc.data();
       airoli_station.push({
         key: doc.id,
         doc, // DocumentSnapshot
@@ -30,6 +31,7 @@ class AiroliStationShow extends Component {
         phoneNumber,
         arrivingTime,
         leavingTime,
+        plotId
       });
     });
     this.setState({
@@ -38,23 +40,51 @@ class AiroliStationShow extends Component {
   }
 
   componentDidMount() {
+    this.authListener();
     this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
+
+  }
+
+  authListener = () => {
+    firebase.auth().onAuthStateChanged((user) => {
+
+      if (user) {
+        this.setState({ user });
+        localStorage.setItem('user', user.uid);
+      } else {
+        this.setState({ user: null });
+        localStorage.removeItem('user');
+        console.log("email12345", this.state.user.email);
+
+      }
+    });
   }
 
   remainPlace() {
-    const rem = (5 - (this.state.count));
+    const rem = (30 - (this.state.count));
     return rem;
   }
 
   render() {
-    if (this.state.count >= 5) {
+    if(!this.state.user){
+      return(
+        <div style={{ textAlign: "center" }}>
+        <br /><br /><br /><br /><br />
+        <h1>Sorry Your are not logged In</h1>
+        <h3>you have to <a href="/login"><b>login</b></a> first</h3>
+        <h4>To see the list of entries.!</h4>
+        <Loadman />
+      </div>
+      );
+    }else
+    if (this.state.count >= 30) {
       return (
         <div style={{ textAlign: "center" }}>
           <br /><br /><br /><br /><br />
           <h1>Sorry this place is full !</h1>
           <h3>try for another <a href="/search-maps"><b>place</b></a></h3>
           {/* <h4>for further process</h4> */}
-          <Spinner />
+          <Loadman />
         </div>
       );
     } else
@@ -68,7 +98,7 @@ class AiroliStationShow extends Component {
                 <div className="contact_area text-center">
                   <h3 style={{ fontSize: '190%' }}>Airoli station parking</h3>
                 </div>
-                <h3 style={{ marginTop: '-1%', marginLeft: '1.5%' }} >Total Entries : {this.state.count} /5</h3>
+                <h3 style={{ marginTop: '-1%', marginLeft: '1.5%' }} >Total Entries : {this.state.count} /30</h3>
                 <h3 style={{ textAlign: 'right', marginTop: '-3%', marginRight: '1.5%' }}>' {this.remainPlace()} ' Parkings Available</h3>
                 <div className="panel-heading" style={{ marginTop: '-1%' }}>
                   <h4><Link to="/create@AIROLI_STATION" className="btn custom-btn btn-success" title="Press the button to book this place for another vehicle."><i class="fa fa-car fa-2x" aria-hidden="true"></i>Book for Another Vehicle</Link></h4>
@@ -88,17 +118,20 @@ class AiroliStationShow extends Component {
                         <th>Phone Number</th>
                         <th>Arriving Time</th>
                         <th>Leaving Time</th>
+                        <th>Plot Id</th>
                       </tr>
                     </thead>
                     <tbody>
                       {this.state.airoli_station.map(as =>
                         <tr>
                           <td><Link to={`/show/${as.key}`}>{as.name}</Link></td>
-                          <td>{as.vehicle}</td>
-                          <td>{as.email}</td>
-                          <td>{as.phoneNumber}</td>
+                          <td title="You are not authorized user to see this Information.">{as.email === this.state.user.email ? (<td>{as.vehicle}</td> ):(<td>***************</td>)}</td>
+                          <td title="You are not authorized user to see this Information.">{as.email === this.state.user.email ? (<td>{as.email}</td> ):(<td>***************</td> )}</td>
+                          <td title="You are not authorized user to see this Information.">{as.email === this.state.user.email ? (<td>{as.phoneNumber}</td> ):(<td>***************</td>)}</td>
+
                           <td>{as.arrivingTime}</td>
                           <td>{as.leavingTime}</td>
+                          <td>{as.plotId}</td>
                         </tr>
                       )}
                     </tbody>

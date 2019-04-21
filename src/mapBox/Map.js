@@ -7,7 +7,7 @@ const mapStyles = {
     position: 'absolute',
     width: '100%',
     height: '100%',
-  //  marginTop: '30px'
+    overflow: 'hidden',
   // },
   // smallmap: {
   //   position: 'absolute',
