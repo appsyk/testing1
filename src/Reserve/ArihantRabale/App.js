@@ -55,7 +55,7 @@ class ArihantRabaleShow extends Component {
       } else {
         this.setState({ user: null });
         localStorage.removeItem('user');
-        console.log("email12345", this.state.user.email);
+        // console.log("email12345", this.state.user.email);
 
       }
     });
@@ -67,17 +67,17 @@ class ArihantRabaleShow extends Component {
   }
 
   render() {
-    if(!this.state.user){
-      return(
-        <div style={{ textAlign: "center" }}>
-        <br /><br /><br /><br /><br />
-        <h1>Sorry Your are not logged In</h1>
-        <h3>you have to <a href="/login"><b>login</b></a> first</h3>
-        <h4>To see the list of entries.!</h4>
-        <Loadman />
-      </div>
-      );
-    }else
+    // if(!this.state.user){
+    //   return(
+    //     <div style={{ textAlign: "center" }}>
+    //     <br /><br /><br /><br /><br />
+    //     <h1>Sorry Your are not logged In</h1>
+    //     <h3>you have to <a href="/login"><b>login</b></a> first</h3>
+    //     <h4>To see the list of entries.!</h4>
+    //     <Loadman />
+    //   </div>
+    //   );
+    // }else
     if (this.state.count > 15) {
       return (
         <div style={{ textAlign: "center" }}>
@@ -98,7 +98,7 @@ class ArihantRabaleShow extends Component {
                   <h3 style={{ fontSize: '190%' }}>Arihant Parking Systems, rabale</h3>
                 </div>
                 <h3 style={{ marginTop: '-1%', marginLeft: '1.5%' }} >TOTAL ENTRIES : {this.state.count} /25</h3>
-                <h3 style={{ textAlign: 'right', marginTop: '-3%', marginRight: '1.5%' }}>' {this.remainPlace()} ' PARKINGS AVAILABLE</h3>
+                <h3 style={{ textAlign: 'right', marginTop: '-3%', marginRight: '1.5%', color: 'green' }}>' {this.remainPlace()} ' PARKINGS AVAILABLE</h3>
                 <div className="panel-heading" style={{ marginTop: '-1%' }}></div>
                 <div className="panel-heading" style={{ marginTop: '-1%' }}>
                   <h4><Link to="/create@ARIHANT_RABALE" className="btn custom-btn btn-success" title="Press the button to book this place for another vehicle."><i class="fa fa-car fa-2x" aria-hidden="true"></i>Book for Another Vehicle</Link></h4>
@@ -126,9 +126,9 @@ class ArihantRabaleShow extends Component {
                       
                         <tr>
                           <td><Link to={`/show/${arihant.key}`}>{arihant.name}</Link></td>
-                          <td title="You are not authorized user to see this Information.">{arihant.email === this.state.user.email ? (<td>{arihant.vehicle}</td> ):(<td>***************</td>)}</td>
-                          <td title="You are not authorized user to see this Information.">{arihant.email === this.state.user.email ? (<td>{arihant.email}</td> ):(<td>***************</td> )}</td>
-                          <td title="You are not authorized user to see this Information.">{arihant.email === this.state.user.email ? (<td>{arihant.phoneNumber}</td> ):(<td>***************</td>)}</td>
+                          <td title="You are not authorized user to see this Information.">{arihant.email === this.state.user.email ? (<td>{arihant.vehicle}</td> ):(<td>******</td>)}</td>
+                          <td title="You are not authorized user to see this Information.">{arihant.email === this.state.user.email ? (<td>{arihant.email}</td> ):(<td>******</td> )}</td>
+                          <td title="You are not authorized user to see this Information.">{arihant.email === this.state.user.email ? (<td>{arihant.phoneNumber}</td> ):(<td>******</td>)}</td>
                           <td>{arihant.arrivingTime}</td>
                           <td>{arihant.leavingTime}</td>
                           <td>{arihant.plotId}</td>
@@ -136,6 +136,7 @@ class ArihantRabaleShow extends Component {
                       )}
                     </tbody>
                   </table>
+                  <h4 style={{ color:'green', textAlign: 'right' }} ><b style={{ color:'black' }}>******</b> means you are not authorized user to watch this Information.</h4>
                 </div>
               </div>
             </div>

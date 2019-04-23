@@ -492,7 +492,7 @@ class Temp extends React.Component {
                                                         <div className="row">
                                                             <div className="col-md-6">
                                                                 <div className="profile-circle">
-                                                                    <img src="https://scontent.fbom10-1.fna.fbcdn.net/v/t1.0-9/38454887_2079795725568709_84529242762641408_o.jpg?_nc_cat=103&_nc_ht=scontent.fbom10-1.fna&oh=8f7bc5b16cdf10d50ff33176377847d7&oe=5CB2DED2" alt="Sanjay"></img>
+                                                                    <img src="https://scontent.fbom6-1.fna.fbcdn.net/v/t1.0-9/38419280_2079795722235376_3399470742247571456_n.jpg?_nc_cat=102&_nc_ht=scontent.fbom6-1.fna&oh=383b79ebf9375977f5b643864f48981e&oe=5D6C0763" alt="Sanjay"></img>
                                                                 </div>
                                                                 <div className="testimonial_content">
                                                                     <i className="fa fa-quote-left"></i>

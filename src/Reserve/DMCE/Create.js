@@ -90,7 +90,7 @@ class CreateDmce extends Component {
       } else {
         this.setState({ user: null });
         localStorage.removeItem('user');
-        console.log("email12345", this.state.user.email);
+        // console.log("email12345", this.state.user.email);
 
       }
     });
@@ -126,12 +126,12 @@ class CreateDmce extends Component {
 
   test(pI){
     let ari= this.state.dmces;
-    console.log("test",ari)
+    // console.log("test",ari)
     for (const dmce of ari) {
       // let i = document.getElementById(arihant.plotId);
-      console.log(555,pI, dmce.plotId)
+      // console.log(555,pI, dmce.plotId)
       if (dmce.plotId === pI ) {
-        console.log(444,pI, dmce.plotId)
+        // console.log(444,pI, dmce.plotId)
         return true;
       }
     }
@@ -143,7 +143,8 @@ class CreateDmce extends Component {
       return (
         <div style={{ textAlign: "center" }}>
           <br /><br /><br /><br /><br />
-          <h1>You are currently not logged in !</h1>
+          <h1>Wait for 2 sec ...</h1>
+          <h2>otherwise</h2>
           <h3>You have to <a href="/login"><b>log in</b></a></h3>
           <h4>to reserve a parking..!</h4>
           <Loadman />
@@ -348,7 +349,7 @@ class CreateDmce extends Component {
                 <div className="col-md-6">
                   <div className="msg">
                     <div className="msg_title">
-                      <h5><b>' {this.remainPlace()} ' </b> Parkings Available</h5>
+                      <h5><b style={{ color: 'green' }} >' {this.remainPlace()} ' </b> Parkings Available</h5>
                     </div>
                     <div className="form_area">
                       {/* <!-- CONTACT FORM --> */}
@@ -383,9 +384,11 @@ class CreateDmce extends Component {
                               <input type="subject" className="form-control" id="subject" onChange={this.onChange} value={vehicle} name="vehicle" placeholder="Enter vehicle info just like COMPANY-MODEL-NUMBER *" />
                               <div className="form-group">
                                 <div className="col-sm-6">
+                                ARRIVING TIME :
                                   <input type="datetime-local" className="form-control" onChange={this.onChange} value={arrivingTime} name="arrivingTime" id="email" placeholder="ARRIVING TIME" />
                                 </div>
                                 <div className="col-sm-6">
+                                LEAVING TIME :
                                   <input type="datetime-local" className="form-control" value={leavingTime} onChange={this.onChange} name="leavingTime" id="name" placeholder="LEAVING TIME" />
                                 </div>
                               </div>

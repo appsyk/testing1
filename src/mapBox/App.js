@@ -81,7 +81,7 @@ export class MapContainer extends Component {
       <div>
         <div className="containerMap">
           <div className="rowT" style={{  overflow: 'scroll' }} >
-            <div>
+            <div className="nameScroll" style={{ height: '586px' }}>
               <SideBar />
             </div>
             <div className="col-md-9 no-float overflow-hidden fixed-bottom" style={{ overflow: 'hidden' }} >
@@ -247,7 +247,7 @@ export class MapContainer extends Component {
                     <h4 style={{ marginLeft: '10%', marginRight: '10%', textAlign: 'center' }}>{this.state.selectedPlace.addrs}</h4>
                     {/* {this.state.selectedPlace.spin}<h1>count:{this.state.selectedPlace.count}</h1> */}
                     {/* freespace:{this.state.selectedPlace.dsk} */}
-                    <img src={this.state.selectedPlace.img} alt={this.state.selectedPlace.name} style={{ height: '270px', width: '380px' }} />
+                    <img src={this.state.selectedPlace.img} alt={this.state.selectedPlace.name} style={{ height: '200px', width: '380px' }} />
                     <h1>{this.state.user ? (<a href={this.state.selectedPlace.rform}><button className="btn custom-btn col-md-12" style={{ backgroundColor: '#068FC2', height: '20%' }}>Park Here</button></a>) : (<h1 style={{ textAlign: 'center' }} > You have to <a href="/login"><b>Login</b></a> first !</h1>)}</h1>
 
                   </div>

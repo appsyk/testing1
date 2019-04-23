@@ -139,7 +139,7 @@ export class MapContainer extends Component {
         </div>
       );
     }
-    console.log(102, this.state.selectedPlace.map);
+    // console.log(102, this.state.selectedPlace.map);
     const { firstName, lastName, email, lat,
       noOfSpaces, lng, address, describe } = this.state;
     return (

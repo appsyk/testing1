@@ -10,4 +10,4 @@ class MarkerStyle extends React.Component{
     }
 }
 
-export default MarkerStyle;
+// export default MarkerStyle;

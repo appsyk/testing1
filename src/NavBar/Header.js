@@ -94,8 +94,9 @@ class Header extends React.Component {
                                             <span className="icon-bar"></span>
                                             <span className="icon-bar"></span>
                                         </button>
-                                        <a className="navbar-brand" href="/"><img className="logoSize" src="https://i2.wp.com/ukcps.com/wp-content/uploads/2017/10/parking-icon.png?w=1080" alt="logo" height="65px" width="70px"></img></a>
-                                        <li><h2 style={{ color: '#0676B7', marginBottom: '10px', fontSize: '30px' }}><b style={{ color: '#71CE59' }}>𝕾</b><b style={{ color: '#71CE59' }}>𝖒</b><b style={{ color: '#71CE59' }}>𝖆𝖗𝖙</b><b></b> 𝕻𝖆𝖗𝖐</h2></li>
+                                        <NavLink to='/'><a className="navbar-brand" href="/"><img className="logoSize" src="https://i2.wp.com/ukcps.com/wp-content/uploads/2017/10/parking-icon.png?w=1080" alt="logo" height="65px" width="70px"></img></a>
+                                        <h2 style={{ color: '#0676B7', marginBottom: '10px', fontSize: '30px' }}><b style={{ color: '#71CE59' }}>𝕾</b><b style={{ color: '#71CE59' }}>𝖒</b><b style={{ color: '#71CE59' }}>𝖆𝖗𝖙</b><b></b> 𝕻𝖆𝖗𝖐</h2>
+                                        </NavLink>
                                         {/* 𝕾𝖒𝖆𝖗𝖙 𝕻𝖆𝖗𝖐 */}
                                         {/* https://www.iconspng.com/uploads/green-parking/green-parking.png */}
                                     </div>

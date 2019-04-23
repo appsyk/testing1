@@ -58,7 +58,7 @@ class DmceShow extends Component {
       } else {
         this.setState({ user: null });
         localStorage.removeItem('user');
-        console.log("email12345", this.state.user.email);
+        // console.log("email12345", this.state.user.email);
 
       }
     });
@@ -91,7 +91,7 @@ class DmceShow extends Component {
                   <h3 style={{ fontSize: '190%' }}>DMCE, airoli</h3>
                 </div>
                 <h3 style={{ marginTop: '-1%', marginLeft: '1.5%' }} >Total Entries : {this.state.count} /20</h3>
-                <h3 style={{ textAlign: 'right', marginTop: '-3%', marginRight: '1.5%' }}>' {this.remainPlace()} ' Parkings Available</h3>
+                <h3 style={{ textAlign: 'right', marginTop: '-3%', marginRight: '1.5%', color: 'green' }}>' {this.remainPlace()} ' Parkings Available</h3>
                 <div className="panel-heading" style={{ marginTop: '-1%' }}></div>
                 <div className="panel-heading" style={{ marginTop: '-1%' }}>
                   <h4><Link to="/create@DMCE" className="btn custom-btn btn-success" title="Press the button to book this place for another vehicle."><i class="fa fa-car fa-2x" aria-hidden="true"></i>Book for Another Vehicle</Link></h4>
@@ -118,9 +118,9 @@ class DmceShow extends Component {
                       {this.state.dmces.map(dmce =>
                         <tr>
                           <td><Link to={`/show/${dmce.key}`}>{dmce.name}</Link></td>
-                          <td title="You are not authorized user to see this Information.">{dmce.email === this.state.user.email ? (<td>{dmce.vehicle}</td>) : (<td>***************</td>)}</td>
-                          <td title="You are not authorized user to see this Information.">{dmce.email === this.state.user.email ? (<td>{dmce.email}</td>) : (<td>***************</td>)}</td>
-                          <td title="You are not authorized user to see this Information.">{dmce.email === this.state.user.email ? (<td>{dmce.phoneNumber}</td>) : (<td>***************</td>)}</td>
+                          <td title="You are not authorized user to see this Information.">{dmce.email === this.state.user.email ? (<td>{dmce.vehicle}</td>) : (<td>******</td>)}</td>
+                          <td title="You are not authorized user to see this Information.">{dmce.email === this.state.user.email ? (<td>{dmce.email}</td>) : (<td>******</td>)}</td>
+                          <td title="You are not authorized user to see this Information.">{dmce.email === this.state.user.email ? (<td>{dmce.phoneNumber}</td>) : (<td>******</td>)}</td>
                           <td>{dmce.arrivingTime}</td>
                           <td>{dmce.leavingTime}</td>
                           <td>{dmce.plotId}</td>
@@ -128,6 +128,7 @@ class DmceShow extends Component {
                       )}
                     </tbody>
                   </table>
+                  <h4 style={{ color:'green', textAlign: 'right' }} ><b style={{ color:'black' }}>******</b> means you are not authorized user to watch this Information.</h4>
                 </div>
               </div>
             </div>
