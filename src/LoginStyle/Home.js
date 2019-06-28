@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import firebase from './Firebase';
 import Header from '../NavBar/Header';
-import Temp from '../Temp';
+// import Temp from '../Temp';
 import App from '../mapBox/App';
 
 class Home extends Component {

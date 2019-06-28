@@ -99,7 +99,7 @@ class Create extends Component {
     console.log(120,this.state.count);
     
 
-    const email1=(this.state.email);
+    // const email1=(this.state.email);
     if(!this.state.user){
      //alert("you are not logged in");
       return(
@@ -114,7 +114,7 @@ class Create extends Component {
     
 
     const { userName, parkingPlace, vehicleName, vehicleNumber,
-       email, phoneNumber, arrivingTime, leavingTime } = this.state;
+       phoneNumber, arrivingTime, leavingTime } = this.state;
     return (
       <div className="container">
         <div className="panel panel-default">

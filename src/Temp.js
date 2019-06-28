@@ -8,15 +8,7 @@ import './greenfair/css/responsive.css';
 import './LoginStyle/style.css';
 import React from 'react';
 import firebase from './Reserve/Firebase';
-
-import { BrowserRouter, Route, NavLink } from 'react-router-dom';
-
-//import ScriptTag from 'react-script-tag';
-import App from './mapBox/App';
-//import Header from './NavBar/Header';
-//import Test from './Test';
-//import Login from './LoginStyle/App';
-
+import { NavLink } from 'react-router-dom';
 
 class Temp extends React.Component {
 
@@ -46,10 +38,10 @@ class Temp extends React.Component {
 
     onBooking = () => {
         if (this.state.user) {
-            return <div> <a href="/reserve-ur-place"></a></div>;
+            return <div> <NavLink to="/reserve-ur-place"></NavLink></div>;
         }
         else {
-            return <div> <a href="/login"></a></div>;
+            return <div> <NavLink href="/login"></NavLink></div>;
         }
     }
 
@@ -187,7 +179,7 @@ class Temp extends React.Component {
                                                     </div>
                                                     <h4>Booking</h4>
                                                 </a>)}
-                                            <p>Lorem ipsum dolor sit amet, eu qui modo expetendis reformidans ex sit set appetere sententiae seo eum in simul homero.</p>
+                                            {/* <p>Lorem ipsum dolor sit amet, eu qui modo expetendis reformidans ex sit set appetere sententiae seo eum in simul homero.</p> */}
                                         </div>
                                     </div>
                                 </div>
@@ -202,7 +194,7 @@ class Temp extends React.Component {
                                                 <i className="fa fa-globe fa-10x"></i>
                                             </div>
                                             <h4>Google maps</h4>
-                                            <p>Lorem ipsum dolor sit amet, eu qui modo expetendis reformidans ex sit set appetere sententiae seo eum in simul homero.</p>
+                                            {/* <p>Lorem ipsum dolor sit amet, eu qui modo expetendis reformidans ex sit set appetere sententiae seo eum in simul homero.</p> */}
                                             </NavLink>
                                         </div>
                                     </div>
@@ -215,20 +207,20 @@ class Temp extends React.Component {
                                     <div className="single_item">
                                         <div className="item_list">
                                             {this.state.user ?
-                                                (<a href="/reserve-ur-place">
+                                                (<div>
                                                     <div className="welcome_icon">
                                                         <i className=""><img src="https://cdn1.iconfinder.com/data/icons/travel-hand-drawn-icons/64/travel_25-512.png" alt="Pic_slider3"></img></i>
                                                     </div>
                                                     <h4>Booking</h4>
-                                                </a>) :
-                                                (<a href="/login">
+                                                </div>) :
+                                                (<div>
                                                     <div className="welcome_icon">
                                                         <i className=""><img src="https://cdn1.iconfinder.com/data/icons/travel-hand-drawn-icons/64/travel_25-512.png" alt="Pic_slider3"></img></i>
                                                     </div>
                                                     <h4>Booking</h4>
-                                                </a>)}
+                                                 </div>)}
 
-                                            <p>Lorem ipsum dolor sit amet, eu qui modo expetendis reformidans ex sit set appetere sententiae seo eum in simul homero.</p>
+                                            {/* <p>Lorem ipsum dolor sit amet, eu qui modo expetendis reformidans ex sit set appetere sententiae seo eum in simul homero.</p> */}
                                         </div>
                                     </div>
                                     {/* </a> */}
@@ -285,7 +277,7 @@ class Temp extends React.Component {
                         </div>
                     </div>
                 </section>
-
+{/* 
                 <section id="counter">
                     <div className="counter_img_overlay">
                         <div className="container">
@@ -347,7 +339,7 @@ class Temp extends React.Component {
                             </div>
                         </div>
                     </div>
-                </section>
+                </section> */}
 
                 {/* <section id="event">
                     <div className="container">
@@ -496,11 +488,11 @@ class Temp extends React.Component {
                                                                 </div>
                                                                 <div className="testimonial_content">
                                                                     <i className="fa fa-quote-left"></i>
-                                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
+                                                                    {/* <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p> */}
                                                                 </div>
                                                                 <div className="testimonial_author">
                                                                     <h5>Sanjay D. Khatal</h5>
-                                                                    <p>CEO, Fourder</p>
+                                                                    <p>Front-End Developer</p>
                                                                 </div>
                                                             </div>
                                                             <div className="col-md-6">
@@ -509,11 +501,11 @@ class Temp extends React.Component {
                                                                 </div>
                                                                 <div className="testimonial_content">
                                                                     <i className="fa fa-quote-left"></i>
-                                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
+                                                                    {/* <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p> */}
                                                                 </div>
                                                                 <div className="testimonial_author">
                                                                     <h5>Vrushabh B. Patil</h5>
-                                                                    <p>CEO, Fourder</p>
+                                                                    <p>Front-End Developer</p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -527,11 +519,11 @@ class Temp extends React.Component {
                                                                 </div>
                                                                 <div className="testimonial_content">
                                                                     <i className="fa fa-quote-left"></i>
-                                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
+                                                                    {/* <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p> */}
                                                                 </div>
                                                                 <div className="testimonial_author">
                                                                     <h5>Suraj S. Kadole</h5>
-                                                                    <p>CEO, Fourder</p>
+                                                                    <p>Back-End Developer</p>
                                                                 </div>
                                                             </div>
                                                             <div className="col-md-6">
@@ -540,11 +532,11 @@ class Temp extends React.Component {
                                                                 </div>
                                                                 <div className="testimonial_content">
                                                                     <i className="fa fa-quote-left"></i>
-                                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
+                                                                    {/* <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p> */}
                                                                 </div>
                                                                 <div className="testimonial_author">
                                                                     <h5>Dinesh R. Kurkute</h5>
-                                                                    <p>CEO, Fourder</p>
+                                                                    <p>Back-End Developer</p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -683,139 +675,18 @@ class Temp extends React.Component {
                 </section> */}
                 {/* <!--End of purches--> */}
 
-
-
-                {/* <!--Start of Market--> */}
-                <section id="market">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-md-12">
-                                <div className="market_area text-center">
-                                    <div className="row">
-                                        <div className="col-md-3">
-                                            <div className="market_logo">
-                                                <a href=""><img src="img/audiojungle.png" alt=""></img></a>
-                                            </div>
-                                        </div>
-                                        <div className="col-md-3">
-                                            <div className="market_logo">
-                                                <a href=""><img src="img/codecanyon.png" alt=""></img></a>
-                                            </div>
-                                        </div>
-                                        <div className="col-md-3">
-                                            <div className="market_logo">
-                                                <a href=""><img src="img/graphicriver.png" alt=""></img></a>
-                                            </div>
-                                        </div>
-                                        <div className="col-md-3">
-                                            <div className="market_logo">
-                                                <a href=""><img src="img/audiojungle.png" alt=""></img></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {/* <!--End of row--> */}
-                                </div>
-                                {/* <!--End of market Area--> */}
-                            </div>
-                            {/* <!--End of col-md-12--> */}
-                        </div>
-                        {/* <!--End of row--> */}
-                    </div>
-                    {/* <!--End of container--> */}
-                </section>
-                {/* <!--End of market--> */}
-
-
-
-                {/* <!--Start of contact--> */}
-                <section id="contact">
-                    <div className="container">
-                        <div className="row">
-                            <div className="colmd-12">
-                                <div className="contact_area text-center">
-                                    <h3>get in touch</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                </div>
-                            </div>
-                        </div>
-                        {/* <!--End of row--> */}
-                        <div className="row">
-                            <div className="col-md-6">
-                                <div className="office">
-                                    <div className="title">
-                                        <h5>our office info</h5>
-                                    </div>
-                                    <div className="office_location">
-                                        <div className="address">
-                                            <i className="fa fa-map-marker"><span>Elephant Road, Dhaka 1205, Bangladesh</span></i>
-                                        </div>
-                                        <div className="phone">
-                                            <i className="fa fa-phone"><span>+ 91 9595949871</span></i>
-                                        </div>
-                                        <div className="email">
-                                            <i className="fa fa-envelope"><span>imatom19@gmail.com</span></i>
-                                        </div>
-                                        <div id="map">
-                                            {/* <App /> */}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-md-6">
-                                <div className="msg">
-                                    <div className="msg_title">
-                                        <h5>Drop A Message</h5>
-                                    </div>
-                                    <div className="form_area">
-                                        {/* <!-- CONTACT FORM --> */}
-                                        <div className="contact-form wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
-                                            <div id="message"></div>
-                                            <form action="scripts/contact.php" className="form-horizontal contact-1" role="form" name="contactform" id="contactform">
-                                                <div className="form-group">
-                                                    <div className="col-sm-6">
-                                                        <input type="text" className="form-control" name="name" id="name" placeholder="Name" />
-                                                    </div>
-                                                    <div className="col-sm-6">
-                                                        <input type="text" className="form-control" name="email" id="email" placeholder="Email" />
-                                                    </div>
-                                                </div>
-                                                <div className="form-group">
-                                                    <div className="col-sm-12">
-                                                        <input type="subject" className="form-control" id="subject" placeholder="Subject *" />
-                                                        <div className="text_area">
-                                                            <textarea name="contact-message" id="msg" className="form-control" cols="30" rows="8" placeholder="Message"></textarea>
-                                                        </div>
-                                                        <button type="submit" className="btn custom-btn" data-loading-text="Loading...">Send</button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {/* <!--End of col-md-6--> */}
-                        </div>
-                        {/* <!--End of row--> */}
-                    </div>
-                    {/* <!--End of container--> */}
-                </section>
-                {/* <!--End of contact--> */}
-
-
-
-
                 {/* <!--Start of footer--> */}
                 <section id="footer">
                     <div className="container">
                         <div className="row text-center">
                             <div className="col-md-6">
                                 <div className="copyright">
-                                    <p>@ 2019 - Design By <span><a href="">&#9798;</a></span></p>
+                                    <p>@ 2019 - Design By</p>
                                 </div>
                             </div>
                             <div className="col-md-6">
                                 <div className="designer">
-                                    <p>A Design By <a href="#">The A Team</a></p>
+                                    <p>A Design By The A Team</p>
                                 </div>
                             </div>
                         </div>
@@ -824,106 +695,6 @@ class Temp extends React.Component {
                     {/* <!--End of container--> */}
                 </section>
                 {/* <!--End of footer--> */}
-
-
-
-                {/* <!--Scroll to top--> */}
-                <a href="#" id="back-to-top" title="Back to top">&uarr;</a>
-                {/* <!--End of Scroll to top--> */}
-
-
-                {/* <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> */}
-                {/* <!-- <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>--> */}
-                <script src="js/jquery-1.12.3.min.js"></script>
-
-                {/* <!--Counter UP Waypoint--> */}
-                <script src="js/waypoints.min.js"></script>
-                {/* <!--Counter UP--> */}
-                <script src="js/jquery.counterup.min.js"></script>
-
-                {/* <script>
-                         //for counter up
-                        $('.counter').counterUp({
-                            delay: 10,
-                        time: 1000
-                    });
-        </script> */}
-
-                {/* <!--Gmaps--> */}
-                {/* <script src="js/gmaps.min.js"></script>
-                    <script type="text/javascript">
-                        var map;
-            $(document).ready(function () {
-                            map = new GMaps({
-                                el: '#map',
-                                lat: 23.6911078,
-                                lng: 90.5112799,
-                                zoomControl: true,
-                                zoomControlOpt: {
-                                    style: 'SMALL',
-                                    position: 'LEFT_BOTTOM'
-                                },
-                                panControl: false,
-                                streetViewControl: false,
-                                mapTypeControl: false,
-                                overviewMapControl: false,
-                                scrollwheel: false,
-                            }),
-
-
-                        map.addMarker({
-                            lat: 23.6911078,
-                        lng: 90.5112799,
-                        title: 'Office',
-                    details: {
-                            database_id: 42,
-                        author: 'Foysal'
-                    },
-                    click: function (e) {
-                        if (console.log)
-                            console.log(e);
-                        alert('You clicked in this marker');
-                    },
-                    mouseover: function (e) {
-                        if (console.log)
-                            console.log(e);
-                    }
-                });
-            });
-        </script> */}
-                {/* <!--Google Maps API--> */}
-                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjxvF9oTfcziZWw--3phPVx1ztAsyhXL4"></script>
-
-
-                {/* <!--Isotope--> */}
-                <script src="js/isotope/min/scripts-min.js"></script>
-                <script src="js/isotope/cells-by-row.js"></script>
-                <script src="js/isotope/isotope.pkgd.min.js"></script>
-                <script src="js/isotope/packery-mode.pkgd.min.js"></script>
-                <script src="js/isotope/scripts.js"></script>
-
-
-                {/* <!--Back To Top--> */}
-                <script src="js/backtotop.js"></script>
-
-
-                {/* <!--JQuery Click to Scroll down with Menu--> */}
-                <script src="js/jquery.localScroll.min.js"></script>
-                <script src="js/jquery.scrollTo.min.js"></script>
-                {/* <!--WOW With Animation--> */}
-                <script src="js/wow.min.js"></script>
-                {/* <!--WOW Activated--> */}
-                <script>
-                    new WOW().init();
-                    </script>
-
-
-                {/* <!-- Include all compiled plugins (below), or include individual files as needed --> */}
-                <script src="js/bootstrap.min.js"></script>
-                {/* <!-- Custom JavaScript--> */}
-                <script src="js/main.js"></script>
-
-
             </div>
         );
     }

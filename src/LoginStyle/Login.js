@@ -1,3 +1,4 @@
+import './Loginform.css';
 import React from 'react';
 import firebase from '../Reserve/Firebase';
 
@@ -54,7 +55,7 @@ class Login extends React.Component {
       return (
         <div>
           <div className="">
-            <form className="modal-content animate loginbox">
+            <form className="modal-content animate, loginbox">
               <div className="imgcontainer">
                 <a href="/"><span className="close" title="Close Modal">&times;</span></a>
                 <img src="https://www.parking-mobility.org/wp-content/uploads/2018/01/GettyImages-5145168551.jpg" alt="Avatar" className="avatar" />

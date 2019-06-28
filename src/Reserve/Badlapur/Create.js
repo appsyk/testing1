@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import firebase from '../Firebase';
 import { Link } from 'react-router-dom';
-import Spinner from '../../Loader/Spinner';
-import SeatBox from '../SeatHtml';
+// import Spinner from '../../Loader/Spinner';
+// import SeatBox from '../SeatHtml';
 import Loadman from '../../Loader/Loadman';
 
 class CreateBadlapur extends Component {
@@ -170,6 +170,13 @@ class CreateBadlapur extends Component {
                   </div>
                 </div>
               </div>
+              <div style={{ marginLeft: '30px' }}>
+                <h3>Rate per Plot</h3>
+              <i class="fa fa-motorcycle fa-2x" aria-hidden="true"> - Rs. 10/-</i><br />
+              <i class="fa fa-car fa-2x" aria-hidden="true"> -  Rs. 45/-</i>
+              {/* <i class="fas fa-car-side fa-3x">Rs. 50/-</i> */}
+
+              </div>
               {this.state.badlapurs.map((arihant, e) =>
 
                 <div>
@@ -178,7 +185,7 @@ class CreateBadlapur extends Component {
 
                 </div>
               )}
-              <div style={{ marginTop: '-6%' }} >
+              <div style={{ marginTop: '-11%' }} >
                 <div className="seat-container" style={{ marginTop: '15%' }} >
                   {/* <h1 style={{textAlign:"center",fontFamily:'italic bold'}}>Available Parking</h1> */}
                   <div className="funkyradio-primary" style={{ overflowX: 'auto', textAlign: 'center', marginLeft: '25%' }}>
@@ -377,7 +384,7 @@ class CreateBadlapur extends Component {
                       {/* <!-- CONTACT FORM --> */}
                       <div className="contact-form wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
                         <div id="message"></div>
-                        <form onSubmit={this.onSubmit} className="form-horizontal contact-1" role="form" name="contactform" id="contactform">
+                        <form onSubmit={this.onSubmit} className="form-horizontal contact-1" name="contactform" id="contactform">
                           <div className="form-group">
                             <div className="col-sm-10">
                               <input type="text" className="form-control" onChange={this.onChange} value={plotId} name="plotId" id="name" placeholder="PLOT ID" />
@@ -413,16 +420,17 @@ class CreateBadlapur extends Component {
                                 LEAVING TIME :
                                   <input type="datetime-local" className="form-control" value={leavingTime} onChange={this.onChange} name="leavingTime" id="name" placeholder="LEAVING TIME" />
                                 </div>
+                             
+                                < button type="button" class="btn btn-primary" style={{align: 'center', marginLeft: '180px' }} data-toggle="modal" data-target="#exampleModalCenter">
+                                      Pay via Paytm
+                                    </button>
+                                <h5 style={{ color:'red', marginLeft: '18px', marginRight: '5px' }}>if you dont want to pay online then you just submit your form and pay on the spot..!</h5>
                               </div>
-                              {/* <div className="text_area">
-                              <textArea name="contact-message" id="msg" className="form-control" cols="30" rows="8" onChange={this.onChange} name="descibe"
-                                placeholder="DESCRIBE YOUR SPACE  (types of spce: Driveway/ Garage/ Car park), width of Space, (Features: Electric charging/ CCTV ?)" >{describe}</textArea>
-                              {/* <textarea className="form-control" name="vehicleNumber" onChange={this.onChange} placeholder="Description" cols="80" rows="3">{description}</textArea> 
-                            </div> */}
                               <button type="submit" className="btn custom-btn col-sm-12" data-loading-text="Loading...">Reserve your Parking</button>
                             </div>
                           </div>
                         </form>
+
                       </div>
                     </div>
                   </div>
@@ -434,6 +442,31 @@ class CreateBadlapur extends Component {
             {/* <!--End of container--> */}
           </section>
 
+        </div>
+
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" style={{ backgroundColor: 'white', width: '65%' }} >
+              <div class="modal-header">
+                {/* <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5> */}
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" style={{ textAlign: 'left' }}>
+
+                <img src="https://lh3.googleusercontent.com/wXPaCLV_vEDsib66RX9-HqqHSWJMf0ZH1na6d-bbS38M--0Z0v0Uv6Fw9Z8whmnlYvpGXKXY0qk48pv-KF9yNWsJhbcAibzCpR5aOK0lG9IZIvdZNi0aohJqBvy-oqFSCsjNL6UBeMWnUzRHAvkrtJKHW-bd3RcmTrxSERMg0OsVmY6DyEcIlHXhJ3aCIZfoXT1I8WFj4soHXHZ-Fitbh8WIUhLLZx-lkCIzL0WMeipT_nN3SVPwJMEpvg4O5GGbsZu0rfhV8Md0MrdYAXRc9I7Vfk8yNvI69EotS88D6VtF383dEm9X_fkbUBbLguwiKVBgxpcoY7cTsXG9uC7UglTdXpcK3V3kpmhqNDsNL_W2ipFZTtnxObS_grn884Djw0PG0bBP0uoOZRylZ2puiqm71YvRWYUpGCbu0IqxMXvlk1xXu6gbXn12Irpg_Fw_yG77aRb7BGiNgcm8zjwLCNRkJceYc5IR8hB9o-e_1m3NERjPCpdo6dMwAbCZ-T327XG155D2_BJQcYeqQFZOtqmd6mPEqfHoKSr9gBOiZJqljr1VtebbS2io0_f9yBDojD3nVqVAZl5ajDVXBNHFMBihwhOFPbPcHRKH8-r2OqF74cuol5eRAM4LBLyuwfqyDs4cdhCx5eM4jHL16RtsBStmtyN4bHvuZLJY2BWFJZmKwLOk0auOQI3cTv7x00YW5io-tSi4Wa06SlnNl7griodB=w632-h563-no"
+                  alt="QR Code" width='250px' height='250px' ></img>
+                <h3>Scan the code via Paytm to pay for parking</h3>
+                <h4>otherwise close this window and submit your form and pay <b>On the Spot</b></h4>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn custom-btn btn-primary" data-dismiss="modal">Close</button>
+                {/* <button type="button" class="btn btn-primary">Save changes</button> */}
+              </div>
+            </div>
+          </div>
         </div>
 
       </div>

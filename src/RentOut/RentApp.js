@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import firebase from '../Reserve/Firebase';
 import CurrentLocation from './RentMap';
-import Spinner from '../Loader/Spinner';
+// import Spinner from '../Loader/Spinner';
 import Loadman from '../Loader/Loadman';
 import { NavLink } from 'react-router-dom';
 
@@ -66,7 +66,7 @@ export class MapContainer extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    const { firstName, lastName, email, lat,
+    const { firstName, email, lat,
       noOfSpaces, lng, address, describe } = this.state;
 
     this.ref.add({
@@ -140,7 +140,7 @@ export class MapContainer extends Component {
       );
     }
     // console.log(102, this.state.selectedPlace.map);
-    const { firstName, lastName, email, lat,
+    const { firstName, email, lat,
       noOfSpaces, lng, address, describe } = this.state;
     return (
       <div>
@@ -207,7 +207,7 @@ export class MapContainer extends Component {
                     {/* <!-- CONTACT FORM --> */}
                     <div className="contact-form wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
                       <div id="message"></div>
-                      <form onSubmit={this.onSubmit} className="form-horizontal contact-1" role="form" name="contactform" id="contactform">
+                      <form onSubmit={this.onSubmit} className="form-horizontal contact-1" name="contactform" id="contactform">
                         <div className="form-group">
                           <div className="col-sm-12">
                             <input type="text" className="placeholding form-control" onChange={this.onChange} value={firstName} name="firstName" id="name" placeholder="FULL NAME" />

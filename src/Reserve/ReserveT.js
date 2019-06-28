@@ -1,6 +1,5 @@
 //import './VruFormStyle.css';
 import React from 'react';
-import Spinner from '../Loader/Spinner';
 import { NavLink } from 'react-router-dom';
 
 

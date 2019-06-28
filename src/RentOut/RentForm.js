@@ -19,7 +19,7 @@ class RentReq extends Component {
         querySnapshot.forEach((doc) => {
             this.setState({ count: (this.state.count + 1) })
 
-            const { firstName, lastName, email, lat,
+            const { firstName, email, lat,
                 noOfSpaces, lng, address, describe } = doc.data();
             rents.push({
                 key: doc.id,
@@ -61,7 +61,7 @@ class RentReq extends Component {
                                     <h4 style={{ textAlign: 'right' }}><Link to="/search-maps" style={{ marginTop: '-7%' }} title="Press the button and it will redirected to map" className="btn custom-btn btn-info"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i>Book for Another Place</Link></h4>
 
                                     <h3 className="panel-title" style={{ marginTop: '-2%' }} >
-                                        LIST OF USERS
+                                        LIST OF REQUESTED PLACES
                                     </h3>
                                 </div>
                                 <div className="panel-body">

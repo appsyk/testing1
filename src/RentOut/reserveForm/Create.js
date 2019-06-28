@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import firebase from './Firebase';
 import { Link } from 'react-router-dom';
 
@@ -181,7 +180,7 @@ class Create extends Component {
                       {/* <!-- CONTACT FORM --> */}
                       <div className="contact-form wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
                         <div id="message"></div>
-                        <form action="scripts/contact.php" className="form-horizontal contact-1" role="form" name="contactform" id="contactform">
+                        <form action="scripts/contact.php" className="form-horizontal contact-1" name="contactform" id="contactform">
                           <div className="form-group">
                             <div className="col-sm-6">
                               <input type="text" className="form-control" name="first-name" id="name" placeholder="FIRST NAME" />

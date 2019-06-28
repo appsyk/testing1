@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 // import './App.css';
 import firebase from '../Firebase';
-import Spinner from '../../Loader/Spinner';
+// import Spinner from '../../Loader/Spinner';
 import Loadman from '../../Loader/Loadman';
 
 class AiroliStationShow extends Component {
@@ -84,7 +84,7 @@ class AiroliStationShow extends Component {
           <h1>Sorry this place is full !</h1>
           <h3>try for another <a href="/search-maps"><b>place</b></a></h3>
           {/* <h4>for further process</h4> */}
-          <Spinner />
+          <Loadman />
         </div>
       );
     } else

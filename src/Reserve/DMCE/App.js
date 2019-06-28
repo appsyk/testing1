@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 // import './App.css';
 import firebase from '../Firebase';
-import Spinner from '../../Loader/Spinner';
+// import Spinner from '../../Loader/Spinner';
 import Loadman from '../../Loader/Loadman';
 
 

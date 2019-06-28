@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { GoogleApiWrapper, InfoWindow, Marker, Map } from 'google-maps-react';
+import { GoogleApiWrapper, InfoWindow, Marker} from 'google-maps-react';
 // import Header from '../NavBar/Header';
-import { NavLink } from 'react-router-dom';
-import Login from '../LoginStyle/Login';
+// import { NavLink } from 'react-router-dom';
+// import Login from '../LoginStyle/Login';
 import CurrentLocation from './Map';
-import LoginApp from '../LoginStyle/App';
+// import LoginApp from '../LoginStyle/App';
 import firebase from '../Reserve/Firebase';
-import Spinner from '../Loader/Spinner';
+// import Spinner from '../Loader/Spinner';
 import SideBar from './SideBar';
 
 
@@ -252,7 +252,7 @@ export class MapContainer extends Component {
 
                   </div>
                 </InfoWindow>
-                <Marker
+                {/* <Marker
                   onClick={this.onMarkerClick}
                   icon={this.iconMarker4Rent}
                   title={'Sanjay Khatal'}
@@ -260,7 +260,7 @@ export class MapContainer extends Component {
                   // img={'https://lh3.googleusercontent.com/p/AF1QipM-oqvZ05gDilGO-_DIH3nZFiF6n-eDLU4D6UJg=s0'}
                   addrs={'E119, Nere, Navi Mumbai, Maharashtra 410206'}
                   rform={'/create@ARIHANT_RABALE'}
-                  position={{ lat: 19.0021632, lng: 73.1537408 }} />
+                  position={{ lat: 19.0021632, lng: 73.1537408 }} /> */}
               </CurrentLocation>
             </div>
           </div>

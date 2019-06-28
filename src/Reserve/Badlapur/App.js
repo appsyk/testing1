@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 // import './App.css';
 import firebase from '../Firebase';
-import App from '/home/sanju/react/spark/src/mapBox/App';
-import Spinner from '../../Loader/Spinner';
+// import App from '/home/sanju/react/spark/src/mapBox/App';
+// import Spinner from '../../Loader/Spinner';
 import Loadman from '../../Loader/Loadman';
 
 class BadlapurShow extends Component {

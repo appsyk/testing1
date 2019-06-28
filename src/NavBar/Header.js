@@ -3,49 +3,18 @@ import './buttonStyle.css';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 // import $ from 'jquery';
-import { findDOMNode } from 'react-dom';
+// import { findDOMNode } from 'react-dom';
 import firebase from '../Reserve/Firebase';
 //import Home from '../LoginStyle/Home';
-import ExButton from './DataArrayMap';
-import Home from '../LoginStyle/Home';
-import Register from '../Reserve/Register';
+// import ExButton from './DataArrayMap';
+// import Home from '../LoginStyle/Home';
+// import Register from '../Reserve/Register';
 
 
 //import Login from '../LoginStyle/Login';
 
 class Header extends React.Component {
-    // state = { time: new Date().toLocaleString() };
 
-    // state={ time: new Date().toLocaleString()};
-
-    // componentDidMount() {
-    //   this.intervalID = setInterval(
-    //     () => this.tick(),
-    //     1000
-    //   );
-    //   this.emailRe = setInterval(
-    //     (props) => this.renderButton(),
-    //     1000
-    //   );
-    // }
-
-    // componentWillUnmount() {
-    //   clearInterval(this.intervalID);
-    //   clearInterval(this.emailRe);
-    // }
-    // tick() {
-    //   this.setState({
-    //     time: new Date().toLocaleString()
-    //   });
-    // }
-
-    
-
-   
-    // toggleHandle = (test) => {
-    //     const el = findDOMNode(this.refs.test)
-    //     $(el).slideToggle();
-    // }
     state = { user: null };
 
     componentDidMount() {
@@ -104,7 +73,7 @@ class Header extends React.Component {
                                     <div className="collapse navbar-collapse zero_mp" id="bs-example-navbar-collapse-1">
                                         <ul className="nav navbar-nav navbar-right main_menu" style={{ fontSize:'5px' }}>
                                             <li className="active"><NavLink to='/'>Home <span className="sr-only">(current)</span></NavLink></li>
-                                            <li><a href="#welcome">about</a></li>
+                                            {/* <li><a href="#welcome">about</a></li> */}
                                             <li><a href="/search-maps">Search for places</a></li>
 
                                             <li><a href="/rent-out-ur-places">Rent out your space</a></li>
@@ -120,7 +89,7 @@ class Header extends React.Component {
                                                         {this.state.user ? 
                                                             (<button className="dropbtn btn btn-info btn-lg dropdown-toggle"><div>{this.state.user.email}
                                                                 <div className="dropdown-content">
-                                                                    <a href="#" onClick={this.logout}>Logout</a>
+                                                                    <h3 style={{ color: 'black' }} onClick={this.logout}>Logout</h3>
                                                                 </div>
                                                             </div></button>):(<button className="btn btn-outline-primary custom-btn btn-lg"><div ><NavLink to='/login' style={{ color:'white' }}>Sign In
                                                                 {/* <div className="dropdown-content"> 
