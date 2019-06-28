@@ -4,7 +4,8 @@ import * as firebase from 'firebase';
 const settings = {timestampsInSnapshots: true};
 
 const config = {
-  apiKey: "AIzaSyBlPdNa54Y_aiNPDcLfUSLZkqwtWCzPXlA",
+  apiKey:'',
+    // "AIzaSyBlPdNa54Y_aiNPDcLfUSLZkqwtWCzPXlA",
   authDomain: "sanju-f634e.firebaseapp.com",
   databaseURL: "https://sanju-f634e.firebaseio.com",
   projectId: "sanju-f634e",
